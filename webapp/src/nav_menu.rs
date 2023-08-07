@@ -23,6 +23,20 @@ pub(crate) fn get_nav_routing() -> Vec<NavRoute> {
             vec![
                 NavLinkInfo::link(
                     "My Requests",
+                    "/signin",
+                    "fa-duotone fa-right-to-bracket fa-bounce",
+                    roles::PUBLIC,
+                    page_signin,
+                ),
+                NavLinkInfo::link(
+                    "My Requests",
+                    "/auth",
+                    "fa-duotone fa-right-to-bracket fa-bounce",
+                    roles::USER,
+                    page_signin,
+                ),
+                NavLinkInfo::link(
+                    "My Requests",
                     "/service-requests",
                     "fa-duotone fa-inbox",
                     roles::INVALID,

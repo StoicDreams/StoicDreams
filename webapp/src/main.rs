@@ -1,7 +1,9 @@
+mod apis;
 #[macro_use]
 mod components;
 mod nav_menu;
 mod pages;
+mod panels;
 mod prelude;
 
 use prelude::*;
@@ -21,7 +23,7 @@ fn setup_app_config() -> AppConfig {
     .set_drawer_toggle_header_left(nav_menu::nav_menu_info())
     .set_drawer_toggle_header_middle(myfi_feedback_button_info())
     .set_header_strip_bar(stoic_header_strip_bar)
-    .set_user_info_panel(myfi_info_panel)
+    .set_user_info_panel(accounts_panel)
     .set_copyright_start(2010)
     .build()
 }
