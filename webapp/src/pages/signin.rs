@@ -50,13 +50,12 @@ fn render_signin_content(user: &Option<MyFiUser>) -> Html {
     }
 }
 
-#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
-struct SiteInfo {
-    pub site_id: String,
-    pub site_name: String,
-    pub company: String,
-    pub redirect: String,
-}
+define_form!(SiteInfo, {
+    site_id: String,
+    site_name: String,
+    company: String,
+    redirect: String
+});
 
 #[function_component(SiteAuth)]
 fn site_auth() -> Html {
@@ -265,6 +264,7 @@ pub(crate) fn myfi_sign_in(
         Ok(post_body) => {
             let contexts = contexts.clone();
             let alert_state = alert_state.clone();
+            let user_state = user_state.clone();
             spawn_async!({
                 let response = fetch_cors(FetchRequest::new(
                     url.to_string(),
@@ -273,16 +273,33 @@ pub(crate) fn myfi_sign_in(
                 .await;
                 if response.is_ok() {
                     if let Some(result) = response.get_result() {
-                        if let Ok(user) = serde_json::from_str::<MyFiUser>(&result) {
+                        if let Ok(auth_result) = serde_json::from_str::<AuthResult>(&result) {
                             contexts.drawer.clone().set(DrawerMessage::Close);
-                            let name = user.display_name.clone();
-                            user_state.clone().set(Some(user));
+                            let mut user_updated = match user_state.deref() {
+                                Some(user) => user.to_owned(),
+                                None => MyFiUser::default(),
+                            };
+                            user_updated.id = Some(auth_result.id);
+                            user_updated.display_name = auth_result.display_name;
+                            user_updated.roles = auth_result.roles;
+                            let name = user_updated.display_name.clone();
+                            user_state.clone().set(Some(user_updated));
+                            if let Some(auth_key) = auth_result.auth_key {
+                                set_user_storage_data(
+                                    String::from("stoic_dreams_auth_token"),
+                                    auth_key,
+                                );
+                            }
                             alert!(
                                 contexts,
                                 "Success",
                                 format!("Welcome {}, you have successfully signed in.", name)
                             );
-                            nav_to!(contexts, "/");
+                            let redirect_url = match auth_result.redirect_url.to_owned() {
+                                Some(redirect_url) => redirect_url,
+                                None => "/".to_string(),
+                            };
+                            nav_to!(contexts, &redirect_url);
                             return;
                         }
                     }

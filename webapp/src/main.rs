@@ -1,6 +1,7 @@
 mod apis;
 #[macro_use]
 mod components;
+mod forms;
 mod nav_menu;
 mod pages;
 mod panels;
