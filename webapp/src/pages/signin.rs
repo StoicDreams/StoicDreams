@@ -9,13 +9,16 @@ const LOADING_BAR_STYLES: &str = "width:calc(0.5 * var(--window-width));min-widt
 
 pub(crate) fn page_signin(contexts: Contexts) -> Html {
     html! {
-        <Paper class="d-flex flex-grow flex-column justify-center align-center">
-            <Paper class="d-flex flex-row flex-wrap justify-center gap-1">
-                {render_signin_content(contexts.user.deref().deref())}
+        <>
+            <MyFiStorageConcent />
+            <Paper class="d-flex flex-grow flex-column justify-center align-center">
+                <Paper class="d-flex flex-row flex-wrap justify-center gap-1">
+                    {render_signin_content(contexts.user.deref())}
+                </Paper>
+                <Paper class="flex-grow" />
+                {disclaimer()}
             </Paper>
-            <Paper class="flex-grow" />
-            {disclaimer()}
-        </Paper>
+        </>
     }
 }
 
@@ -59,7 +62,7 @@ define_form!(SiteInfo, {
 
 #[function_component(SiteAuth)]
 fn site_auth() -> Html {
-    let contexts = use_context::<Contexts>().expect("Contexts not found");
+    let _contexts = use_context::<Contexts>().expect("Contexts not found");
     let site_info = use_state(|| None::<SiteInfo>);
     let invalid_site_info = use_state(|| false);
     if let Some(site_info) = site_info.deref().to_owned() {
@@ -161,12 +164,14 @@ fn display_login_signup() -> Html {
     set_title("Sign In or Create Account");
     let tab_keys = vec![String::from("Sign In"), String::from("Create Acount")];
     html! {
-        <Paper class="pa-2 elevation-n10">
-            <TabbedContent tabs={tab_keys} class="d-flex flex-column gap-1">
-                <SignIn />
-                <SignUp />
-            </TabbedContent>
-        </Paper>
+        <>
+            <Paper class="pa-2 elevation-n10">
+                <TabbedContent tabs={tab_keys} class="d-flex flex-column gap-1">
+                    <SignIn />
+                    <SignUp />
+                </TabbedContent>
+            </Paper>
+        </>
     }
 }
 
@@ -240,7 +245,7 @@ fn sign_in() -> Html {
 
 #[function_component(SignUp)]
 fn sign_up() -> Html {
-    let contexts = use_context::<Contexts>().expect("Contexts not found");
+    let _contexts = use_context::<Contexts>().expect("Contexts not found");
     html! {
         <>
             {title_primary!(&format!("Create a new {} account!", get_company_singular()))}
@@ -265,6 +270,7 @@ pub(crate) fn myfi_sign_in(
             let contexts = contexts.clone();
             let alert_state = alert_state.clone();
             let user_state = user_state.clone();
+
             spawn_async!({
                 let response = fetch_cors(FetchRequest::new(
                     url.to_string(),
@@ -299,6 +305,7 @@ pub(crate) fn myfi_sign_in(
                                 Some(redirect_url) => redirect_url,
                                 None => "/".to_string(),
                             };
+                            jslog!("Redirect to :{:?}", redirect_url);
                             nav_to!(contexts, &redirect_url);
                             return;
                         }

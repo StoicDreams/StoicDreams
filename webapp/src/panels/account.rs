@@ -4,7 +4,7 @@ const WRAPPER_STYLES: &str = "min-width:300px;";
 
 /// The info panel for myfi account and other services.
 pub fn accounts_panel(contexts: Contexts) -> Html {
-    let user = contexts.user.deref().deref().to_owned();
+    let user = contexts.user.deref().to_owned();
     if let Some(user) = user {
         let class = if user.roles > 0 {
             "btn theme-success"
@@ -42,7 +42,7 @@ pub(crate) fn get_render_wrapper(contexts: Contexts) -> Html {
     let user_state = contexts.clone().user;
     let user_state = user_state.deref();
 
-    if let Some(user) = user_state.deref() {
+    if let Some(user) = user_state {
         if user.roles > 0 {
             return render_with_user(contexts, user);
         }

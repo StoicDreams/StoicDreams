@@ -1,7 +1,9 @@
-# Software Development Studio
+# Forging solutions for tomorrow's software development
+
+## Pioneering productivity tools and resources for developers worldwide
 
 ```section
-Stoic Dreams is a software development studio setup in Jackson, Tennessee.
+Welcome to Stoic Dreams, where innovation meets the needs of every developer. As architects of the future of software development, we are dedicated to creating open-source tools that not only enhance your coding capabilities but also shape the very future of software development.
 ```
 
 ## Current Projects
@@ -12,8 +14,8 @@ Stoic Dreams is a software development studio setup in Jackson, Tennessee.
 Our first Rust project. This framework is being developed and used to power the latest major iteration of our website projects.
 ```
 
-```card "Faryn" "500" "tertiary" "https://www.farynthegame.com/Logo.svg" "https://www.farynthegame.com" "Faryn the Game"
-An action-adventure game we are working on, very early in development.
+```card "MyFi" "500" "tertiary" "https://www.myfi.ws/Logo.svg" "https://www.myfi.com" "MyFi API Tools & Services"
+Our portal for API tools and services offered by Stoic Dreams.
 ```
 
 ````
