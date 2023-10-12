@@ -24,23 +24,22 @@ pub(crate) fn page_signin(contexts: Contexts) -> Html {
 
 fn render_signin_content(user: &Option<MyFiUser>) -> Html {
     if let Some(user) = user {
-        let (render, markdown) = if user.roles > 0 {
-            (html! {<SiteAuth />}, "auth.md")
-        } else {
-            (html! {<DisplayLoginSignup />}, "signin.md")
-        };
         if user.roles > 0 {
             return html! {
-                <SiteAuth />
+                <>
+                    <Paper>
+                        <SiteAuth />
+                    </Paper>
+                </>
             };
-        }
+        };
         return html! {
             <>
                 <Paper>
-                    {render}
+                    <DisplayLoginSignup />
                 </Paper>
-                <Paper style="min-width:400px;width:calc(0.47 * var(--window-width));" class="pa-2" elevation={ELEVATION_STANDARD}>
-                    <MarkdownContent href={format!("/d/en-US/{}", markdown)} />
+                <Paper style="min-width:400px;width:calc(0.47 * var(--window-width));" class="ma-3 pa-2" elevation={ELEVATION_STANDARD}>
+                    <MarkdownContent href={"/d/en-US/signin.md".to_string()} />
                 </Paper>
             </>
         };
@@ -53,13 +52,6 @@ fn render_signin_content(user: &Option<MyFiUser>) -> Html {
     }
 }
 
-define_form!(SiteInfo, {
-    site_id: String,
-    site_name: String,
-    company: String,
-    redirect: String
-});
-
 #[function_component(SiteAuth)]
 fn site_auth() -> Html {
     let _contexts = use_context::<Contexts>().expect("Contexts not found");
@@ -70,47 +62,59 @@ fn site_auth() -> Html {
             <SiteAuthManager site_info={site_info} />
         };
     }
-    if let Some(query_data) = get_query_data_from_path() {
-        let check = query_data
-            .iter()
-            .find(|(key, _)| *key == "site_id")
-            .map(|(_, value)| value.to_string());
-        if let Some(site_id) = check {
-            if *invalid_site_info {
-                return html! {
-                    <Paper>
-                        <Quote color={Theme::Danger} class="pa-2 ma-2" elevation={ELEVATION_STANDARD}>
-                            <MarkdownContent href="/d/en-US/invalid_site.md" />
-                        </Quote>
-                    </Paper>
-                };
-            }
-            let site_info = site_info.clone();
-            spawn_async!({
-                let response = fetch_myfi(
-                    &format!("{}/{}", MYFI_URL_SITE_INFO, site_id),
-                    FetchMethod::Get,
-                )
-                .await;
-                if response.is_ok() {
-                    if let Some(response) = response.get_result() {
-                        if let Ok(loaded) = serde_json::from_str::<SiteInfo>(&response) {
-                            site_info.set(Some(loaded));
-                            return;
-                        }
-                    }
-                }
-                invalid_site_info.set(true);
-            });
+    if let Some(site_id) = query_url("siteid") {
+        if *invalid_site_info {
             return html! {
-                <Paper class="ma-2">
-                    <Loading variant={LoadingVariant::StripedBar} size={LOADING_SIZE_XLARGE} style={LOADING_BAR_STYLES} />
+                <Paper>
+                    <Quote color={Theme::Danger} class="pa-2 ma-2" elevation={ELEVATION_STANDARD}>
+                        <MarkdownContent href="/d/en-US/invalid_site.md" />
+                    </Quote>
                 </Paper>
             };
         }
+        let site_info = site_info.clone();
+        spawn_async!({
+            let response = fetch_myfi(
+                &format!("{}/{}", MYFI_URL_SITE_INFO, site_id),
+                FetchMethod::Get,
+            )
+            .await;
+            if response.is_ok() {
+                if let Some(response) = response.get_result() {
+                    if let Ok(loaded) = serde_json::from_str::<SiteInfo>(&response) {
+                        site_info.set(Some(loaded));
+                        return;
+                    }
+                }
+            }
+            invalid_site_info.set(true);
+        });
+        return html! {
+            <Paper class="ma-2">
+                <Loading variant={LoadingVariant::StripedBar} size={LOADING_SIZE_XLARGE} style={LOADING_BAR_STYLES} />
+            </Paper>
+        };
     }
     render_auth_manager()
 }
+
+fn query_url(name: &str) -> Option<String> {
+    if let Some(query_data) = get_query_data_from_path() {
+        return query_data
+            .iter()
+            .find(|(key, _)| *key == name)
+            .map(|(_, value)| value.to_string());
+    }
+    None
+}
+
+define_form!(SiteInfo, {
+    name: String,
+    company: String,
+    company_id: String,
+    domain: String,
+    redirect: String
+});
 
 #[derive(Properties, Clone, PartialEq)]
 struct SiteAuthManagerProps {
@@ -119,14 +123,36 @@ struct SiteAuthManagerProps {
 
 #[function_component(SiteAuthManager)]
 fn site_auth_manager(props: &SiteAuthManagerProps) -> Html {
+    let SiteInfo {
+        name: site,
+        company,
+        company_id,
+        domain,
+        redirect,
+    } = &props.site_info;
     set_title(&format!(
         "Authorize login and permissions for website {} from company {}",
-        props.site_info.site_name, props.site_info.company
+        site, company
     ));
+
+    let data_message = match company_id.as_str() {
+        "Companies:0ipahe77ogcpign1fu9e" => format!("{} is a Stoic Dreams owned website, which may share Stoic Dreams data across across its various domains and applications.", domain),
+        _ => format!("The website {} ({}) and company {} will not be granted any additional access to your Stoic Dreams data not related to {} through this authorization.", site, domain, company, domain)
+    };
+    let btn_display = format!("Confirm Sign-In Authorization for {}", domain);
     html!(
-        <Paper class="ma-2">
+        <Paper class="mt-3">
             {title_primary!("Website Authorization Manager")}
-            {"Coming Soon!"}
+            <Paper class={CLASSES_PAGE_SECTION} elevation={ELEVATION_STANDARD}>
+                {paragraphs!(
+                    &format!("{} is requesting access for you to sign-in to your Stoic Dreams account on their website {} ({}).", company, site, domain),
+                    &format!("Confirming this request will return you to {} and grant it access to access your data associated with that domain.", domain),
+                    &data_message
+                )}
+            </Paper>
+            <Paper class="d-flex flex-column justify-center align-center mt-3">
+                <Link class={"btn theme-primary"} href={redirect.to_owned()} title={btn_display.to_owned()}>{btn_display}</Link>
+            </Paper>
         </Paper>
     )
 }
@@ -263,8 +289,16 @@ pub(crate) fn myfi_sign_in(
     let user_state = contexts.clone().user;
     let email = email.to_string();
     let password = password.to_string();
+    let site_id = query_url("siteid");
     let url = format!("https://{}.myfi.ws/{}", MYFI_ROOT_AUTH, MYFI_URL_SIGNIN);
-    let post_data = HashMap::from([("email", email), ("password", password)]);
+    let post_data = match &site_id {
+        Some(site_id) => HashMap::from([
+            ("email", email),
+            ("password", password),
+            ("site_id", site_id.to_owned()),
+        ]),
+        None => HashMap::from([("email", email), ("password", password)]),
+    };
     match serde_json::to_string(&post_data) {
         Ok(post_body) => {
             let contexts = contexts.clone();
@@ -301,11 +335,15 @@ pub(crate) fn myfi_sign_in(
                                 "Success",
                                 format!("Welcome {}, you have successfully signed in.", name)
                             );
-                            let redirect_url = match auth_result.redirect_url.to_owned() {
-                                Some(redirect_url) => redirect_url,
-                                None => "/".to_string(),
-                            };
-                            jslog!("Redirect to :{:?}", redirect_url);
+                            if let Some(site_id) = site_id {
+                                nav_to!(contexts, &format!("/auth?siteid={}", site_id));
+                                return;
+                            }
+                            let redirect_url = String::from("/auth");
+                            // let redirect_url =  match auth_result.redirect_url.to_owned() {
+                            //     Some(redirect_url) => redirect_url,
+                            //     None => "/".to_string(),
+                            // };
                             nav_to!(contexts, &redirect_url);
                             return;
                         }
