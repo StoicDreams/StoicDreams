@@ -98,16 +98,6 @@ fn site_auth() -> Html {
     render_auth_manager()
 }
 
-fn query_url(name: &str) -> Option<String> {
-    if let Some(query_data) = get_query_data_from_path() {
-        return query_data
-            .iter()
-            .find(|(key, _)| *key == name)
-            .map(|(_, value)| value.to_string());
-    }
-    None
-}
-
 define_form!(SiteInfo, {
     name: String,
     company: String,
@@ -167,24 +157,6 @@ fn render_auth_manager() -> Html {
     )
 }
 
-fn get_query_data_from_path() -> Option<HashMap<String, String>> {
-    let path = get_full_path();
-    match path.find('?') {
-        Some(index) => {
-            let query = &path[index + 1..];
-            let mut query_data = HashMap::new();
-            for pair in query.split('&') {
-                let mut pair = pair.split('=');
-                let key = pair.next().unwrap_or_default();
-                let value = pair.next().unwrap_or_default();
-                query_data.insert(key.to_string(), value.to_string());
-            }
-            Some(query_data)
-        }
-        None => None,
-    }
-}
-
 #[function_component(DisplayLoginSignup)]
 fn display_login_signup() -> Html {
     set_title("Sign In or Create Account");
@@ -205,8 +177,8 @@ fn disclaimer() -> Html {
     html! {
         <Quote color={Theme::Info}>
             <MarkdownContent markdown={r#"
-*Disclaimer: We at Stoic Dreams are committed to your privacy and security. We adhere to the strictest data privacy laws and industry-standard encryption practices to ensure your personal information is protected.*
-"#} />
+            *Disclaimer: We at Stoic Dreams are committed to your privacy and security. We strive to assure that we adhere to the strictest data privacy laws and meet or exceed industry-standard encryption practices to ensure your personal information is protected.*
+            "#} />
         </Quote>
     }
 }
