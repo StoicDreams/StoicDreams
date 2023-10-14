@@ -10,7 +10,7 @@ const LOADING_BAR_STYLES: &str = "width:calc(0.5 * var(--window-width));min-widt
 pub(crate) fn page_signin(contexts: Contexts) -> Html {
     html! {
         <>
-            <MyFiStorageConcent />
+            <MyFiStorageConsent />
             <Paper class="d-flex flex-grow flex-column justify-center align-center">
                 <Paper class="d-flex flex-row flex-wrap justify-center gap-1">
                     {render_signin_content(contexts.user.deref())}
