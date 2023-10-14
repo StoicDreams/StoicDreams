@@ -1,6 +1,6 @@
 # Stoic Dreams
 
-[WebUI Version: 0.6.55](https://github.com/StoicDreams/RustWebUI)
+[WebUI Version: 0.6.56](https://github.com/StoicDreams/RustWebUI)
 
 Front-end website for the company, Stoic Dreams.
 
