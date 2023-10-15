@@ -5,50 +5,58 @@ use crate::prelude::*;
 const MYFI_ROOT_AUTH: &str = "auth";
 const MYFI_URL_SIGNIN: &str = "signin";
 const MYFI_URL_SITE_INFO: &str = "site_info";
-const LOADING_BAR_STYLES: &str = "width:calc(0.5 * var(--window-width));min-width:300px;";
 
 pub(crate) fn page_signin(contexts: Contexts) -> Html {
-    html! {
-        <>
-            <MyFiStorageConsent />
-            <Paper class="d-flex flex-grow flex-column justify-center align-center">
-                <Paper class="d-flex flex-row flex-wrap justify-center gap-1">
-                    {render_signin_content(contexts.user.deref())}
+    set_title("Sign In or Create Account");
+    match contexts.user.deref() {
+        Some(user) => {
+            html! {
+                <>
+                    <MyFiStorageConsent />
+                    <Paper class="d-flex flex-grow flex-column justify-center align-center mt-3">
+                        <Paper class="d-flex flex-row flex-wrap justify-center gap-1">
+                            {render_signin_content(user)}
+                        </Paper>
+                        <Paper class="flex-grow" />
+                        {disclaimer()}
+                    </Paper>
+                </>
+            }
+        }
+        None => {
+            html! {
+                <Paper class="d-flex flex-grow flex-column justify-left align-left">
+                    <Paper class="">
+                        <Loading variant={LoadingVariant::StripedBar} size={LOADING_SIZE_XLARGE} />
+                    </Paper>
+                    <Quote color={Theme::Info}>
+                        {"Waiting for user information to load."}
+                    </Quote>
                 </Paper>
-                <Paper class="flex-grow" />
-                {disclaimer()}
-            </Paper>
-        </>
+            }
+        }
     }
 }
 
-fn render_signin_content(user: &Option<MyFiUser>) -> Html {
-    if let Some(user) = user {
-        if user.roles > 0 {
-            return html! {
-                <>
-                    <Paper>
-                        <SiteAuth />
-                    </Paper>
-                </>
-            };
-        };
+fn render_signin_content(user: &MyFiUser) -> Html {
+    if user.roles > 0 {
         return html! {
             <>
                 <Paper>
-                    <DisplayLoginSignup />
-                </Paper>
-                <Paper style="min-width:400px;width:calc(0.47 * var(--window-width));" class="ma-3 pa-2" elevation={ELEVATION_STANDARD}>
-                    <MarkdownContent href={"/d/en-US/signin.md".to_string()} />
+                    <SiteAuth />
                 </Paper>
             </>
         };
-    }
-    set_title("Sign In or Create Account");
+    };
     html! {
-        <Paper class="ma-2">
-            <Loading variant={LoadingVariant::StripedBar} size={LOADING_SIZE_XLARGE} style={LOADING_BAR_STYLES} />
-        </Paper>
+        <>
+            <Paper>
+                <DisplayLoginSignup />
+            </Paper>
+            <Paper style="min-width:400px;width:calc(0.47 * var(--window-width));" class="pa-2" elevation={ELEVATION_STANDARD}>
+                <MarkdownContent href={"/d/en-US/signin.md".to_string()} />
+            </Paper>
+        </>
     }
 }
 
@@ -91,7 +99,7 @@ fn site_auth() -> Html {
         });
         return html! {
             <Paper class="ma-2">
-                <Loading variant={LoadingVariant::StripedBar} size={LOADING_SIZE_XLARGE} style={LOADING_BAR_STYLES} />
+                <Loading variant={LoadingVariant::StripedBar} size={LOADING_SIZE_XLARGE} />
             </Paper>
         };
     }
