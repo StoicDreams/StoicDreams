@@ -3,7 +3,7 @@
 ## Pioneering productivity tools and resources for developers worldwide
 
 ```section
-Welcome to Stoic Dreams, where innovation meets the needs of every developer. As architects of the future of software development, we are dedicated to creating open-source tools that not only enhance your coding capabilities but also shape the very future of software development.
+Welcome to Stoic Dreams, where innovation meets the needs of every developer. As architects of the future of software development, we are dedicated to creating open-source tools that not only enhance your coding capabilities but also help to shape a better future for software development.
 ```
 
 ## Current Projects
