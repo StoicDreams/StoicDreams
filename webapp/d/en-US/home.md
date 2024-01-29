@@ -22,13 +22,13 @@ Our portal for API tools and services offered by Stoic Dreams.
 
 ## Meet the Team
 
-````cards
+`````cards
 
-```card "Erik Gassler" "500" "title" "https://www.erikgassler.com/Logo.svg" "https://www.erikgassler.com" "Erik Gassler personal website"
+````card "Erik Gassler" "500" "title" "https://www.erikgassler.com/Logo.svg" "https://www.erikgassler.com" "Erik Gassler personal website"
 Owner and principal software engineer for Stoic Dreams.
 ```quote "success" "Erik Gassler"
 Just a simpleton who likes playing with bits and bytes.
 ```
-```
-
 ````
+
+`````
