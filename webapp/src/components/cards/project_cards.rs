@@ -372,12 +372,15 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
                     link="https://www.nuget.org/packages/StoicDreams.TestFramework"
                     width={CARD_WIDTH}
                 >
-                    {paragraphs!(
-                        "Nuget.org - StoicDreams.TestFramework",
-                        "A helper framework that's designed to help strictly adhere tests to an Arrange / Act / Assert framework of testing.",
-                        "Includes `Moq` and `FluentAssertion` libraries to help with mocking data and writing readable tests.",
-                        "Development on Test Framework is indefinitely on hold as we have migrated away from using C# for our projects."
-                    )}
+                    <MarkdownContent markdown={r#"
+                        Nuget.org - StoicDreams.TestFramework
+
+                        A helper framework that's designed to help strictly adhere tests to an Arrange / Act / Assert framework of testing.
+
+                        Includes `Moq` and `FluentAssertion` libraries to help with mocking data and writing readable tests.
+
+                        Development on Test Framework is indefinitely on hold as we have migrated away from using C# for our projects.
+                        "#} />
                 </Card>
             }
         } as fn() -> Html),
