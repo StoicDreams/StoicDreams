@@ -1,3 +1,4 @@
+#![allow(unused)] // TODO: Remove me when needing to check for dead code / unused methods/variables.
 mod apis;
 #[macro_use]
 mod components;
