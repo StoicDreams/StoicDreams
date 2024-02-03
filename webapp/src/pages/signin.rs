@@ -137,6 +137,30 @@ fn site_auth_manager(props: &SiteAuthManagerProps) -> Html {
         "Companies:0ipahe77ogcpign1fu9e" => format!("{} is a Stoic Dreams owned website, which may share Stoic Dreams data across across its various domains and applications.", domain),
         _ => format!("The website {} ({}) and company {} will not be granted any additional access to your Stoic Dreams data not related to {} through this authorization.", site, domain, company, domain)
     };
+    let redirect_state = redirect.to_string();
+    let redirect_state = use_state(move || redirect.to_string());
+    if let Some(app) = query_url("app", None) {
+        if let Some(key) = query_url("key", Some(redirect.to_string())) {
+            let application = if app.is_empty() { site } else { &app };
+            return html! {
+                <Paper class="mt-3">
+                    {title_primary!("Website Authorization Manager")}
+                    <Paper class={CLASSES_PAGE_SECTION} elevation={ELEVATION_STANDARD}>
+                        {paragraphs!(
+                            &format!("{} is requesting access for you to sign-in to your Stoic Dreams account on their application {} ({}).", company, application, domain),
+                            &format!("Copy/Paste this code into the Code field of {}.", application),
+                            &data_message
+                        )}
+                    </Paper>
+                    <Paper class="d-flex flex-column justify-center align-center mt-3">
+                        <DisplayCodeForCopy code={key} />
+                    </Paper>
+                </Paper>
+            };
+        }
+    }
+    let btn_display = format!("Confirm Sign-In Authorization for {}", domain);
+    let redirect = redirect.to_string();
     html!(
         <Paper class="mt-3">
             {title_primary!("Website Authorization Manager")}
@@ -148,40 +172,19 @@ fn site_auth_manager(props: &SiteAuthManagerProps) -> Html {
                 )}
             </Paper>
             <Paper class="d-flex flex-column justify-center align-center mt-3">
-                <RenderCodeRedirect site_info={props.site_info.to_owned()} />
+                <Link class={"btn theme-primary"} href={redirect.to_owned()} title={btn_display.to_owned()}>{btn_display}</Link>
             </Paper>
         </Paper>
     )
 }
 
-#[function_component(RenderCodeRedirect)]
-fn render_code_redirect(props: &SiteAuthManagerProps) -> Html {
-    let SiteInfo {
-        name: site,
-        company,
-        company_id,
-        domain,
-        redirect,
-    } = &props.site_info;
-    let redirect_state = redirect.to_string();
-    let redirect_state = use_state(move || redirect.to_string());
-    if let Some(_) = query_url("code", None) {
-        if let Some(key) = query_url("key", Some(redirect.to_string())) {
-            return html!{<DisplayCodeForCopy code={key} />}
-        }
-    }
-    let btn_display = format!("Confirm Sign-In Authorization for {}", domain);
-    let redirect = redirect.to_string();
-    html!{<Link class={"btn theme-primary"} href={redirect.to_owned()} title={btn_display.to_owned()}>{btn_display}</Link>}        
-}
-
 #[derive(Properties, Clone, PartialEq)]
 struct StringProp {
-    code: String
+    code: String,
 }
 
 #[function_component(DisplayCodeForCopy)]
-fn display_code_for_copy(props: &StringProp) -> Html { 
+fn display_code_for_copy(props: &StringProp) -> Html {
     let contexts = use_context::<Contexts>().expect("Contexts not found");
     let clipboard = use_clipboard();
     let code = props.code.to_owned();
@@ -189,7 +192,7 @@ fn display_code_for_copy(props: &StringProp) -> Html {
     let code_updater = code.to_owned();
     let contexts_move = contexts.clone();
     let code_string = code.to_string();
-    let callback = Callback::from(move |_|{
+    let callback = Callback::from(move |_| {
         clipboard.write_text(code_string.to_owned());
         let code = format!("{} copied to clipboard", code_string);
         alert!(contexts_move.clone(), "Copied!", &code);
@@ -200,8 +203,7 @@ fn display_code_for_copy(props: &StringProp) -> Html {
         color: Theme::Info,
         ..Default::default()
     });
-    let end_button = Some(ButtonIconInfo
-    {
+    let end_button = Some(ButtonIconInfo {
         icon: String::from("fa-duotone fa-copy"),
         onclick: Some(callback),
         title: String::from("Copy code to clipboard!"),
@@ -209,10 +211,7 @@ fn display_code_for_copy(props: &StringProp) -> Html {
         ..Default::default()
     });
     html! {
-        <Paper class="d-flex flex-column gap-3">
-            <Paper>{"Copy/Paste this code into the Code field of the application you are trying to log into."}</Paper>
-            <InputText t="password" value={code.to_owned()} style="width:300px" readonly={true} name={"Code"} {start_icon} {end_button} />
-        </Paper>
+        <InputText t="password" value={code.to_owned()} style="width:300px" readonly={true} name={"Code"} {start_icon} {end_button} />
     }
 }
 
