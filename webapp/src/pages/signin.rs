@@ -70,7 +70,7 @@ fn site_auth() -> Html {
             <SiteAuthManager site_info={site_info} />
         };
     }
-    if let Some(site_id) = query_url("siteid") {
+    if let Some(site_id) = query_url("siteid", None) {
         if *invalid_site_info {
             return html! {
                 <Paper>
@@ -137,7 +137,6 @@ fn site_auth_manager(props: &SiteAuthManagerProps) -> Html {
         "Companies:0ipahe77ogcpign1fu9e" => format!("{} is a Stoic Dreams owned website, which may share Stoic Dreams data across across its various domains and applications.", domain),
         _ => format!("The website {} ({}) and company {} will not be granted any additional access to your Stoic Dreams data not related to {} through this authorization.", site, domain, company, domain)
     };
-    let btn_display = format!("Confirm Sign-In Authorization for {}", domain);
     html!(
         <Paper class="mt-3">
             {title_primary!("Website Authorization Manager")}
@@ -149,10 +148,72 @@ fn site_auth_manager(props: &SiteAuthManagerProps) -> Html {
                 )}
             </Paper>
             <Paper class="d-flex flex-column justify-center align-center mt-3">
-                <Link class={"btn theme-primary"} href={redirect.to_owned()} title={btn_display.to_owned()}>{btn_display}</Link>
+                <RenderCodeRedirect site_info={props.site_info.to_owned()} />
             </Paper>
         </Paper>
     )
+}
+
+#[function_component(RenderCodeRedirect)]
+fn render_code_redirect(props: &SiteAuthManagerProps) -> Html {
+    let SiteInfo {
+        name: site,
+        company,
+        company_id,
+        domain,
+        redirect,
+    } = &props.site_info;
+    let redirect_state = redirect.to_string();
+    let redirect_state = use_state(move || redirect.to_string());
+    if let Some(_) = query_url("code", None) {
+        if let Some(key) = query_url("key", Some(redirect.to_string())) {
+            return html!{<DisplayCodeForCopy code={key} />}
+        }
+    }
+    let btn_display = format!("Confirm Sign-In Authorization for {}", domain);
+    let redirect = redirect.to_string();
+    html!{<Link class={"btn theme-primary"} href={redirect.to_owned()} title={btn_display.to_owned()}>{btn_display}</Link>}        
+}
+
+#[derive(Properties, Clone, PartialEq)]
+struct StringProp {
+    code: String
+}
+
+#[function_component(DisplayCodeForCopy)]
+fn display_code_for_copy(props: &StringProp) -> Html { 
+    let contexts = use_context::<Contexts>().expect("Contexts not found");
+    let clipboard = use_clipboard();
+    let code = props.code.to_owned();
+    let code = use_state(move || code);
+    let code_updater = code.to_owned();
+    let contexts_move = contexts.clone();
+    let code_string = code.to_string();
+    let callback = Callback::from(move |_|{
+        clipboard.write_text(code_string.to_owned());
+        let code = format!("{} copied to clipboard", code_string);
+        alert!(contexts_move.clone(), "Copied!", &code);
+    });
+    let start_icon = Some(IconOptions {
+        icon: String::from("fa-duotone fa-key"),
+        title: String::from("Use this code to sign in to your app."),
+        color: Theme::Info,
+        ..Default::default()
+    });
+    let end_button = Some(ButtonIconInfo
+    {
+        icon: String::from("fa-duotone fa-copy"),
+        onclick: Some(callback),
+        title: String::from("Copy code to clipboard!"),
+        color: Theme::Primary,
+        ..Default::default()
+    });
+    html! {
+        <Paper class="d-flex flex-column gap-3">
+            <Paper>{"Copy/Paste this code into the Code field of the application you are trying to log into."}</Paper>
+            <InputText t="password" value={code.to_owned()} style="width:300px" readonly={true} name={"Code"} {start_icon} {end_button} />
+        </Paper>
+    }
 }
 
 fn render_auth_manager() -> Html {
@@ -269,7 +330,7 @@ pub(crate) fn myfi_sign_in(
     let user_state = contexts.clone().user;
     let email = email.to_string();
     let password = password.to_string();
-    let site_id = query_url("siteid");
+    let site_id = query_url("siteid", None);
     let url = format!("https://{}.myfi.ws/{}", MYFI_ROOT_AUTH, MYFI_URL_SIGNIN);
     let post_data = match &site_id {
         Some(site_id) => HashMap::from([
