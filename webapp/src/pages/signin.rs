@@ -198,18 +198,12 @@ fn display_code_for_copy(props: &StringProp) -> Html {
         alert!(contexts_move.clone(), "Copied!", &code);
     });
     let start_icon = Some(IconOptions {
-        icon: String::from("fa-duotone fa-key"),
-        title: String::from("Use this code to sign in to your app."),
+        icon: "fa-duotone fa-key".into(),
+        title: "Use this code to sign in to your app.".into(),
         color: Theme::Info,
         ..Default::default()
     });
-    let end_button = Some(ButtonIconInfo {
-        icon: String::from("fa-duotone fa-copy"),
-        onclick: Some(callback),
-        title: String::from("Copy code to clipboard!"),
-        color: Theme::Primary,
-        ..Default::default()
-    });
+    let end_button = html_nested! {<Button icon={"fa-duotone fa-copy"} onclick={callback} title={"Copy code to clipboard!"} color={Theme::Primary} />};
     html! {
         <InputText t="password" value={code.to_owned()} style="width:300px" readonly={true} name={"Code"} {start_icon} {end_button} />
     }

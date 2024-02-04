@@ -102,7 +102,7 @@ fn sign_out(contexts: Contexts) {
         let contexts_signout = contexts.clone();
         Callback::from(move |_| {
             contexts_signout.user.set(None);
-            myfi_sign_out(contexts_signout.clone(), SignoutScope::ThisWebsite);
+            myfi_sign_out(contexts_signout.clone(), SignoutScope::ThisApp);
         })
     };
     let confirm_signout_this_browser = {
