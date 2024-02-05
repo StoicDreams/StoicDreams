@@ -185,7 +185,7 @@ fn nav_menu_render(_contexts: Contexts) -> Html {
     html! {
         <>
             <Paper class="logo d-flex pa-1 justify-center ml-a mr-a">
-                <Image src="Logo.svg" title="Web UI Logo" />
+                <AppLogo text="SD" title="Stoic Dreams Logo" />
             </Paper>
             <NavDisplay routes={get_nav_routing()} class="d-flex flex-column pa-1" />
         </>
