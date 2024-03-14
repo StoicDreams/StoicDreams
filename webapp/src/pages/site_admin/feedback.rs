@@ -1,7 +1,7 @@
 use crate::prelude::*;
 
 /// App home page
-pub(crate) fn page_site_admin_feedback(_contexts: Contexts) -> Html {
+pub(crate) fn page_site_admin_feedback(_contexts: &Contexts) -> Html {
     set_title("User Feedback");
     html! {
         <>

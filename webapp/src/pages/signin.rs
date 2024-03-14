@@ -6,7 +6,7 @@ const MYFI_ROOT_AUTH: &str = "auth";
 const MYFI_URL_SIGNIN: &str = "signin";
 const MYFI_URL_SITE_INFO: &str = "site_info";
 
-pub(crate) fn page_signin(contexts: Contexts) -> Html {
+pub(crate) fn page_signin(contexts: &Contexts) -> Html {
     set_title("Sign In or Create Account");
     match contexts.user.deref() {
         Some(user) => {
@@ -271,7 +271,7 @@ fn sign_in() -> Html {
                 contexts.user.set(Some(MyFiUser::default()));
                 return;
             }
-            myfi_sign_in(contexts.clone(), &email, &password, alert.clone())
+            myfi_sign_in(&contexts, &email, &password, alert.clone())
         }
     };
     let submit = {
@@ -315,7 +315,7 @@ fn sign_up() -> Html {
 }
 
 pub(crate) fn myfi_sign_in(
-    contexts: Contexts,
+    contexts: &Contexts,
     email: &str,
     password: &str,
     alert_state: UseStateHandle<String>,

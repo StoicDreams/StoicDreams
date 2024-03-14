@@ -1,7 +1,7 @@
 use crate::prelude::*;
 
 /// App home page
-pub(crate) fn page_sales_account_services(_contexts: Contexts) -> Html {
+pub(crate) fn page_sales_account_services(_contexts: &Contexts) -> Html {
     set_title("Account Services");
     html! {
         <>

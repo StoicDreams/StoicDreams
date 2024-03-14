@@ -3,7 +3,7 @@ use crate::prelude::*;
 const WRAPPER_STYLES: &str = "min-width:300px;";
 
 /// The info panel for myfi account and other services.
-pub fn accounts_panel(contexts: Contexts) -> Html {
+pub fn accounts_panel(contexts: &Contexts) -> Html {
     let user = contexts.user.deref().to_owned();
     if let Some(user) = user {
         let class = if user.roles > 0 {
@@ -25,7 +25,7 @@ pub fn accounts_panel(contexts: Contexts) -> Html {
     }
 }
 
-fn drawer_toggle_info(_contexts: Contexts) -> DrawerToggleInfo {
+fn drawer_toggle_info(_contexts: &Contexts) -> DrawerToggleInfo {
     drawer!(
         "Account Services",
         html! {<i class="fa-duotone fa-user" />},
@@ -38,8 +38,8 @@ fn drawer_toggle_info(_contexts: Contexts) -> DrawerToggleInfo {
     .build()
 }
 
-pub(crate) fn get_render_wrapper(contexts: Contexts) -> Html {
-    let user_state = contexts.clone().user;
+pub(crate) fn get_render_wrapper(contexts: &Contexts) -> Html {
+    let user_state: UseStateHandle<Option<MyFiUser>> = contexts.clone().user;
     let user_state = user_state.deref();
 
     if let Some(user) = user_state {
@@ -80,11 +80,11 @@ fn display_login_signup() -> Html {
     }
 }
 
-fn render_with_user(contexts: Contexts, user: &MyFiUser) -> Html {
+fn render_with_user(contexts: &Contexts, user: &MyFiUser) -> Html {
     let onclick = {
         let contexts_signout = contexts.clone();
         Callback::from(move |_| {
-            sign_out(contexts_signout.clone());
+            sign_out(&contexts_signout);
         })
     };
     html! {
@@ -97,32 +97,32 @@ fn render_with_user(contexts: Contexts, user: &MyFiUser) -> Html {
     }
 }
 
-fn sign_out(contexts: Contexts) {
+fn sign_out(contexts: &Contexts) {
     let confirm_signout_this_website = {
         let contexts_signout = contexts.clone();
         Callback::from(move |_| {
             contexts_signout.user.set(None);
-            myfi_sign_out(contexts_signout.clone(), SignoutScope::ThisApp);
+            myfi_sign_out(&contexts_signout, SignoutScope::ThisApp);
         })
     };
     let confirm_signout_this_browser = {
         let contexts_signout = contexts.clone();
         Callback::from(move |_| {
             contexts_signout.user.set(None);
-            myfi_sign_out(contexts_signout.clone(), SignoutScope::ThisBrowser);
+            myfi_sign_out(&contexts_signout, SignoutScope::ThisBrowser);
         })
     };
     let confirm_signout_this_all_devices = {
         let contexts_signout = contexts.clone();
         Callback::from(move |_| {
             contexts_signout.user.set(None);
-            myfi_sign_out(contexts_signout.clone(), SignoutScope::AllDevices);
+            myfi_sign_out(&contexts_signout, SignoutScope::AllDevices);
         })
     };
     let render_confirmation = {
         let confirm_signout_this_website = confirm_signout_this_website.clone();
         let confirm_signout_sd_acount = confirm_signout_this_browser.clone();
-        move |_| {
+        move |_contexts: &Contexts| {
             html! {
                 <>
                     <Paper class="flex-grow" />
@@ -154,6 +154,6 @@ Selecting `All Devices` will sign you out of all Stoic Dreams services across al
     );
 }
 
-fn handle_confirm(_contexts: Contexts) -> bool {
+fn handle_confirm(_contexts: &Contexts) -> bool {
     true
 }

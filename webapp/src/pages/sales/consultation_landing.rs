@@ -1,7 +1,7 @@
 use crate::prelude::*;
 
 /// App home page
-pub(crate) fn page_sales_consulation_landing(_contexts: Contexts) -> Html {
+pub(crate) fn page_sales_consulation_landing(_contexts: &Contexts) -> Html {
     set_title("Software Development Consulting services for Agile Development and Continuous Delivery Workflows");
     html! {
         <>
