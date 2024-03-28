@@ -21,7 +21,48 @@ pub fn get_project_card(project: &Projects) -> Html {
     }
 }
 
-/// App home page
+pub(crate) fn current_projects(_contexts: &Contexts) -> Html {
+    html! {
+        <>
+            {title_secondary!("Current Projects")}
+            <Paper class={CLASSES_PAGE_SECTION}>
+                {markdown!(r#"
+                Check out our top priority projects that we are activelly working on at the moment.
+                "#)}
+            </Paper>
+            <Paper class={CLASSES_CARD_CONTAINER}>
+                {get_cards!(
+                    Projects::WebUI,
+                    Projects::MyFi,
+                    Projects::GasslerDesign,
+                    Projects::TaskProxy,
+                    Projects::TaskStory
+                )}
+            </Paper>
+        </>
+    }
+}
+
+pub(crate) fn portfolio_projects(_contexts: &Contexts) -> Html {
+    html! {
+        <>
+            {title_secondary!("Portfolio")}
+            <Paper class={CLASSES_PAGE_SECTION}>
+                {markdown!(r#"
+                Check out our other projects that we are maintaining or previously worked on.
+                "#)}
+            </Paper>
+            <Paper class={CLASSES_CARD_CONTAINER}>
+                {get_cards!(
+                    Projects::BlazorUI,
+                    Projects::TestFramework,
+                    Projects::TestFrameworkBlazor
+                )}
+            </Paper>
+        </>
+    }
+}
+
 #[function_component(ProjectCards)]
 pub(crate) fn project_cards() -> Html {
     html! {
@@ -108,14 +149,17 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
             html! {
                 <Card
                     avatar="https://blazorui.stoicdreams.com/Logo.svg"
-                    title="Task Story"
+                    title="Blazor UI"
                     link="https://blazorui.stoicdreams.com/"
                     width={CARD_WIDTH}
                 >
-                    {paragraphs!(
-                        "A Blazor based UI framework for simplified and rapid website and application development.",
-                        "Development on Blazor UI is indefinitely on hold as we have migrated away from using C# and Blazor for our projects."
-                    )}
+                    {markdown!(r#"
+                    A Blazor based UI framework for simplified and rapid website and application development.
+
+                    Development on Blazor UI is indefinitely on hold as we have migrated away from using C# and Blazor for our projects.
+
+                    > Development on Blazor UI is indefinitely on hold as we have moved to Rust and [WebUI](https://webui.stoicdreams.com) for our projects.
+                    "#)}
                 </Card>
             }
         } as fn() -> Html),
@@ -257,7 +301,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
                     width={CARD_WIDTH}
                 >
                     {paragraphs!(
-                        "Data container for Stoic Dreams data resources."
+                        "Our portal for API tools and services offered by Stoic Dreams."
                     )}
                 </Card>
             }
@@ -341,12 +385,13 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
                     link="https://www.taskproxy.com/"
                     width={CARD_WIDTH}
                 >
-                    {paragraphs!(
-                        "Task Proxy is our desktop software for developer documentation and script management system.",
-                        "We released an initial prototype in early 2022 using C# with .NET Maui Blazor frameworks.",
-                        "Further development is currently on hold to focus on other projects.",
-                        "When we resume development our first task will be to rebuild the tool using Rust."
-                    )}
+                    {markdown!(r#"
+                    Task Proxy is our desktop software for developer documentation and script management system.
+
+                    We released an initial prototype in early 2022 using C# with .NET Maui Blazor frameworks.
+
+                    We are currently in the process of rebuilding this product using Rust with very early access builds being released through development on the [Task Proxy website](https://www.taskproxy.com).
+                    "#)}
                 </Card>
             }
         } as fn() -> Html),
@@ -372,15 +417,15 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
                     link="https://www.nuget.org/packages/StoicDreams.TestFramework"
                     width={CARD_WIDTH}
                 >
-                    <MarkdownContent markdown={r#"
+                    {markdown!(r#"
                         Nuget.org - StoicDreams.TestFramework
 
                         A helper framework that's designed to help strictly adhere tests to an Arrange / Act / Assert framework of testing.
 
                         Includes `Moq` and `FluentAssertion` libraries to help with mocking data and writing readable tests.
 
-                        Development on Test Framework is indefinitely on hold as we have migrated away from using C# for our projects.
-                        "#} />
+                        > Development on Test Framework is indefinitely on hold as we have migrated away from using C# for our projects.
+                        "#)}
                 </Card>
             }
         } as fn() -> Html),
@@ -392,10 +437,11 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
                     link="https://www.nuget.org/packages/StoicDreams.TestFrameworkBlazor"
                     width={CARD_WIDTH}
                 >
-                    {paragraphs!(
-                        "An extended version of StoicDreams.TestFramework that adds a additional testing methods for testing .razor / Blazor components.",
-                        "Development on Test Framework Blazor is indefinitely on hold as we have migrated away from using C# and Blazor for our projects."
-                    )}
+                    {markdown!(r#"
+                    An extended version of StoicDreams.TestFramework that adds a additional testing methods for testing .razor / Blazor components.
+
+                    > Development on Test Framework Blazor is indefinitely on hold as we have migrated away from using C# and Blazor for our projects.
+                    "#)}
                 </Card>
             }
         } as fn() -> Html),
