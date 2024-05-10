@@ -118,7 +118,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::AgentSquire, || -> Html {
             html! {
                 <Card
-                    avatar="https://www.agentsquire.com/Logo.svg"
+                    avatar={AvatarOption::Image(String::from("https://www.agentsquire.com/Logo.svg"))}
                     title="Agent Squire"
                     link="https://www.agentsquire.com/"
                     width={CARD_WIDTH}
@@ -133,7 +133,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::ApTul, || -> Html {
             html! {
                 <Card
-                    avatar="https://www.aptul.com/Logo.svg"
+                    avatar={AvatarOption::Image(String::from("https://www.aptul.com/Logo.svg"))}
                     title="Ap Tul"
                     link="https://www.aptul.com/"
                     width={CARD_WIDTH}
@@ -148,7 +148,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::BlazorUI, || -> Html {
             html! {
                 <Card
-                    avatar="https://blazorui.stoicdreams.com/Logo.svg"
+                    avatar={AvatarOption::Image(String::from("https://blazorui.stoicdreams.com/Logo.svg"))}
                     title="Blazor UI"
                     link="https://blazorui.stoicdreams.com/"
                     width={CARD_WIDTH}
@@ -166,7 +166,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::BlueCherub, || -> Html {
             html! {
                 <Card
-                    avatar="https://www.bluecherub.com/Logo.svg"
+                    avatar={AvatarOption::Image(String::from("https://www.bluecherub.com/Logo.svg"))}
                     title="Blue Cherub"
                     link="https://www.bluecherub.com/"
                     width={CARD_WIDTH}
@@ -181,7 +181,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::DyHaTJ, || -> Html {
             html! {
                 <Card
-                    avatar="https://www.didyouhearaboutthisjob.com/Logo.svg"
+                    avatar={AvatarOption::Image(String::from("https://www.didyouhearaboutthisjob.com/Logo.svg"))}
                     title="Did You Hear About This Job?"
                     link="https://www.didyouhearaboutthisjob.com/"
                     width={CARD_WIDTH}
@@ -196,7 +196,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::ErikGassler, || -> Html {
             html! {
                 <Card
-                    avatar="https://www.erikgassler.com/Logo.svg"
+                    avatar={AvatarOption::Image(String::from("https://www.erikgassler.com/Logo.svg"))}
                     title="Erik Gassler"
                     link="https://www.erikgassler.com/"
                     width={CARD_WIDTH}
@@ -210,7 +210,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::Faryn, || -> Html {
             html! {
                 <Card
-                    avatar="https://www.farynthegame.com/Logo.svg"
+                    avatar={AvatarOption::Image(String::from("https://www.farynthegame.com/Logo.svg"))}
                     title="Faryn the Game"
                     link="https://www.farynthegame.com/"
                     width={CARD_WIDTH}
@@ -224,7 +224,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::GasslerUS, || -> Html {
             html! {
                 <Card
-                    avatar="https://www.gassler.us/Logo.svg"
+                    avatar={AvatarOption::Image(String::from("https://www.gassler.us/Logo.svg"))}
                     title="Gassler.us"
                     link="https://www.gassler.us/"
                     width={CARD_WIDTH}
@@ -238,7 +238,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::GasslerDesign, || -> Html {
             html! {
                 <Card
-                    avatar="https://www.gassler.design/Logo.svg"
+                    avatar={AvatarOption::Image(String::from("https://www.gassler.design/Logo.svg"))}
                     title="Gassler Design"
                     link="https://www.gassler.design/"
                     width={CARD_WIDTH}
@@ -252,7 +252,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::HatchMyWeb, || -> Html {
             html! {
                 <Card
-                    avatar="https://www.hatchmyweb.com/Logo.svg"
+                    avatar={AvatarOption::Image(String::from("https://www.hatchmyweb.com/Logo.svg"))}
                     title="Hatch My Web"
                     link="https://www.hatchmyweb.com/"
                     width={CARD_WIDTH}
@@ -267,7 +267,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::IndieGameGeeks, || -> Html {
             html! {
                 <Card
-                    avatar="https://www.indiegamegeeks.com/Logo.svg"
+                    avatar={AvatarOption::Image(String::from("https://www.indiegamegeeks.com/Logo.svg"))}
                     title="Indie Game Geeks"
                     link="https://www.indiegamegeeks.com/"
                     width={CARD_WIDTH}
@@ -281,7 +281,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::KarinaGassler, || -> Html {
             html! {
                 <Card
-                    avatar="https://www.karinagassler.com/Logo.svg"
+                    avatar={AvatarOption::Image(String::from("https://www.karinagassler.com/Logo.svg"))}
                     title="Karina Gassler"
                     link="https://www.karinagassler.com/"
                     width={CARD_WIDTH}
@@ -295,7 +295,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::MyFi, || -> Html {
             html! {
                 <Card
-                    avatar="https://www.myfi.ws/Logo.svg"
+                    avatar={AvatarOption::Image(String::from("https://www.myfi.ws/Logo.svg"))}
                     title="MyFi"
                     link="https://www.myfi.ws/"
                     width={CARD_WIDTH}
@@ -309,7 +309,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::PocketGoo, || -> Html {
             html! {
                 <Card
-                    avatar="https://www.pocketgoo.com/Logo.svg"
+                    avatar={AvatarOption::Image(String::from("https://www.pocketgoo.com/Logo.svg"))}
                     title="Pocket Goo"
                     link="https://www.pocketgoo.com/"
                     width={CARD_WIDTH}
@@ -323,7 +323,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::SESPTech, || -> Html {
             html! {
                 <Card
-                    avatar="https://www.sesp.tech/Logo.svg"
+                    avatar={AvatarOption::Image(String::from("https://www.sesp.tech/Logo.svg"))}
                     title="Software Engineering Standards & Practices"
                     link="https://www.sesp.tech/"
                     width={CARD_WIDTH}
@@ -338,7 +338,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::SoftEngStandards, || -> Html {
             html! {
                 <Card
-                    avatar="https://www.softwareengineerstandards.com/Logo.svg"
+                    avatar={AvatarOption::Image(String::from("https://www.softwareengineerstandards.com/Logo.svg"))}
                     title="Software Engineer Standards"
                     link="https://www.softwareengineerstandards.com/"
                     width={CARD_WIDTH}
@@ -352,7 +352,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::SoftwareStandards, || -> Html {
             html! {
                 <Card
-                    avatar="https://www.softwarestandards.dev/Logo.svg"
+                    avatar={AvatarOption::Image(String::from("https://www.softwarestandards.dev/Logo.svg"))}
                     title="Software Development Standards"
                     link="https://www.softwarestandards.dev/"
                     width={CARD_WIDTH}
@@ -367,7 +367,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::StoicDreams, || -> Html {
             html! {
                 <Card
-                    avatar="/Logo.svg"
+                    avatar={AvatarOption::Image(String::from("/Logo.svg"))}
                     title="Stoic Dreams"
                     width={CARD_WIDTH}
                 >
@@ -380,7 +380,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::TaskProxy, || -> Html {
             html! {
                 <Card
-                    avatar="https://www.taskproxy.com/ms-icon-310x310.png"
+                    avatar={AvatarOption::Image(String::from("https://www.taskproxy.com/ms-icon-310x310.png"))}
                     title="Task Proxy"
                     link="https://www.taskproxy.com/"
                     width={CARD_WIDTH}
@@ -398,7 +398,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::TaskStory, || -> Html {
             html! {
                 <Card
-                    avatar="https://www.taskstory.com/Logo.svg"
+                    avatar={AvatarOption::Image(String::from("https://www.taskstory.com/Logo.svg"))}
                     title="Task Story"
                     link="https://www.taskstory.com/"
                     width={CARD_WIDTH}
@@ -412,7 +412,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::TestFramework, || -> Html {
             html! {
                 <Card
-                    avatar="/sd-logo.png"
+                    avatar={AvatarOption::Image(String::from("/sd-logo.png"))}
                     title="Test Framework - C#"
                     link="https://www.nuget.org/packages/StoicDreams.TestFramework"
                     width={CARD_WIDTH}
@@ -432,7 +432,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::TestFrameworkBlazor, || -> Html {
             html! {
                 <Card
-                    avatar="/sd-logo.png"
+                    avatar={AvatarOption::Image(String::from("/sd-logo.png"))}
                     title="Test Framework - C# Blazor"
                     link="https://www.nuget.org/packages/StoicDreams.TestFrameworkBlazor"
                     width={CARD_WIDTH}
@@ -448,7 +448,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::VocalBin, || -> Html {
             html! {
                 <Card
-                    avatar="https://www.vocalbin.com/Logo.svg"
+                    avatar={AvatarOption::Image(String::from("https://www.vocalbin.com/Logo.svg"))}
                     title="Vocal Bin"
                     link="https://www.vocalbin.com/"
                     width={CARD_WIDTH}
@@ -462,7 +462,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::WaxLoop, || -> Html {
             html! {
                 <Card
-                    avatar="https://www.waxloop.com/Logo.svg"
+                    avatar={AvatarOption::Image(String::from("https://www.waxloop.com/Logo.svg"))}
                     title="Wax Loop"
                     link="https://www.waxloop.com/"
                     width={CARD_WIDTH}
@@ -476,7 +476,7 @@ fn cards() -> std::collections::HashMap<Projects, fn() -> Html> {
         (Projects::WebUI, || -> Html {
             html! {
                 <Card
-                    avatar="https://webui.stoicdreams.com/Logo.svg"
+                    avatar={AvatarOption::Image(String::from("https://webui.stoicdreams.com/Logo.svg"))}
                     title="Web UI"
                     link="https://webui.stoicdreams.com/"
                     width={CARD_WIDTH}

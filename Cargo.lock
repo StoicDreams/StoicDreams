@@ -1802,7 +1802,7 @@ dependencies = [
 
 [[package]]
 name = "webapp"
-version = "0.8.4"
+version = "0.8.6"
 dependencies = [
  "serde",
  "webui",
@@ -1811,8 +1811,8 @@ dependencies = [
 
 [[package]]
 name = "webui"
-version = "0.8.4"
-source = "git+https://github.com/StoicDreams/RustWebUI?branch=main#5b826c41e5d9df6025e6b589cac6d90aabe23dab"
+version = "0.8.6"
+source = "git+https://github.com/StoicDreams/RustWebUI?branch=main#c7d8fabba9e903ec05d89b75e61a25f9b1718e77"
 dependencies = [
  "async-std",
  "chrono",

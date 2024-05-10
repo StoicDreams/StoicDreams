@@ -3,7 +3,7 @@ use crate::prelude::*;
 pub fn nav_menu_info() -> DrawerToggleInfo {
     DrawerToggleInfo::builder(
         |_| String::from("Navigation Menu"),
-        |_| html! {<i class="fa-solid fa-bars"></i>},
+        |_| html! {FaIcon::solid("bars").to_html()},
         DynContextsHtml::new(nav_menu_render),
     )
     .set_button_class("btn toggle theme-inherit")
@@ -15,44 +15,50 @@ pub fn nav_menu_info() -> DrawerToggleInfo {
 
 pub(crate) fn get_nav_routing(_contexts: &Contexts) -> Vec<NavRoute> {
     let nav_routes = vec![
-        NavLinkInfo::link("Home", "/", "fa-duotone fa-house", roles::PUBLIC, page_home),
+        NavLinkInfo::link(
+            "Home",
+            "/",
+            &FaIcon::duotone("house"),
+            roles::PUBLIC,
+            page_home,
+        ),
         NavGroupInfo::link(
             "My Account",
-            "fa-duotone fa-house-chimney-user",
+            &FaIcon::duotone("house-chimney-user"),
             roles::INVALID,
             vec![
                 NavLinkInfo::link(
                     "My Requests",
                     "/signin",
-                    "fa-duotone fa-right-to-bracket fa-bounce",
+                    &FaIcon::duotone("right-to-bracket").class("fa-bounce"),
                     roles::PUBLIC,
                     page_signin,
                 ),
                 NavLinkInfo::link(
                     "My Requests",
                     "/auth",
-                    "fa-duotone fa-right-to-bracket fa-bounce",
+                    &FaIcon::duotone("right-to-bracket").class("fa-bounce"),
                     roles::USER,
                     page_signin,
                 ),
                 NavLinkInfo::link(
                     "My Requests",
                     "/service-requests",
-                    "fa-duotone fa-inbox",
+                    &FaIcon::duotone("inbox"),
                     roles::INVALID,
                     page_account_my_projects,
                 ),
                 NavLinkInfo::link(
                     "Consulting Request",
                     "/consultation-request",
-                    "fa-duotone fa-hand-holding-seedling",
+                    &FaIcon::duotone("hand-holding-seedling"),
                     roles::INVALID,
                     page_account_consultation_request,
                 ),
                 NavLinkInfo::link(
                     "Software Dev Request",
                     "/development-request",
-                    "fa-duotone fa-window",
+                    &FaIcon::duotone("window"),
                     roles::INVALID,
                     page_account_development_request,
                 ),
@@ -60,20 +66,20 @@ pub(crate) fn get_nav_routing(_contexts: &Contexts) -> Vec<NavRoute> {
         ),
         NavGroupInfo::link(
             "Site Admin",
-            "fa-duotone fa-user-astronaut",
+            &FaIcon::duotone("user-astronaut"),
             roles::INVALID,
             vec![
                 NavLinkInfo::link(
                     "Feedback",
                     "/siteadmin/feedback",
-                    "fa-duotone fa-message-dots",
+                    &FaIcon::duotone("message-dots"),
                     roles::INVALID,
                     page_site_admin_feedback,
                 ),
                 NavLinkInfo::link(
                     "Users",
                     "/siteadmin/users",
-                    "fa-duotone fa-people",
+                    &FaIcon::duotone("people"),
                     roles::INVALID,
                     page_site_admin_users,
                 ),
@@ -81,27 +87,27 @@ pub(crate) fn get_nav_routing(_contexts: &Contexts) -> Vec<NavRoute> {
         ),
         NavGroupInfo::link(
             "Services",
-            "fa-duotone fa-bell-concierge",
+            &FaIcon::duotone("bell-concierge"),
             roles::INVALID,
             vec![
                 NavLinkInfo::link(
                     "Consulting",
                     "/consultation-services-for-agile-continuous-delivery-software-development",
-                    "fa-duotone fa-hand-holding-seedling",
+                    &FaIcon::duotone("hand-holding-seedling"),
                     roles::INVALID,
                     page_sales_consulation_landing,
                 ),
                 NavLinkInfo::link(
                     "Software Development",
                     "/software-development-services",
-                    "fa-duotone fa-window",
+                    &FaIcon::duotone("window"),
                     roles::INVALID,
                     page_sales_development_landing,
                 ),
                 NavLinkInfo::link(
                     "Account Services",
                     "/accountservices",
-                    "fa-duotone fa-people-group",
+                    &FaIcon::duotone("people-group"),
                     roles::INVALID,
                     page_sales_account_services,
                 ),
@@ -109,27 +115,27 @@ pub(crate) fn get_nav_routing(_contexts: &Contexts) -> Vec<NavRoute> {
         ),
         NavGroupInfo::link(
             "Projects",
-            "fa-duotone fa-diagram-project",
+            &FaIcon::duotone("diagram-project"),
             roles::PUBLIC,
             vec![
                 NavLinkInfo::link(
                     "Game Development",
                     "/game-development",
-                    "fa-duotone fa-gamepad-modern",
+                    &FaIcon::duotone("gamepad-modern"),
                     roles::PUBLIC,
                     page_projects_games,
                 ),
                 NavLinkInfo::link(
                     "Productivity Tools",
                     "/productivity-tools",
-                    "fa-duotone fa-screwdriver-wrench",
+                    &FaIcon::duotone("screwdriver-wrench"),
                     roles::PUBLIC,
                     page_projects_productivity,
                 ),
                 NavLinkInfo::link(
                     "Misc. Websites",
                     "/website-projects",
-                    "fa-duotone fa-browser",
+                    &FaIcon::duotone("browser"),
                     roles::PUBLIC,
                     page_projects_websites,
                 ),
@@ -137,20 +143,20 @@ pub(crate) fn get_nav_routing(_contexts: &Contexts) -> Vec<NavRoute> {
         ),
         NavGroupInfo::link(
             "No Nav",
-            "fa-duotone fa-diagram-project",
+            &FaIcon::duotone("diagram-project"),
             roles::INVALID,
             vec![
                 NavLinkInfo::link(
                     "Sponsors",
                     "/sponsors",
-                    "fa-duotone fa-rocket-launch",
+                    &FaIcon::duotone("rocket-launch"),
                     roles::PUBLIC,
                     page_social_sponsors,
                 ),
                 NavLinkInfo::link(
                     "Instagram",
                     "/social/instagram",
-                    "fa-duotone fa-screwdriver-wrench",
+                    &FaIcon::duotone("screwdriver-wrench"),
                     roles::PUBLIC,
                     page_social_instagram,
                 ),
@@ -159,21 +165,21 @@ pub(crate) fn get_nav_routing(_contexts: &Contexts) -> Vec<NavRoute> {
         NavLinkInfo::link(
             "About",
             "/about",
-            "fa-duotone fa-circle-info",
+            &FaIcon::duotone("circle-info"),
             roles::PUBLIC,
             page_about_stoic_dreams,
         ),
         NavLinkInfo::link(
             "Terms",
             "/terms",
-            "fa-duotone fa-handshake",
+            &FaIcon::duotone("handshake"),
             roles::PUBLIC,
             starter_page_terms,
         ),
         NavLinkInfo::link(
             "Privacy",
             "/privacy",
-            "fa-duotone fa-shield-exclamation",
+            &FaIcon::duotone("shield-exclamation"),
             roles::PUBLIC,
             starter_page_privacy,
         ),

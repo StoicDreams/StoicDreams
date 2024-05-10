@@ -28,7 +28,7 @@ pub fn accounts_panel(contexts: &Contexts) -> Html {
 fn drawer_toggle_info(_contexts: &Contexts) -> DrawerToggleInfo {
     drawer!(
         "Account Services",
-        html! {<i class="fa-duotone fa-user" />},
+        html! {FaIcon::duotone("user").to_html()},
         get_render_wrapper,
         Direction::Right
     )

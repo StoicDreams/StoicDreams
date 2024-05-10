@@ -33,7 +33,7 @@ fn cards() -> std::collections::HashMap<Team, fn() -> Html> {
     HashMap::from([(Team::ErikGassler, || -> Html {
         html! {
             <Card
-                avatar="https://www.erikgassler.com/Logo.svg"
+                avatar={AvatarOption::Image(String::from("https://www.erikgassler.com/Logo.svg"))}
                 title="Erik Gassler"
                 link="https://www.erikgassler.com/"
                 width={CARD_WIDTH}
