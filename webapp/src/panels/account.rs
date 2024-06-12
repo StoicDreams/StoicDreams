@@ -13,9 +13,7 @@ pub fn accounts_panel(contexts: &Contexts) -> Html {
         }
         .to_string();
         return html! {
-            <AppDrawerButton info={drawer_toggle_info(contexts)} {class}>
-                <span>{user.display_name}</span>
-            </AppDrawerButton>
+            <span>{user.display_name}</span>
         };
     }
     html! {
@@ -23,19 +21,6 @@ pub fn accounts_panel(contexts: &Contexts) -> Html {
             <Loading variant={LoadingVariant::Circle} size={LOADING_SIZE_MEDIUM} color={Theme::Info} />
         </Paper>
     }
-}
-
-fn drawer_toggle_info(_contexts: &Contexts) -> DrawerToggleInfo {
-    drawer!(
-        "Account Services",
-        html! {FaIcon::duotone("user").to_html()},
-        get_render_wrapper,
-        Direction::Right
-    )
-    .hide_close_x_button()
-    .hide_cancel_button()
-    .set_on_confirm("Close", handle_confirm)
-    .build()
 }
 
 pub(crate) fn get_render_wrapper(contexts: &Contexts) -> Html {
@@ -136,22 +121,24 @@ fn sign_out(contexts: &Contexts) {
         }
     };
     // confirm if user wants to sign out of just this website or all websites
-    dialog!(
-        contexts,
-        "Sign Out Options",
-        {
-            html! {
-                <Paper class="d-flex flex-column gap-1">
-                    <MarkdownContent markdown={r#"Would you like to sign out of just this website or all websites?
-Selecting `Just This Website` will sign you out of this website only.
-Selecting `All Websites` will sign you out of all websites that use Stoic Dreams account services within this browser.
-Selecting `All Devices` will sign you out of all Stoic Dreams services across all devices and browsers.
-"#} />
-                </Paper>
-            }
-        },
-        render_confirmation
-    );
+    /*
+        dialog!(
+            contexts,
+            "Sign Out Options",
+            {
+                html! {
+                    <Paper class="d-flex flex-column gap-1">
+                        <MarkdownContent markdown={r#"Would you like to sign out of just this website or all websites?
+    Selecting `Just This Website` will sign you out of this website only.
+    Selecting `All Websites` will sign you out of all websites that use Stoic Dreams account services within this browser.
+    Selecting `All Devices` will sign you out of all Stoic Dreams services across all devices and browsers.
+    "#} />
+                    </Paper>
+                }
+            },
+            render_confirmation
+        );
+        */
 }
 
 fn handle_confirm(_contexts: &Contexts) -> bool {

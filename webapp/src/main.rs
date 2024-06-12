@@ -22,10 +22,8 @@ fn setup_app_config() -> AppConfig {
         "StoicDreams.com".to_owned(),
     )
     .set_nav_routing(NavRoutingCallback::new(nav_menu::get_nav_routing))
-    .set_drawer_toggle_header_left(nav_menu::nav_menu_info())
-    .set_drawer_toggle_header_middle(myfi_feedback_button_info())
-    .set_header_strip_bar(stoic_header_strip_bar)
-    .set_user_info_panel(accounts_panel)
+    .set_navigation(nav_menu::nav_content)
+    .set_header(myfi_app_header)
     .set_copyright_start(2010)
     .register_component("CurrentProjects", current_projects)
     .register_component("PortfolioProjects", portfolio_projects)

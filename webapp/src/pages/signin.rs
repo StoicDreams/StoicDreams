@@ -195,7 +195,7 @@ fn display_code_for_copy(props: &StringProp) -> Html {
     let callback = Callback::from(move |_| {
         clipboard.write_text(code_string.to_owned());
         let code = format!("{} copied to clipboard", code_string);
-        alert!(contexts_move.clone(), "Copied!", &code);
+        show_alert(&code, "info");
     });
     let start_icon = Some(IconOptions {
         icon: FaIcon::duotone("key"),
@@ -348,7 +348,6 @@ pub(crate) fn myfi_sign_in(
                 if response.is_ok() {
                     if let Some(result) = response.get_result() {
                         if let Ok(auth_result) = serde_json::from_str::<AuthResult>(&result) {
-                            contexts.drawer.clone().set(DrawerMessage::Close);
                             let mut user_updated = match user_state.deref() {
                                 Some(user) => user.to_owned(),
                                 None => MyFiUser::default(),
@@ -364,10 +363,9 @@ pub(crate) fn myfi_sign_in(
                                     auth_key,
                                 );
                             }
-                            alert!(
-                                contexts,
-                                "Success",
-                                format!("Welcome {}, you have successfully signed in.", name)
+                            show_alert(
+                                &format!("Welcome {}, you have successfully signed in.", name),
+                                "success",
                             );
                             if let Some(site_id) = site_id {
                                 nav_to!(contexts, &format!("/auth?siteid={}", site_id));
