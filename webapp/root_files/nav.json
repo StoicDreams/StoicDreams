@@ -1,0 +1,70 @@
+[
+    {
+        "name": "Home",
+        "icon": "house",
+        "iconFamily": "duotone",
+        "url": "/"
+    },
+    {
+        "name": "Services",
+        "icon": "bell",
+        "iconFamily": "duotone",
+        "children": [
+            {
+                "name": "CASE Consulting",
+                "icon": "hand-holding-seedling",
+                "iconFamily": "duotone",
+                "url": "/consultation-services-for-agile-continuous-delivery-software-development"
+            },
+            {
+                "name": "Software Development",
+                "icon": "window",
+                "iconFamily": "duotone",
+                "url": "/software-development-services"
+            }
+        ]
+    },
+    {
+        "name": "Projects",
+        "icon": "diagram-project",
+        "iconFamily": "duotone",
+        "children": [
+            {
+                "name": "Game Development",
+                "icon": "gamepad-modern",
+                "iconFamily": "duotone",
+                "url": "/projects/game-development"
+            },
+            {
+                "name": "Productivity Tools",
+                "icon": "screwdriver-wrench",
+                "iconFamily": "duotone",
+                "url": "/projects/productivity-tools"
+            },
+            {
+                "name": "Website Projects",
+                "icon": "browser",
+                "iconFamily": "duotone",
+                "url": "/projects/website-projects"
+            }
+        ]
+    },
+    {
+        "name": "About",
+        "icon": "circle-exclamation",
+        "iconFamily": "duotone",
+        "url": "/about"
+    },
+    {
+        "name": "Privacy",
+        "icon": "shield-exclamation",
+        "iconFamily": "duotone",
+        "url": "/privacy"
+    },
+    {
+        "name": "Terms",
+        "icon": "handshake",
+        "iconFamily": "duotone",
+        "url": "/terms"
+    }
+]

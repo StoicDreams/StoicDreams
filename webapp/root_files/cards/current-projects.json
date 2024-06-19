@@ -1,0 +1,33 @@
+[
+    {
+        "name": "Web UI",
+        "theme": "primary",
+        "avatar": "https://webui.stoicdreams.com/Logo.svg",
+        "link": "https://webui.stoicdreams.com",
+        "body": "Started out as our first Rust project. We recently reconceptualized the idea to be a Vanilla JavaScript Web Component Library that also has a Rust WebAssembly plugin.\n\nThis framework is being developed and used to power all of Stoic Dreams' in-house website projects and our Task Proxy desktop application."
+    },
+    {
+        "name": "MyFi",
+        "avatar": "https://www.myfi.ws/Logo.svg",
+        "link": "https://www.myfi.ws",
+        "body": "Our portal for API tools and content delivery services offered by Stoic Dreams."
+    },
+    {
+        "name": "Gassler Design",
+        "avatar": "https://www.gassler.design/Logo.svg",
+        "link": "https://www.gassler.design",
+        "body": "Company website for Gassler Design, interior design specialists with a focus on providing inspiring visualizations through 3d renderings."
+    },
+    {
+        "name": "Task Proxy",
+        "avatar": "https://www.taskproxy.com/ms-icon-310x310.png",
+        "link": "https://www.taskproxy.com",
+        "body": "Task Proxy is our desktop software for developer documentation and script management system.\n\nWe released an initial prototype in early 2022 using C# with .NET Maui Blazor frameworks.\n\nWe are currently in the process of rebuilding this product using Rust with very early access builds being released through development on the [Task Proxy website](https://www.taskproxy.com)."
+    },
+    {
+        "name": "Task Story",
+        "avatar": "https://www.taskstory.com/Logo.svg",
+        "link": "https://www.taskstory.com",
+        "body": "Task Story is our Project Management tool that provides a guided workflow to organize projects with a Problem / Solution architecture."
+    }
+]

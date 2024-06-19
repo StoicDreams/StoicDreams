@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Task Story",
+        "avatar": "https://www.taskstory.com/Logo.svg",
+        "link": "https://www.taskstory.com",
+        "body": "Task Story is our Project Management tool that provides a guided workflow to organize projects with a Problem / Solution architecture."
+    },
+    {
+        "name": "Task Proxy",
+        "avatar": "https://www.taskproxy.com/ms-icon-310x310.png",
+        "link": "https://www.taskproxy.com",
+        "body": "Task Proxy is our desktop software for developer documentation and script management system.\n\nWe released an initial prototype in early 2022 using C# with .NET Maui Blazor frameworks.\n\nWe are currently in the process of rebuilding this product using Rust with very early access builds being released through development on the [Task Proxy website](https://www.taskproxy.com)."
+    },
+    {
+        "name": "Web UI",
+        "avatar": "https://webui.stoicdreams.com/Logo.svg",
+        "link": "https://webui.stoicdreams.com",
+        "body": "Started out as our first Rust project. We recently reconceptualized the idea to be a Vanilla JavaScript Web Component Library that also has a Rust WebAssembly plugin. This framework is being developed and used to power all of Stoic Dreams' in-house website projects and our Task Proxy desktop application."
+    },
+    {
+        "name": "Blazor UI",
+        "avatar": "https://blazorui.stoicdreams.com/Logo.svg",
+        "link": "https://blazorui.stoicdreams.com",
+        "body": "A Blazor based UI framework for simplified and rapid website and application development.\n\nDevelopment on Blazor UI is indefinitely on hold as we have migrated away from using C# and Blazor for our projects.\n\n> Development on Blazor UI is indefinitely on hold as we have moved to Rust and [WebUI](https://webui.stoicdreams.com) for our projects."
+    },
+    {
+        "name": "Test Framework - C#",
+        "avatar": "/sd-logo.png",
+        "link": "https://www.nuget.org/packages/StoicDreams.TestFramework",
+        "body": "Nuget.org - StoicDreams.TestFramework\n\nA helper framework that's designed to help strictly adhere tests to an Arrange / Act / Assert framework of testing.\n\nIncludes `Moq` and `FluentAssertion` libraries to help with mocking data and writing readable tests.\n\n> Development on Test Framework is indefinitely on hold as we have migrated away from using C# for our projects."
+    },
+    {
+        "name": "Test Framework - C# Blazor",
+        "avatar": "/sd-logo.png",
+        "link": "https://www.nuget.org/packages/StoicDreams.TestFrameworkBlazor",
+        "body": "An extended version of StoicDreams.TestFramework that adds a additional testing methods for testing .razor / Blazor components.\n\n> Development on Test Framework Blazor is indefinitely on hold as we have migrated away from using C# and Blazor for our projects."
+    }
+]

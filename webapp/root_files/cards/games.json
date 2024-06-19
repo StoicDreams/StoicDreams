@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Faryn the Game",
+        "avatar": "https://www.farynthegame.com/Logo.svg",
+        "link": "https://www.farynthegame.com",
+        "body": "An action-adventure game we are planning to start developing once the bulk of our productivity projects have launched."
+    },
+    {
+        "name": "Cosmos",
+        "avatar": "duotone gamepad-modern",
+        "link": "https://www.youtube.com/watch?v=mhmp5BFjV3E",
+        "body": "Out first game, published back in 2008 on the Xbox 360. A very simple twin-stick shooter.\n\nWe pulled the game in 2010 while getting ready for a major 2.0 release that greatly expanded types of gameplay, graphics, and gameplay options. Unfortunately a power surge fried our working copy of the code and files and the most recent copy we could recover was several months old.\n\nTire of working on the game, any further production was put on hold indefinitely."
+    }
+]

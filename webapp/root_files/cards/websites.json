@@ -1,0 +1,127 @@
+[
+    {
+        "name": "Agent Squire",
+        "avatar": "https://www.agentsquire.com/Logo.svg",
+        "link": "https://www.agentsquire.com",
+        "body": "Agent Squire is in a very early concept phase of development.\n\nWill update as this concept gets more finalized."
+    },
+    {
+        "name": "Ap Tul",
+        "avatar": "https://www.aptul.com/Logo.svg",
+        "link": "https://www.aptul.com",
+        "body": "Ap Tul is in a very early concept phase of development.\n\nWill update as this concept gets more finalized."
+    },
+    {
+        "name": "Blue Cherub",
+        "avatar": "https://www.bluecherub.com/Logo.svg",
+        "link": "https://www.bluecherub.com",
+        "body": "Blue Cherub is in a very early concept phase of development.\n\nWill update as this concept gets more finalized."
+    },
+    {
+        "name": "Did You Hear About This Job?",
+        "avatar": "https://www.didyouhearaboutthisjob.com/Logo.svg",
+        "link": "https://www.didyouhearaboutthisjob.com",
+        "body": "Job Search resources and tips.\n\nCurrently rebuilding as part of migration to Web UI."
+    },
+    {
+        "name": "Erik Gassler",
+        "avatar": "https://www.erikgassler.com/Logo.svg",
+        "link": "https://www.erikgassler.com",
+        "body": "Bio and blog site for Erik Gassler."
+    },
+    {
+        "name": "Faryn the Game",
+        "avatar": "https://www.farynthegame.com/Logo.svg",
+        "link": "https://www.farynthegame.com",
+        "body": "An action-adventure game we are currently working on, very early in development."
+    },
+    {
+        "name": "Gassler Family Portal",
+        "avatar": "https://www.gassler.us/Logo.svg",
+        "link": "https://www.gassler.us",
+        "body": "A portal site for the Gassler family."
+    },
+    {
+        "name": "Gassler Design",
+        "avatar": "https://www.gassler.design/Logo.svg",
+        "link": "https://www.gassler.design",
+        "body": "Company website for Gassler Design, interior design specialists with a focus on providing inspiring visualizations through 3d renderings."
+    },
+    {
+        "name": "Hatch My Web",
+        "avatar": "https://www.hatchmyweb.com/Logo.svg",
+        "link": "https://www.hatchmyweb.com",
+        "body": "Website development resources.\n\nCurrently rebuilding as part of migration to Web UI."
+    },
+    {
+        "name": "Indie Game Geeks",
+        "avatar": "https://www.indiegamegeeks.com/Logo.svg",
+        "link": "https://www.indiegamegeeks.com",
+        "body": "Resources and tips for independent game developers."
+    },
+    {
+        "name": "Karina Gassler",
+        "avatar": "https://www.karinagassler.com/Logo.svg",
+        "link": "https://www.karinagassler.com",
+        "body": "Bio and blog website for Karina Gassler."
+    },
+    {
+        "name": "MyFi",
+        "avatar": "https://www.myfi.ws/Logo.svg",
+        "link": "https://www.myfi.ws",
+        "body": "Our portal for API tools and content delivery services offered by Stoic Dreams."
+    },
+    {
+        "name": "Pocket Goo",
+        "avatar": "https://www.pocketgoo.com/Logo.svg",
+        "link": "https://www.pocketgoo.com",
+        "body": "Blog and resources for handheld and pocket sized gadgets."
+    },
+    {
+        "name": "Software Engineering Standards & Practices",
+        "avatar": "https://www.sesp.tech/Logo.svg",
+        "link": "https://www.sesp.tech",
+        "body": "Documentation for software engineering standards and practices for building software through agile development and continuous delivery workflows.\n\nThese standards are more specifically targeted from a company/management perspective."
+    },
+    {
+        "name": "Software Engineer Standards",
+        "avatar": "https://www.softwareengineerstandards.com/Logo.svg",
+        "link": "https://www.softwareengineerstandards.com",
+        "body": "Personal standards for software engineers to maximize productivity."
+    },
+    {
+        "name": "Software Development Standards",
+        "avatar": "https://www.softwarestandards.dev/Logo.svg",
+        "link": "https://www.softwarestandards.dev",
+        "body": "Documentation for software development standards for building software through agile development and continuous delivery workflows.\n\nThese standards are generally targeted from a developer/team perspective."
+    },
+    {
+        "name": "Stoic Dreams",
+        "avatar": "/Logo.svg",
+        "body": "Stoic Dreams' company portal."
+    },
+    {
+        "name": "Task Proxy",
+        "avatar": "https://www.taskproxy.com/ms-icon-310x310.png",
+        "link": "https://www.taskproxy.com",
+        "body": "Task Proxy is our desktop software for developer documentation and script management system.\n\nWe released an initial prototype in early 2022 using C# with .NET Maui Blazor frameworks.\n\nWe are currently in the process of rebuilding this product using Rust with very early access builds being released through development on the [Task Proxy website](https://www.taskproxy.com)."
+    },
+    {
+        "name": "Task Story",
+        "avatar": "https://www.taskstory.com/Logo.svg",
+        "link": "https://www.taskstory.com",
+        "body": "Task Story is our Project Management tool that provides a guided workflow to organize projects with a Problem / Solution architecture."
+    },
+    {
+        "name": "Vocal Bin",
+        "avatar": "https://www.vocalbin.com/Logo.svg",
+        "link": "https://www.vocalbin.com",
+        "body": "Text to speech synthesis tools and resources."
+    },
+    {
+        "name": "Wax Loop",
+        "avatar": "https://www.waxloop.com/Logo.svg",
+        "link": "https://www.waxloop.com",
+        "body": "Social network for sharing and discovery."
+    }
+]
