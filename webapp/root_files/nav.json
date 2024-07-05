@@ -66,5 +66,11 @@
         "icon": "handshake",
         "iconFamily": "duotone",
         "url": "/terms"
+    },
+    {
+        "name": "Contact",
+        "icon": "messages",
+        "iconFamily": "duotone",
+        "url": "/contact"
     }
 ]
