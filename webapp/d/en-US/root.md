@@ -1,4 +1,5 @@
 <webui-data data-page-title="Forging solutions for tomorrow's software development" data-page-subtitle=""></webui-data>
+<webui-data data-page-next-page='{"name":"Game Development","href":"/projects/game-development"}'></webui-data>
 
 ## Pioneering productivity tools and resources for developers worldwide
 
@@ -31,5 +32,3 @@ Check out our other open source projects that we are maintaining or previously w
 ## Meet the Team
 
 <webui-cards src="/cards/team.json" card-width="500"></webui-cards>
-
-<webui-next-page name="Game Development" href="/projects/game-development"></webui-next-page>
