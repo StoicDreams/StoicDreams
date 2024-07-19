@@ -1,10 +1,10 @@
-<webui-data data-page-title="About {DOMAIN}" data-page-subtitle=""></webui-data>
+<webui-data data-page-title="About {APP_DOMAIN}" data-page-subtitle=""></webui-data>
 
 <webui-page-segment>
 
-{DOMAIN} is the company portal for all things {COMPANY_SINGULAR}.
+{APP_DOMAIN} is the company portal for all things {APP_COMPANY_SINGULAR}.
 
-Here, you will be able to keep up to date with past and current events at {COMPANY_SINGULAR}, as well as gain insights into upcoming projects.
+Here, you will be able to keep up to date with past and current events at {APP_COMPANY_SINGULAR}, as well as gain insights into upcoming projects.
 
 </webui-page-segment>
 
