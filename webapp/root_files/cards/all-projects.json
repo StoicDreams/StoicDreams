@@ -12,12 +12,6 @@
         "body": "Ap Tul is in a very early concept phase of development.\n\nWill update as this concept gets more finalized."
     },
     {
-        "name": "Blazor UI",
-        "avatar": "https://blazorui.stoicdreams.com/Logo.svg",
-        "link": "https://blazorui.stoicdreams.com",
-        "body": "A Blazor based UI framework for simplified and rapid website and application development.\n\nDevelopment on Blazor UI is indefinitely on hold as we have migrated away from using C# and Blazor for our projects.\n\n> Development on Blazor UI is indefinitely on hold as we have moved to Rust and [WebUI](https://webui.stoicdreams.com) for our projects."
-    },
-    {
         "name": "Blue Cherub",
         "avatar": "https://www.bluecherub.com/Logo.svg",
         "link": "https://www.bluecherub.com",

@@ -1,11 +1,5 @@
 [
     {
-        "name": "Blazor UI",
-        "avatar": "https://blazorui.stoicdreams.com/Logo.svg",
-        "link": "https://blazorui.stoicdreams.com",
-        "body": "A Blazor based UI framework for simplified and rapid website and application development.\n\nDevelopment on Blazor UI is indefinitely on hold as we have migrated away from using C# and Blazor for our projects.\n\n> Development on Blazor UI is indefinitely on hold as we have moved to Rust and [WebUI](https://webui.stoicdreams.com) for our projects."
-    },
-    {
         "name": "Test Framework - C#",
         "avatar": "/sd-logo.png",
         "link": "https://www.nuget.org/packages/StoicDreams.TestFramework",
