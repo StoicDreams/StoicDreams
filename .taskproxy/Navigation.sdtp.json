@@ -1,0 +1,17 @@
+{
+  "NavList": [
+    "06e8eab2-f5d9-4031-aca5-804f7fdd63e0"
+  ],
+  "NavMap": {
+    "06e8eab2-f5d9-4031-aca5-804f7fdd63e0": {
+      "Id": "06e8eab2-f5d9-4031-aca5-804f7fdd63e0",
+      "Name": "Updates",
+      "Title": "Upates",
+      "IconType": 2,
+      "Icon": "edit",
+      "SubTitle": "",
+      "RelativePath": "/06e8eab2-f5d9-4031-aca5-804f7fdd63e0",
+      "ActiveId": 1
+    }
+  }
+}
