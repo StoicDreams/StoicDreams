@@ -67,7 +67,7 @@
                             return;
                         }
                         let resp = undefined;
-                        webui.fetchApi('auth/signin', jsonData)
+                        webui.fetchApi('user/signin', jsonData)
                             .then(r => {
                                 resp = r;
                                 return resp.text();
