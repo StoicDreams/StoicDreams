@@ -37,7 +37,7 @@
         reconnected: function (t) { },
         setupComponent: async function () {
             const t = this;
-            let resp = await webui.fetchApi('/user/roles', null, 'get');
+            let resp = await webui.fetchApi('user/roles', null, 'get');
             if (resp.status === 200) {
                 let roles = parseInt(await resp.text());
                 if (roles > 0) {
