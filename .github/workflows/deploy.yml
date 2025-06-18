@@ -38,7 +38,8 @@ jobs:
     steps:
     - name: run deployment
       env:
-        WEB_DEPLOY_PREFIX: ${{ secrets.WEB_DEPLOY_PREFIX }}
-        WEB_DEPLOY_POSTFIX: ${{ secrets.WEB_DEPLOY_POSTFIX }}
+        WEB_DEPLOY_METHOD: ${{ secrets.WEB_DEPLOY_METHOD }}
+        WEB_DEPLOY_API: ${{ secrets.WEB_DEPLOY_API }}
+        WEB_DEPLOY_TOKEN: ${{ secrets.WEB_DEPLOY_TOKEN }}
       run: |
-        ${{ env.WEB_DEPLOY_PREFIX }}stoicdreams ${{ env.WEB_DEPLOY_POSTFIX }}
+        curl --fail-with-body -X ${WEB_DEPLOY_METHOD} "${WEB_DEPLOY_API}stoicdreams" -H "Accept: */*" -H "${WEB_DEPLOY_TOKEN}"
