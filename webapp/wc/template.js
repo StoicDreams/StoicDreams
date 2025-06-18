@@ -63,12 +63,12 @@
             const t = this;
         },
         shadowTemplate: `
+<slot></slot>
+<slot name="something"></slot>
 <style type="text/css">
 :host {
 }
 </style>
-<slot></slot>
-<slot name="something"></slot>
 `
     });
 }

@@ -72,10 +72,15 @@
                                 resp = r;
                                 return resp.text();
                             })
-                            .then(text => {
+                            .then(async text => {
                                 if (resp.status === 200) {
-                                    webui.alert(text || 'Account successfully created', 'success');
-                                    webui.navigateTo('/');
+                                    await webui.loadRoles();
+                                    if (webui.hasRole(1)) {
+                                        webui.alert(text || 'You', 'success');
+                                        webui.navigateTo('/');
+                                    } else {
+                                        alert.setValue('An issue occurred signing you in. Please wait a moment and try again.');
+                                    }
                                 } else {
                                     alert.setValue(text || 'Invalid credentials');
                                 }

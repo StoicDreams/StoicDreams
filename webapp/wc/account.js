@@ -10,7 +10,7 @@
                 if (webui.isSignedIn) {
                     webui.openSharedDrawer(
                         'Account Panel',
-                        `<webui-alert variant="info" show>Coming Soon!</webui-alert>`
+                        `<app-account-sidebar></app-account-sidebar>`
                     );
                 } else {
                     webui.navigateTo('signin');
@@ -37,13 +37,6 @@
         reconnected: function (t) { },
         setupComponent: async function () {
             const t = this;
-            let resp = await webui.fetchApi('user/roles', null, 'get');
-            if (resp.status === 200) {
-                let roles = parseInt(await resp.text());
-                if (roles > 0) {
-                    webui.setData('session-user-role', roles);
-                }
-            }
             t.render();
             t.addDataset('subscribe', 'session-user-role:render');
         },
