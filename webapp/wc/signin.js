@@ -10,6 +10,7 @@
     <webui-content slot="content" src="/d/en-US/forms/create-account.md" theme="default"></webui-content>
 </webui-tabs>
 <webui-alert severity="danger"></webui-alert>
+<webui-myfi-storage-consent></webui-myfi-storage-consent>
 </form>
 `;
     let contentSignedIn = `
@@ -75,6 +76,9 @@
         setupComponent: function () {
             const t = this;
             t.render();
+            if (webui.getData('session-autosignout') === undefined) {
+                webui.setData('session-autosignout', 30);
+            }
         },
         render: function () {
             const t = this;
@@ -99,6 +103,7 @@
                             alert.setValue('Password is required');
                             return;
                         }
+                        delete jsonData['x-cookie-age'];
                         let resp = undefined;
                         webui.fetchApi('user/signin', jsonData)
                             .then(r => {
