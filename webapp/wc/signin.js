@@ -27,11 +27,8 @@
         preload: '',
         constructor: (t) => {
             t.addEventListener('click', ev => {
-                console.log('click', ev);
                 let forgotPassword = webui.closest(ev.target, '[name="forgotpassword"]');
-                console.log('found', forgotPassword);
                 if (!forgotPassword) return;
-                console.log('reset password');
                 webui.dialog({
                     title: 'Reset Password',
                     minWidth: '80%',
