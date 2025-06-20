@@ -15,11 +15,47 @@
     let contentSignedIn = `
 <webui-alert show severity="info">You are already signed in</webui-alert>
 `;
+    let contentForgotPassword = `
+<p>Confirm your email for your account. If your email matches an active account sign-in email we will send you an email with a link to reset your password.</p>
+<webui-input-text theme="primary" name="email" label="Email" autofocus></webui-input-text>
+<webui-alert severity="danger"></webui-alert>
+`;
+
     webui.define("app-signin", {
         watchVisibility: false,
         isInput: false,
         preload: '',
         constructor: (t) => {
+            t.addEventListener('click', ev => {
+                console.log('click', ev);
+                let forgotPassword = webui.closest(ev.target, '[name="forgotpassword"]');
+                console.log('found', forgotPassword);
+                if (!forgotPassword) return;
+                console.log('reset password');
+                webui.dialog({
+                    title: 'Reset Password',
+                    minWidth: '80%',
+                    content: contentForgotPassword,
+                    confirm: 'Request Password Reset Email',
+                    cancel: 'Cancel',
+                    onconfirm: async (data, content) => {
+                        const jsonData = Object.fromEntries(data);
+                        console.log('FP', jsonData, data, content);
+                        let alert = content.querySelector('webui-alert');
+                        if (!jsonData.email) {
+                            alert.setValue('Please enter your email used for your account login');
+                            return false;
+                        }
+                        let result = await webui.fetchApi('user/forgotpassword', jsonData);
+                        if (result.status === 200) {
+                            return true;
+                        }
+                        let message = await result.text();
+                        alert.setValue(message || 'An unexpected error happened. Please wait a moment and try again.');
+                        return false;
+                    }
+                });
+            });
         },
         flags: [],
         attr: ['height', 'max-height'],

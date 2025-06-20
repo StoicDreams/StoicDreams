@@ -5,6 +5,7 @@
     "appApi": "https://api.myfi.ws",
     "rolesApi": "user/roles",
     "dynNavRoutes": [
-        "/confirmemail/"
+        "/confirmemail/",
+        "/resetpassword/"
     ]
 }
