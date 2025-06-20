@@ -42,6 +42,7 @@
                         }
                         let result = await webui.fetchApi('user/password', jsonData, 'PATCH');
                         if (result.status === 200) {
+                            webui.alert('Your password has been updated.', 'success');
                             return true;
                         }
                         let message = await result.text();
