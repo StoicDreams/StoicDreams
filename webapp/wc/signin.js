@@ -15,6 +15,13 @@
 `;
     let contentSignedIn = `
 <webui-alert show severity="info">You are already signed in</webui-alert>
+<webui-input-range name="autosignout" data-subscribe="session-autosignout:setValue" data-trigger="session-autosignout" label="Inactivity Signout" title="Minutes of inactivity to auto-sign-out" min="5" step="5" max="2880"></webui-input-range>
+`;
+    let contentSignInDomain = `
+<form id="signindomain">
+<webui-content slot="content" src="/d/en-US/forms/signin-domain.md" theme="default"></webui-content>
+<webui-alert severity="danger"></webui-alert>
+</form>
 `;
     let contentForgotPassword = `
 <p>Confirm your email for your account. If your email matches an active account sign-in email we will send you an email with a link to reset your password.</p>
@@ -38,7 +45,6 @@
                     cancel: 'Cancel',
                     onconfirm: async (data, content) => {
                         const jsonData = Object.fromEntries(data);
-                        console.log('FP', jsonData, data, content);
                         let alert = content.querySelector('webui-alert');
                         if (!jsonData.email) {
                             alert.setValue('Please enter your email used for your account login');
@@ -83,7 +89,43 @@
         render: function () {
             const t = this;
             if (webui.isSignedIn) {
-                t.innerHTML = contentSignedIn;
+                let domain = webui.getQueryData('domain');
+                if (domain && domain.length > 4 && domain.indexOf('.') !== -1) {
+                    webui.setData('page-domain', domain.replace('.', '&#8203;.'));
+                    t.innerHTML = contentSignInDomain;
+                    let form = t.querySelector('#signindomain');
+                    let alert = t.querySelector('webui-alert');
+                    form.addEventListener('submit', ev => {
+                        ev.stopPropagation();
+                        ev.preventDefault();
+                        const data = {
+                            'signin_domain': domain
+                        };
+                        let resp = undefined;
+                        webui.fetchApi('user/signin/domain', data)
+                            .then(r => {
+                                resp = r;
+                                return resp.text();
+                            })
+                            .then(async text => {
+                                if (resp.status === 200) {
+                                    if (window.self !== window.top || !document.referrer) {
+                                        webui.alert(text || 'Success');
+                                    } else {
+                                        const referringDomain = new URL(referrer).hostname;
+                                        console.log("Referring domain:", referringDomain);
+                                        window.href = `https://${domain}`;
+                                    }
+                                } else {
+                                    alert.setValue(text || `An unknown error occurred signing you in to ${domain}`);
+                                }
+                            }).catch(ex => {
+                                alert.setValue(`Error: ${ex}`);
+                            });
+                    });
+                } else {
+                    t.innerHTML = contentSignedIn;
+                }
             } else {
                 t.innerHTML = contentSignin;
                 let form = t.querySelector('#signinform');
