@@ -88,8 +88,8 @@
         },
         render: function () {
             const t = this;
+            let domain = webui.getQueryData('domain');
             if (webui.isSignedIn) {
-                let domain = webui.getQueryData('domain');
                 if (domain && domain.length > 4 && domain.indexOf('.') !== -1) {
                     webui.setData('page-domain', domain.replace('.', '&#8203;.'));
                     t.innerHTML = contentSignInDomain;
@@ -156,8 +156,12 @@
                                 if (resp.status === 200) {
                                     await webui.loadRoles();
                                     if (webui.hasRole(1)) {
-                                        webui.alert(text || 'You', 'success');
-                                        webui.navigateTo('/');
+                                        if (text) {
+                                            webui.alert(text, 'success');
+                                        }
+                                        if (!domain || domain.length < 4) {
+                                            webui.navigateTo('/');
+                                        }
                                     } else {
                                         alert.setValue('An issue occurred signing you in. Please wait a moment and try again.');
                                     }
