@@ -112,7 +112,7 @@
                                     if (window.self !== window.top || !document.referrer) {
                                         webui.alert(text || 'Success', 'success');
                                     } else {
-                                        window.href = `https://${domain}`;
+                                        location.href = `https://${domain}`;
                                     }
                                 } else {
                                     alert.setValue(text || `An unknown error occurred signing you in to ${domain}`);
