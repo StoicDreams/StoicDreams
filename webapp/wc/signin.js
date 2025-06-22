@@ -110,7 +110,7 @@
                             .then(async text => {
                                 if (resp.status === 200) {
                                     if (window.self !== window.top || !document.referrer) {
-                                        webui.alert(text || 'Success');
+                                        webui.alert(text || 'Success', 'success');
                                     } else {
                                         const referringDomain = new URL(referrer).hostname;
                                         console.log("Referring domain:", referringDomain);
