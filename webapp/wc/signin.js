@@ -112,8 +112,6 @@
                                     if (window.self !== window.top || !document.referrer) {
                                         webui.alert(text || 'Success', 'success');
                                     } else {
-                                        const referringDomain = new URL(referrer).hostname;
-                                        console.log("Referring domain:", referringDomain);
                                         window.href = `https://${domain}`;
                                     }
                                 } else {
