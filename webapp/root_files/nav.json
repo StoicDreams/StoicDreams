@@ -10,14 +10,35 @@
         "role": 0,
         "children": [
             {
-                "name": "My Fidelity Backend Services",
-                "icon": "hand-holding-seedling",
-                "url": "/myfi-services"
-            },
-            {
                 "name": "Web UI",
                 "icon": "window",
                 "url": "/webui"
+            },
+            {
+                "name": "My Fidelity Backend Services",
+                "icon": "hand-holding-seedling",
+                "children": [
+                    {
+                        "name": "My Fidelity Backend Services",
+                        "icon": "hand-holding-seedling|info",
+                        "url": "/myfi-services"
+                    },
+                    {
+                        "name": "Account Services",
+                        "icon": "users-viewfinder",
+                        "url": "/myfi-services/account_services"
+                    },
+                    {
+                        "name": "Feedback Services",
+                        "icon": "comment-smile",
+                        "url": "/myfi-services/feedback_services"
+                    },
+                    {
+                        "name": "Subscriptions",
+                        "icon": "conveyor-belt-boxes",
+                        "url": "/myfi-services/subscriptions"
+                    }
+                ]
             }
         ]
     },
