@@ -5,9 +5,26 @@
         "url": "/"
     },
     {
+        "name": "Products & Services",
+        "icon": "bell",
+        "role": 0,
+        "children": [
+            {
+                "name": "My Fidelity Backend Services",
+                "icon": "hand-holding-seedling",
+                "url": "/myfi-services"
+            },
+            {
+                "name": "Web UI",
+                "icon": "window",
+                "url": "/software-development-services"
+            }
+        ]
+    },
+    {
         "name": "Services",
         "icon": "bell",
-        "role": 2147483647,
+        "role": 1073741824,
         "children": [
             {
                 "name": "CASE Consulting",
