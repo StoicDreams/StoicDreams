@@ -26,13 +26,13 @@ Our initial batch of BAAS services are currently in development and will be laun
 
 <webui-quote theme="info">
 
-We have completed our first phase of development for the core framework of Stoic Dreams websites and services. We are now currently working on the My Fidelity specific BAAS service offerings that will both power Stoic Dreams websites and be available via subscription here on MyFi.ws!
+We have completed our first phase of development for the core framework of Stoic Dreams websites and services. We are now currently working on the My Fidelity specific BAAS service offerings that will both power Stoic Dreams websites and be available via subscription on [My Fidelity](https://www.myfi.ws)!
 
 </webui-quote>
 
 <webui-page-segment>
 
-MyFi.ws is your portal for accessing and integrating Stoic Dreams powered BAAS services into your websites and software applications.
+[My Fidelity](https://www.myfi.ws) is your portal for accessing and integrating Stoic Dreams powered BAAS services into your websites and software applications.
 Whether you enabling integrations as part of your [Web UI](https://webui.stoicdreams.com) powered websites, or performing your own custom integrations, Stoic Dreams' My Fidelity services provide developers a cost effective solution to common application needs that are quick and easy to implement and maintain, leaving developers more time to focus on business critical solutions.
 
 </webui-page-segment>
