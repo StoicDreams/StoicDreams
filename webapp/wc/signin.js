@@ -10,6 +10,9 @@
     <webui-content slot="content" src="/d/en-US/forms/create-account.md" theme="default"></webui-content>
 </webui-tabs>
 <webui-alert severity="danger"></webui-alert>
+<webui-quote theme="info">
+${webui.parseWebuiMarkdown("Not using a password manager? We recommend using [bitWarden](https://bitwarden.com/) for securely storing, managing, and sharing sensitive information such as passwords, passkeys, and credit cards.")}
+</webui-quote>
 <webui-myfi-storage-consent></webui-myfi-storage-consent>
 </form>
 `;
