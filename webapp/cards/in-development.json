@@ -1,5 +1,11 @@
 [
     {
+        "name": "URL Shortener",
+        "avatar": "diamond",
+        "link": "/myfi-services/shorturl",
+        "body": "Create and track short URLs."
+    },
+    {
         "name": "Subscriptions",
         "avatar": "https://cdn.myfi.ws/v/Vecteezy/feedback-concept-customer-review-rating-online-shopping.svg",
         "link": "/myfi-services/subscriptions",

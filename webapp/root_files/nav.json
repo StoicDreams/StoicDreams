@@ -24,6 +24,11 @@
                         "url": "/myfi-services"
                     },
                     {
+                        "name": "URL Shortener",
+                        "icon": "urls",
+                        "url": "/myfi-services/shorturl"
+                    },
+                    {
                         "name": "Account Services",
                         "icon": "users-viewfinder",
                         "url": "/myfi-services/account_services"
