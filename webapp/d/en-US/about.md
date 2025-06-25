@@ -1,6 +1,6 @@
 <webui-data data-page-title="About {APP_DOMAIN}" data-page-subtitle=""></webui-data>
 
-<webui-page-segment>
+<webui-page-segment elevation="10">
 
 {APP_DOMAIN} is the company portal for all things {APP_COMPANY_SINGULAR}.
 

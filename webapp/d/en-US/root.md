@@ -3,7 +3,7 @@
 
 ## Pioneering productivity tools and resources for developers worldwide
 
-<webui-page-segment>
+<webui-page-segment elevation="10">
 
 Welcome to Stoic Dreams, where innovation meets the needs of every developer. As architects of the future of software development, we are dedicated to creating open-source tools that not only enhance your coding capabilities but also help to shape a better future for software development.
 
@@ -11,7 +11,7 @@ Welcome to Stoic Dreams, where innovation meets the needs of every developer. As
 
 ## Current Projects
 
-<webui-page-segment>
+<webui-page-segment elevation="10">
 
 Check out our top priority projects that we are activelly working on at the moment.
 
@@ -21,7 +21,7 @@ Check out our top priority projects that we are activelly working on at the mome
 
 ## Portfolio
 
-<webui-page-segment>
+<webui-page-segment elevation="10">
 
 Check out our other open source projects that we are maintaining or previously worked on.
 

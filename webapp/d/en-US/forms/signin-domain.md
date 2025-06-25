@@ -1,6 +1,6 @@
 ## Signin to <span data-subscribe="page-domain:html"></span>
 
-<webui-page-segment>
+<webui-page-segment elevation="10">
 <p>The website <span data-subscribe="page-domain:html"></span> is requesting your sign-in authorization. Click the confirmation below to authorize the sign-in to <span data-subscribe="page-domain:html"></span> with your current {APP_NAME} account.</p>
 </webui-page-segment>
 <webui-flex justify="end" align="center" class="pa-3">

@@ -1,6 +1,6 @@
 <webui-data data-page-title="A special thank you to our sponsors" data-page-subtitle=""></webui-data>
 
-<webui-page-segment>
+<webui-page-segment elevation="10">
 
 Welcome to the Stoic Dreams Sponsors page. Here we give a very special thank you to our friends and fellow developers that have chosen to thank us by sponsoring our work with contributions.
 

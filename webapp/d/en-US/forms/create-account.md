@@ -1,5 +1,5 @@
 
-<webui-page-segment>
+<webui-page-segment elevation="10">
 
 Enter your email for the account you would like to create. You will be sent an email confirmation wich a link to our Email Confirmation page where you can set your password to complete creating your account.
 

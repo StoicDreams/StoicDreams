@@ -6,7 +6,7 @@ We are currently building a simple, plug-n-play solution for developers to be ab
 
 </webui-sideimage>
 
-<webui-page-segment>
+<webui-page-segment elevation="10">
 
 Our APIs will include secure authentication for session, signing in, and role management.
 
