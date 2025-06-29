@@ -80,6 +80,7 @@
         },
         shadowTemplate: `
 <webui-flex grow></webui-flex>
+<webui-button name="myaccount" href="/account" theme="info">My Account</webui-button>
 <webui-button name="passwordupdate" theme="warning">Change Password</webui-button>
 <webui-button name="signout" theme="danger">Sign-Out</webui-button>
 <style type="text/css">
