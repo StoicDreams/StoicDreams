@@ -155,6 +155,7 @@ ${webui.parseWebuiMarkdown("Not using a password manager? We recommend using [bi
                             })
                             .then(async text => {
                                 if (resp.status === 200) {
+                                    await webui.fetchApi('cookie/age');
                                     await webui.loadRoles();
                                     if (webui.hasRole(1)) {
                                         if (text) {
