@@ -7,6 +7,12 @@
         isInput: false,
         preload: '',
         constructor: (t) => { },
+        props: {
+            'sample': {
+                get() { return this._sample; },
+                set(v) { this._sample = v; }
+            }
+        },
         flags: [],
         attr: ['height', 'max-height'],
         attrChanged: (t, property, value) => {
