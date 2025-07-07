@@ -29,5 +29,11 @@
         "avatar": "https://www.taskstory.com/Logo.svg",
         "link": "https://www.taskstory.com",
         "body": "Task Story is our Project Management tool that provides a guided workflow to organize projects with a Problem / Solution architecture."
-    }
+    },
+    {
+        "name": "Did You Hear About This Job?",
+        "avatar": "https://www.didyouhearaboutthisjob.com/Logo.svg",
+        "link": "https://www.didyouhearaboutthisjob.com",
+        "body": "Job Search resources and tips.\n\nCurrently rebuilding as part of migration to Web UI."
+    },
 ]
