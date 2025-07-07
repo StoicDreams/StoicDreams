@@ -48,6 +48,12 @@
             t._slotMain = t.template.querySelector('slot:not([name])');
             t._slotSomething = t.template.querySelector('slot[name="something"]');
         },
+        props: {
+            'sample': {
+                get() { return this._sample; },
+                set(v) { this._sample = v; }
+            }
+        },
         flags: [],
         attr: ['height', 'max-height'],
         attrChanged: (t, property, value) => {
