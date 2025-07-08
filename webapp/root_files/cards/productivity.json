@@ -15,7 +15,7 @@
         "name": "Web UI",
         "avatar": "https://webui.stoicdreams.com/Logo.svg",
         "link": "https://webui.stoicdreams.com",
-        "body": "Started out as our first Rust project. We recently reconceptualized the idea to be a Vanilla JavaScript Web Component Library that also has a Rust WebAssembly plugin. This framework is being developed and used to power all of Stoic Dreams' in-house website projects and our Task Proxy desktop application."
+        "body": "A Vanilla JavaScript Web Component Library with an optional Rust WebAssembly plugin.\n\nThis framework is being developed and used to power all of Stoic Dreams' in-house website projects and our Task Proxy desktop application."
     },
     {
         "name": "Test Framework - C#",
