@@ -105,7 +105,7 @@
         "name": "Task Proxy",
         "avatar": "https://www.taskproxy.com/ms-icon-310x310.png",
         "link": "https://www.taskproxy.com",
-        "body": "Task Proxy is our desktop software for developer documentation and script management system.\n\nWe released an initial prototype in early 2022 using C# with .NET Maui Blazor frameworks.\n\nWe are currently in the process of rebuilding this product using Rust with very early access builds being released through development on the [Task Proxy website](https://www.taskproxy.com)."
+        "body": "Task Proxy is our desktop application that is being designed to allow developers to manage code documenation and scripts, speed up workflows, and simplify collaboration with other developers."
     },
     {
         "name": "Task Story",
