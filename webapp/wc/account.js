@@ -50,7 +50,7 @@
                 t._icon.setAttribute('theme', 'success');
                 t.setAttribute('title', 'Toggle Account Panel');
             } else {
-                t._icon.setAttribute('icon', 'signin');
+                t._icon.setAttribute('icon', 'arrow-side-into-square|has-shadow:true|rotate:180');
                 t._icon.setAttribute('theme', 'warning');
                 t.setAttribute('title', 'Go to signin page');
             }
