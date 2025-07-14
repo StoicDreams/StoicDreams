@@ -8,5 +8,5 @@ Enter your email for the account you would like to create. You will be sent an e
 <webui-input-text theme="primary" name="email" label="Email" autofocus></webui-input-text>
 
 <webui-flex justify="end" align="center" class="pa-3">
-    <webui-button type="submit" theme="primary" start-icon="signin">Create Account</webui-button>
+    <webui-button type="submit" theme="primary" start-icon="arrow-side-into-square|has-shadow:true|rotate:180">Create Account</webui-button>
 </webui-flex>
