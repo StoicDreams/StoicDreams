@@ -1,7 +1,7 @@
 [
   {
-      "name": "Updates",
-      "icon": "edit",
-      "url": "/06e8eab2-f5d9-4031-aca5-804f7fdd63e0"
+    "name": "Updates",
+    "icon": "pencil|has-shadow:true|shade:tri",
+    "url": "/06e8eab2-f5d9-4031-aca5-804f7fdd63e0"
   }
 ]
