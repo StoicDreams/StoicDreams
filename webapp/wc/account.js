@@ -46,7 +46,7 @@
             let isSignedIn = webui.isSignedIn;
             t._lastRender = isSignedIn;
             if (isSignedIn) {
-                t._icon.setAttribute('icon', 'account');
+                t._icon.setAttribute('icon', 'person|has-shadow:true|fill|bordered|shade:tri|shape:circle|backing|rotate:0');
                 t._icon.setAttribute('theme', 'success');
                 t.setAttribute('title', 'Toggle Account Panel');
             } else {
