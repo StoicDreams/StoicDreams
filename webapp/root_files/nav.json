@@ -84,5 +84,16 @@
                 "url": "/projects/website-projects"
             }
         ]
+    },
+    {
+        "name": "Employee",
+        "icon": "star",
+        "children": [
+            {
+                "name": "Handbook",
+                "icon": "book",
+                "url": "/employee/handbook"
+            }
+        ]
     }
 ]
