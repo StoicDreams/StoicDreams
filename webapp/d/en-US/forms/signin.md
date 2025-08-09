@@ -1,5 +1,5 @@
 
-<webui-input-text theme="primary" name="email" label="Email" autofocus></webui-input-text>
+<webui-input-text theme="primary" name="email" label="Email" data-subscribe="page-user-email" data-trigger="page-user-email" autofocus></webui-input-text>
 <webui-input-text theme="primary" name="password" type="password" label="Password" autofocus></webui-input-text>
 <webui-input-range name="autosignout" data-subscribe="session-autosignout:setValue" data-trigger="session-autosignout" label="Inactivity Signout" title="Minutes of inactivity to auto-sign-out" min="5" step="5" max="2880"></webui-input-range>
 
