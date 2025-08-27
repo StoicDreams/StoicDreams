@@ -5,9 +5,9 @@
 <form id="signinform">
 <webui-tabs theme="secondary" index="1" transition-timing="200" data-subscribe="session-signin-tab-index:setTab">
     <webui-button align="left" slot="tabs">Sign-In</webui-button>
-    <webui-content slot="content" src="/d/en-US/forms/signin.md" theme="default"></webui-content>
+    <webui-content slot="content" src="/d/forms/signin.md" theme="default"></webui-content>
     <webui-button align="left" slot="tabs">Create Account</webui-button>
-    <webui-content slot="content" src="/d/en-US/forms/create-account.md" theme="default"></webui-content>
+    <webui-content slot="content" src="/d/forms/create-account.md" theme="default"></webui-content>
 </webui-tabs>
 <webui-alert severity="danger"></webui-alert>
 <webui-quote theme="info">
@@ -22,7 +22,7 @@ ${webui.parseWebuiMarkdown("Not using a password manager? We recommend using [bi
 `;
     let contentSignInDomain = `
 <form id="signindomain">
-<webui-content slot="content" src="/d/en-US/forms/signin-domain.md" theme="default"></webui-content>
+<webui-content slot="content" src="/d/forms/signin-domain.md" theme="default"></webui-content>
 <webui-alert severity="danger"></webui-alert>
 </form>
 `;

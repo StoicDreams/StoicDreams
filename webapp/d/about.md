@@ -8,4 +8,4 @@ Here, you will be able to keep up to date with past and current events at {APP_C
 
 </webui-page-segment>
 
-<webui-content cache src="https://cdn.myfi.ws/d/en-US/about-stoic-dreams.md"></webui-content>
+<webui-content cache src="https://cdn.myfi.ws/d/about-stoic-dreams.md"></webui-content>

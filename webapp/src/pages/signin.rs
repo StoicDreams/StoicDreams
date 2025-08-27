@@ -54,7 +54,7 @@ fn render_signin_content(user: &MyFiUser) -> Html {
                 <DisplayLoginSignup />
             </Paper>
             <Paper style="min-width:400px;width:calc(0.47 * var(--window-width));" class="pa-2" elevation={ELEVATION_STANDARD}>
-                <MarkdownContent href={"/d/en-US/signin.md".to_string()} />
+                <MarkdownContent href={"/d/signin.md".to_string()} />
             </Paper>
         </>
     }
@@ -75,7 +75,7 @@ fn site_auth() -> Html {
             return html! {
                 <Paper>
                     <Quote color={Theme::Danger} class="pa-2 ma-2" elevation={ELEVATION_STANDARD}>
-                        <MarkdownContent href="/d/en-US/invalid_site.md" />
+                        <MarkdownContent href="/d/invalid_site.md" />
                     </Quote>
                 </Paper>
             };
@@ -134,8 +134,14 @@ fn site_auth_manager(props: &SiteAuthManagerProps) -> Html {
     ));
 
     let data_message = match company_id.as_str() {
-        "Companies:0ipahe77ogcpign1fu9e" => format!("{} is a Stoic Dreams owned website, which may share Stoic Dreams data across across its various domains and applications.", domain),
-        _ => format!("The website {} ({}) and company {} will not be granted any additional access to your Stoic Dreams data not related to {} through this authorization.", site, domain, company, domain)
+        "Companies:0ipahe77ogcpign1fu9e" => format!(
+            "{} is a Stoic Dreams owned website, which may share Stoic Dreams data across across its various domains and applications.",
+            domain
+        ),
+        _ => format!(
+            "The website {} ({}) and company {} will not be granted any additional access to your Stoic Dreams data not related to {} through this authorization.",
+            site, domain, company, domain
+        ),
     };
     let redirect_state = redirect.to_string();
     let redirect_state = use_state(move || redirect.to_string());
