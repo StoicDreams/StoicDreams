@@ -7,6 +7,12 @@
         "body": "A Vanilla JavaScript Web Component Library with an optional Rust WebAssembly plugin.\n\nThis framework is being developed and used to power all of Stoic Dreams' in-house website projects and our Task Proxy desktop application."
     },
     {
+        "name": "Ap Tul",
+        "avatar": "https://www.aptul.com/Logo.svg",
+        "link": "https://www.aptul.com",
+        "body": "A growing library of privacy-focused developer tools. Simplify your workflow with secure, browser-based utilities like our high-performance Image Converter and Resizer."
+    },
+    {
         "name": "My Fidelity",
         "avatar": "https://www.myfi.ws/Logo.svg",
         "link": "https://www.myfi.ws",
