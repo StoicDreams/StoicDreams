@@ -11,7 +11,8 @@
         watchVisibility: false,
         isInput: false,
         preload: 'flex button',
-        constructor: (t) => {
+        constructor() {
+            const t = this;
             t._btnUpdatePassword = t.template.querySelector('[name="passwordupdate"]');
             t._btnSignout = t.template.querySelector('[name="signout"]');
             t._btnUpdatePassword.addEventListener('click', _ => {
@@ -60,7 +61,8 @@
         },
         flags: [],
         attr: ['height', 'max-height'],
-        attrChanged: (t, property, value) => {
+        attrChanged(property, value) {
+            const t = this;
             switch (property) {
                 case 'height':
                     t.style.height = webui.pxIfNumber(value);
@@ -69,14 +71,6 @@
                     t.style.maxHeight = webui.pxIfNumber(value);
                     break;
             }
-        },
-        connected: function (t) {
-            t.setupComponent();
-        },
-        disconnected: function (t) { },
-        reconnected: function (t) { },
-        setupComponent: function () {
-            const t = this;
         },
         shadowTemplate: `
 <webui-flex grow></webui-flex>

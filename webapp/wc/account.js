@@ -5,7 +5,8 @@
         watchVisibility: false,
         isInput: false,
         preload: '',
-        constructor: (t) => {
+        constructor() {
+            const t = this;
             t.addEventListener('click', _ => {
                 if (webui.isSignedIn) {
                     webui.openSharedDrawer(
@@ -20,7 +21,8 @@
         },
         flags: [],
         attr: ['height', 'max-height'],
-        attrChanged: (t, property, value) => {
+        attrChanged(property, value) {
+            const t = this;
             switch (property) {
                 case 'height':
                     t.style.height = webui.pxIfNumber(value);
@@ -30,17 +32,15 @@
                     break;
             }
         },
-        connected: function (t) {
-            t.setupComponent();
+        connected() {
+            this.setupComponent();
         },
-        disconnected: function (t) { },
-        reconnected: function (t) { },
-        setupComponent: async function () {
+        async setupComponent() {
             const t = this;
             t.render();
             t.addDataset('subscribe', 'session-user-role:render');
         },
-        render: function () {
+        render() {
             const t = this;
             if (t._lastRender == webui.isSignedIn) return;
             let isSignedIn = webui.isSignedIn;

@@ -16,10 +16,10 @@
         watchVisibility: false,
         isInput: false,
         preload: '',
-        constructor: (t) => { },
         flags: [],
         attr: ['height', 'max-height'],
-        attrChanged: (t, property, value) => {
+        attrChanged(property, value) {
+            const t = this;
             switch (property) {
                 case 'height':
                     t.style.height = webui.pxIfNumber(value);
@@ -29,12 +29,10 @@
                     break;
             }
         },
-        connected: function (t) {
-            t.setupComponent();
+        connected() {
+            this.setupComponent();
         },
-        disconnected: function (t) { },
-        reconnected: function (t) { },
-        setupComponent: function () {
+        setupComponent() {
             const t = this;
             t.innerHTML = content;
             let form = t.querySelector('#confirmemail');

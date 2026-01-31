@@ -36,7 +36,8 @@ ${webui.parseWebuiMarkdown("Not using a password manager? We recommend using [bi
         watchVisibility: false,
         isInput: false,
         preload: '',
-        constructor: (t) => {
+        constructor() {
+            const t = this;
             t.addEventListener('click', ev => {
                 let forgotPassword = webui.closest(ev.target, '[name="forgotpassword"]');
                 if (!forgotPassword) return;
@@ -66,7 +67,8 @@ ${webui.parseWebuiMarkdown("Not using a password manager? We recommend using [bi
         },
         flags: [],
         attr: ['height', 'max-height'],
-        attrChanged: (t, property, value) => {
+        attrChanged(property, value) {
+            const t = this;
             switch (property) {
                 case 'height':
                     t.style.height = webui.pxIfNumber(value);
@@ -76,20 +78,19 @@ ${webui.parseWebuiMarkdown("Not using a password manager? We recommend using [bi
                     break;
             }
         },
-        connected: function (t) {
+        connected() {
+            const t = this;
             t.setupComponent();
             t.addDataset('subscribe', 'session-user-role:render');
         },
-        disconnected: function (t) { },
-        reconnected: function (t) { },
-        setupComponent: function () {
+        setupComponent() {
             const t = this;
             t.render();
             if (webui.getData('session-autosignout') === undefined) {
                 webui.setData('session-autosignout', 30);
             }
         },
-        render: function () {
+        render() {
             const t = this;
             let domain = webui.getQueryData('domain');
             if (webui.isSignedIn) {

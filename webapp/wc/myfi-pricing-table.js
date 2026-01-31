@@ -26,10 +26,10 @@ We'd love to here your opinions regarding our target pricing models. Let us know
         watchVisibility: false,
         isInput: false,
         preload: '',
-        constructor: (t) => { },
         flags: [],
         attr: ['height', 'max-height'],
-        attrChanged: (t, property, value) => {
+        attrChanged(property, value) {
+            const t = this;
             switch (property) {
                 case 'height':
                     t.style.height = webui.pxIfNumber(value);
@@ -39,12 +39,10 @@ We'd love to here your opinions regarding our target pricing models. Let us know
                     break;
             }
         },
-        connected: function (t) {
-            t.setupComponent();
+        connected() {
+            this.setupComponent();
         },
-        disconnected: function (t) { },
-        reconnected: function (t) { },
-        setupComponent: function () {
+        setupComponent() {
             const t = this;
             t.innerHTML = webui.parseWebuiMarkdown(content);
             webui.setData('page-starter-pricing', [
