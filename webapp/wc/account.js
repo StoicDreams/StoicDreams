@@ -46,17 +46,17 @@
             let isSignedIn = webui.isSignedIn;
             t._lastRender = isSignedIn;
             if (isSignedIn) {
-                t._icon.setAttribute('icon', 'person|has-shadow:true|fill|bordered|shade:tri|shape:circle|backing|rotate:0');
+                t._icon.setAttribute('icon', 'person|fill|bordered|shade:tri|shape:circle|backing|rotate:0');
                 t._icon.setAttribute('theme', 'success');
                 t.setAttribute('title', 'Toggle Account Panel');
             } else {
-                t._icon.setAttribute('icon', 'arrow-side-into-square|has-shadow:true|rotate:180');
+                t._icon.setAttribute('icon', 'arrow-side-into-square|rotate:180');
                 t._icon.setAttribute('theme', 'warning');
                 t.setAttribute('title', 'Go to signin page');
             }
         },
         shadowTemplate: `
-<webui-icon icon="arrow-side-into-square|has-shadow:true|rotate:180" fill></webui-icon>
+<webui-icon icon="arrow-side-into-square|rotate:180" fill></webui-icon>
 <style type="text/css">
 :host {
 display:inline-flex;
