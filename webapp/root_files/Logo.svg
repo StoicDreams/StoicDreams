@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 150 150" version="1.1" aria-label="Logo">
+<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 150 150" version="1.1" aria-label="Logo">
 <defs>
 <symbol id="activeText">
 <text x="75" y="65" textLength="150" lengthAdjust="spacingAndGlyphs" text-anchor="middle" class="text-style" font-size="60">Stoic</text>
@@ -16,15 +16,7 @@ svg, text {overflow:visible;}
 .secondary{fill:#2e54ff;stroke:#2e54ff;stroke-miterlimit:10;}
 .tertiary{fill:#7d0b77;stroke:#7d0b77;stroke-miterlimit:10;}
 .success{fill:#1c970e;stroke:#1c970e;stroke-miterlimit:10;}
-.text{fill:#FFFFFF;font-family:'Nunito', Arial, sans-serif;font-weight:700;letter-spacing:-1px;font-size: clamp(10px, 20cqw, 45px);}
-.flex-container {
-height: 100%;
-display: flex;
-flex-direction: column;
-justify-content: center; /* This handles the vertical centering */
-align-items: center;
-text-align: center;
-}
+.text{fill:#FFFFFF;font-family:'Nunito', Arial, sans-serif;font-weight:700;letter-spacing:-1px;font-size: clamp(10px, 20cqw, 45px);text-shadow:0 0 10px black;}
 text:empty { display: none; }
 @font-face {
     font-family: 'Nunito';
