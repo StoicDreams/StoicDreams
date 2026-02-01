@@ -1,46 +1,46 @@
 [
     {
         "name": "Home",
-        "icon": "home",
+        "icon": "emoji-house",
         "url": "/"
     },
     {
         "name": "Products & Services",
-        "icon": "bell",
+        "icon": "emoji-package",
         "role": 0,
         "children": [
             {
                 "name": "Web UI",
-                "icon": "window",
+                "icon": "emoji-desktop_computer",
                 "url": "/webui"
             },
             {
                 "name": "My Fidelity Backend Services",
-                "icon": "hand-holding-seedling",
+                "icon": "emoji-gear",
                 "children": [
                     {
                         "name": "My Fidelity Backend Services",
-                        "icon": "hand-holding-seedling|info",
+                        "icon": "emoji-gear",
                         "url": "/myfi-services"
                     },
                     {
                         "name": "URL Shortener",
-                        "icon": "urls",
+                        "icon": "emoji-link",
                         "url": "/myfi-services/shorturl"
                     },
                     {
                         "name": "Account Services",
-                        "icon": "users-viewfinder",
+                        "icon": "emoji-key",
                         "url": "/myfi-services/account_services"
                     },
                     {
                         "name": "Feedback Services",
-                        "icon": "comment-smile",
+                        "icon": "emoji-speech_balloon",
                         "url": "/myfi-services/feedback_services"
                     },
                     {
                         "name": "Subscriptions",
-                        "icon": "conveyor-belt-boxes",
+                        "icon": "emoji-credit_card",
                         "url": "/myfi-services/subscriptions"
                     }
                 ]
@@ -49,49 +49,49 @@
     },
     {
         "name": "Services",
-        "icon": "bell",
+        "icon": "emoji-briefcase",
         "role": 1073741824,
         "children": [
             {
                 "name": "CASE Consulting",
-                "icon": "hand-holding-seedling",
+                "icon": "emoji-light_bulb",
                 "url": "/consultation-services-for-agile-continuous-delivery-software-development"
             },
             {
                 "name": "Software Development",
-                "icon": "window",
+                "icon": "emoji-technologist",
                 "url": "/software-development-services"
             }
         ]
     },
     {
         "name": "Projects",
-        "icon": "diagram-project",
+        "icon": "emoji-rocket",
         "children": [
             {
                 "name": "Game Development",
-                "icon": "gamepad-modern",
+                "icon": "emoji-video_game",
                 "url": "/projects/game-development"
             },
             {
                 "name": "Productivity Tools",
-                "icon": "screwdriver-wrench",
+                "icon": "emoji-hammer_and_wrench",
                 "url": "/projects/productivity-tools"
             },
             {
                 "name": "Website Projects",
-                "icon": "browser",
+                "icon": "emoji-globe_with_meridians",
                 "url": "/projects/website-projects"
             }
         ]
     },
     {
         "name": "Employee",
-        "icon": "star",
+        "icon": "emoji-bust_in_silhouette",
         "children": [
             {
                 "name": "Handbook",
-                "icon": "book",
+                "icon": "emoji-blue_book",
                 "url": "/employee/handbook"
             }
         ]
