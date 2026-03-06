@@ -13,33 +13,9 @@
         "body": "A growing library of privacy-focused developer tools. Simplify your workflow with secure, browser-based utilities like our high-performance Image Converter and Resizer."
     },
     {
-        "name": "My Fidelity",
-        "avatar": "https://www.myfi.ws/Logo.svg",
-        "link": "https://www.myfi.ws",
-        "body": "Developer portal for accessing and managing My Fidelity API tools and content delivery services offered by Stoic Dreams."
-    },
-    {
         "name": "Gassler Design",
         "avatar": "https://www.gassler.design/Logo.svg",
         "link": "https://www.gassler.design",
         "body": "Company website for Gassler Design, interior design specialists with a focus on providing inspiring visualizations through 3d renderings."
-    },
-    {
-        "name": "Task Proxy",
-        "avatar": "https://www.taskproxy.com/Logo.svg",
-        "link": "https://www.taskproxy.com",
-        "body": "Task Proxy is our desktop application that is being designed to allow developers to manage code documenation and scripts, speed up workflows, and simplify collaboration with other developers."
-    },
-    {
-        "name": "Task Story",
-        "avatar": "https://www.taskstory.com/Logo.svg",
-        "link": "https://www.taskstory.com",
-        "body": "Task Story is our Project Management tool that provides a guided workflow to organize projects with a Problem / Solution architecture."
-    },
-    {
-        "name": "Did You Hear About This Job?",
-        "avatar": "https://www.didyouhearaboutthisjob.com/Logo.svg",
-        "link": "https://www.didyouhearaboutthisjob.com",
-        "body": "Job Search resources and tips.\n\nCurrently rebuilding as part of migration to Web UI."
     }
 ]

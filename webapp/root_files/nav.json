@@ -5,95 +5,18 @@
         "url": "/"
     },
     {
-        "name": "Products & Services",
-        "icon": "emoji-package",
-        "role": 0,
-        "children": [
-            {
-                "name": "Web UI",
-                "icon": "emoji-desktop_computer",
-                "url": "/webui"
-            },
-            {
-                "name": "My Fidelity Backend Services",
-                "icon": "emoji-gear",
-                "children": [
-                    {
-                        "name": "My Fidelity Backend Services",
-                        "icon": "emoji-gear",
-                        "url": "/myfi-services"
-                    },
-                    {
-                        "name": "URL Shortener",
-                        "icon": "emoji-link",
-                        "url": "/myfi-services/shorturl"
-                    },
-                    {
-                        "name": "Account Services",
-                        "icon": "emoji-key",
-                        "url": "/myfi-services/account_services"
-                    },
-                    {
-                        "name": "Feedback Services",
-                        "icon": "emoji-speech_balloon",
-                        "url": "/myfi-services/feedback_services"
-                    },
-                    {
-                        "name": "Subscriptions",
-                        "icon": "emoji-credit_card",
-                        "url": "/myfi-services/subscriptions"
-                    }
-                ]
-            }
-        ]
+        "name": "Productivity Tools",
+        "icon": "emoji-hammer_and_wrench",
+        "url": "/projects/productivity-tools"
     },
     {
-        "name": "Services",
-        "icon": "emoji-briefcase",
-        "role": 1073741824,
-        "children": [
-            {
-                "name": "CASE Consulting",
-                "icon": "emoji-light_bulb",
-                "url": "/consultation-services-for-agile-continuous-delivery-software-development"
-            },
-            {
-                "name": "Software Development",
-                "icon": "emoji-technologist",
-                "url": "/software-development-services"
-            }
-        ]
+        "name": "Website Projects",
+        "icon": "emoji-globe_with_meridians",
+        "url": "/projects/website-projects"
     },
     {
-        "name": "Projects",
-        "icon": "emoji-rocket",
-        "children": [
-            {
-                "name": "Game Development",
-                "icon": "emoji-video_game",
-                "url": "/projects/game-development"
-            },
-            {
-                "name": "Productivity Tools",
-                "icon": "emoji-hammer_and_wrench",
-                "url": "/projects/productivity-tools"
-            },
-            {
-                "name": "Website Projects",
-                "icon": "emoji-globe_with_meridians",
-                "url": "/projects/website-projects"
-            }
-        ]
-    },
-    {
-        "name": "Employee",
-        "icon": "emoji-bust_in_silhouette",
-        "children": [
-            {
-                "name": "Handbook",
-                "icon": "emoji-blue_book",
-                "url": "/employee/handbook"
-            }
-        ]
+        "name": "Employee Handbook",
+        "icon": "emoji-blue_book",
+        "url": "/employee/handbook"
     }
 ]

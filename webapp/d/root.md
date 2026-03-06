@@ -1,5 +1,4 @@
 <webui-data data-page-title="Forging solutions for tomorrow's software development" data-page-subtitle=""></webui-data>
-<webui-data data-page-next-page='{"name":"Game Development","href":"/projects/game-development"}'></webui-data>
 
 ## Pioneering productivity tools and resources for developers worldwide
 
@@ -13,7 +12,7 @@ Welcome to Stoic Dreams, where innovation meets the needs of every developer. As
 
 <webui-page-segment elevation="10">
 
-Check out our top priority projects that we are activelly working on at the moment.
+Check out our top priority projects that we are actively working on at the moment.
 
 </webui-page-segment>
 
