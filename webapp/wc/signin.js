@@ -32,6 +32,11 @@ ${webui.parseWebuiMarkdown("Not using a password manager? We recommend using [bi
 <webui-alert severity="danger"></webui-alert>
 `;
 
+    // The domain comes from the address, so only a plain host name such as example.com is shown or signed in to.
+    function isHostName(domain) {
+        return typeof domain === 'string' && /^(?=.{5,253}$)([a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$/i.test(domain);
+    }
+
     webui.define("app-signin", {
         watchVisibility: false,
         isInput: false,
@@ -94,7 +99,7 @@ ${webui.parseWebuiMarkdown("Not using a password manager? We recommend using [bi
             const t = this;
             let domain = webui.getQueryData('domain');
             if (webui.isSignedIn) {
-                if (domain && domain.length > 4 && domain.indexOf('.') !== -1) {
+                if (isHostName(domain)) {
                     webui.setData('page-domain', domain.replace('.', '&#8203;.'));
                     t.innerHTML = contentSignInDomain;
                     let form = t.querySelector('#signindomain');
