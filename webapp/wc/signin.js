@@ -118,8 +118,23 @@ ${webui.parseWebuiMarkdown("Not using a password manager? We recommend using [bi
                             })
                             .then(async text => {
                                 if (resp.status === 200) {
-                                    if (window.self !== window.top || !document.referrer) {
-                                        webui.alert(text || 'Success', 'success');
+                                    // The API answers with a one-time code that the site exchanges for its own session,
+                                    // because browsers keep the API's cookie for each site separately.
+                                    // Older API versions answered with only a message.
+                                    let message = text;
+                                    let code = '';
+                                    try {
+                                        const json = JSON.parse(text);
+                                        message = json.message || '';
+                                        code = json.code || '';
+                                    } catch { }
+                                    if (window.self !== window.top) {
+                                        webui.alert(webui.escapeHtml(message || 'Success'), 'success');
+                                    } else if (code) {
+                                        // The site needs the code to sign in, so go there even when no referrer says where the visitor came from.
+                                        location.href = `https://${domain}/#myfi-signin=${encodeURIComponent(code)}`;
+                                    } else if (!document.referrer) {
+                                        webui.alert(webui.escapeHtml(message || 'Success'), 'success');
                                     } else {
                                         location.href = `https://${domain}`;
                                     }

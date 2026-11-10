@@ -152,6 +152,15 @@ test.describe('app-signin', () => {
         await expect(form(page).locator('webui-alert')).toContainText('That site is not linked to your account');
     });
 
+    test('confirming a domain sign-in sends the visitor there with the one-time code', async ({ page }) => {
+        const answer = { body: JSON.stringify({ message: 'You have successfully signed in to example.com', code: 'abc123' }) };
+        await api(page, { ...signedIn, 'user/signin/domain': answer });
+        await openPage(page, '/signin?domain=example.com');
+        await page.route('https://example.com/**', route => route.fulfill({ contentType: 'text/html', body: '<p>Example</p>' }));
+        await form(page).locator('webui-button[type="submit"]').click();
+        await page.waitForURL('https://example.com/#myfi-signin=abc123');
+    });
+
     test('a domain that is not a host name is ignored, so markup in it never reaches the page', async ({ page }) => {
         await api(page, signedIn);
         await openPage(page, `/signin?domain=${encodeURIComponent('<img src=x onerror="window.__xss=1">.com')}`);
