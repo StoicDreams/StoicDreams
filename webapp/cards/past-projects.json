@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Test Framework - C#",
+        "avatar": "/sd-logo.png",
+        "link": "https://www.nuget.org/packages/StoicDreams.TestFramework",
+        "body": "Nuget.org - StoicDreams.TestFramework\n\nA helper framework that keeps tests strictly to an Arrange / Act / Assert structure.\n\nIncludes the `Moq` and `FluentAssertion` libraries for mocking data and writing readable tests."
+    },
+    {
+        "name": "Test Framework - C# Blazor",
+        "avatar": "/sd-logo.png",
+        "link": "https://www.nuget.org/packages/StoicDreams.TestFrameworkBlazor",
+        "body": "An extended version of StoicDreams.TestFramework that adds methods for testing .razor / Blazor components."
+    }
+]

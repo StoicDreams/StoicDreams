@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Did You Hear About This Job",
+        "avatar": "https://www.didyouhearaboutthisjob.com/Logo.svg",
+        "link": "https://www.didyouhearaboutthisjob.com",
+        "body": "Job search resources and tips."
+    },
+    {
+        "name": "Erik Gassler",
+        "avatar": "https://www.erikgassler.com/Logo.svg",
+        "link": "https://www.erikgassler.com",
+        "body": "The personal site of Erik Gassler, owner and principal software engineer of Stoic Dreams."
+    },
+    {
+        "name": "Guided Piano",
+        "avatar": "https://www.guidedpiano.com/Logo.svg",
+        "link": "https://www.guidedpiano.com",
+        "body": "Foundational training to play the piano while learning to read sheet music."
+    },
+    {
+        "name": "Hatch My Web",
+        "avatar": "https://www.hatchmyweb.com/Logo.svg",
+        "link": "https://www.hatchmyweb.com",
+        "body": "Guides and scripts to help you set up hosting for your websites and web services."
+    },
+    {
+        "name": "My Fidelity",
+        "avatar": "https://www.myfi.ws/Logo.svg",
+        "link": "https://www.myfi.ws",
+        "body": "Backend-as-a-Service from Stoic Dreams for developers."
+    },
+    {
+        "name": "Software Development Standards",
+        "avatar": "https://www.softwarestandards.dev/Logo.svg",
+        "link": "https://www.softwarestandards.dev",
+        "body": "Standards for building software as a team through agile development and continuous delivery workflows."
+    },
+    {
+        "name": "Software Engineer Standards",
+        "avatar": "https://www.softwareengineerstandards.com/Logo.svg",
+        "link": "https://www.softwareengineerstandards.com",
+        "body": "Personal standards and practices that help individual software engineers improve their productivity and the quality of their work."
+    },
+    {
+        "name": "Vocal Bin",
+        "avatar": "https://www.vocalbin.com/Logo.svg",
+        "link": "https://www.vocalbin.com",
+        "body": "Type English and hear it read aloud by a speech synthesizer built from scratch, with no recordings and no AI. Shape the voice and save WAV files."
+    }
+]

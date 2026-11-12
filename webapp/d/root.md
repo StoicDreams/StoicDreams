@@ -8,25 +8,22 @@ Welcome to Stoic Dreams, where innovation meets the needs of every developer. As
 
 </webui-page-segment>
 
-## Current Projects
+## Our Products
+
+<webui-cards src="/cards/products.json" card-width="500"></webui-cards>
+
+## More from Stoic Dreams
 
 <webui-page-segment elevation="10">
 
-Check out our top priority projects that we are actively working on at the moment.
+Beyond our main products, we run websites for learning, job searching, and software standards, and we build websites for our clients.
+
+<webui-flex class="my-3" justify="center" wrap>
+<webui-link href="/projects" icon="emoji-globe_with_meridians">Our Other Projects</webui-link>
+<webui-link href="/clients" icon="emoji-handshake">Our Clients</webui-link>
+</webui-flex>
 
 </webui-page-segment>
-
-<webui-cards src="/cards/current-projects.json" card-width="500"></webui-cards>
-
-## Portfolio
-
-<webui-page-segment elevation="10">
-
-Check out our other open source projects that we are maintaining or previously worked on.
-
-</webui-page-segment>
-
-<webui-cards src="/cards/portfolio-projects.json" card-width="500"></webui-cards>
 
 ## Meet the Team
 

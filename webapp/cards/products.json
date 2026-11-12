@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Web UI",
+        "theme": "primary",
+        "avatar": "https://webui.stoicdreams.com/Logo.svg",
+        "link": "https://webui.stoicdreams.com",
+        "body": "A Vanilla JavaScript Web Component library with an optional Rust WebAssembly plugin.\n\nWeb UI powers every Stoic Dreams website and the Task Proxy desktop app."
+    },
+    {
+        "name": "Task Story",
+        "avatar": "https://www.taskstory.com/Logo.svg",
+        "link": "https://www.taskstory.com",
+        "body": "Project management for software teams that ship in short, continuous iterations. Define the problem first, try more than one solution, and keep a story of what shipped and what you dropped."
+    },
+    {
+        "name": "Task Proxy",
+        "avatar": "https://www.taskproxy.com/Logo.svg",
+        "link": "https://www.taskproxy.com",
+        "body": "A lightweight, cross-platform developer tool built in Rust for managing documentation, scripts, and automations alongside your code, on Windows, Mac, and Linux."
+    },
+    {
+        "name": "Ap Tul",
+        "avatar": "https://www.aptul.com/Logo.svg",
+        "link": "https://www.aptul.com",
+        "body": "A growing library of free, privacy-focused browser tools for images, PDFs, text, and development. Your files never leave your device."
+    }
+]

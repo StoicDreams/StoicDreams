@@ -5,14 +5,14 @@
         "url": "/"
     },
     {
-        "name": "Productivity Tools",
-        "icon": "emoji-hammer_and_wrench",
-        "url": "/projects/productivity-tools"
+        "name": "Projects",
+        "icon": "emoji-globe_with_meridians",
+        "url": "/projects"
     },
     {
-        "name": "Website Projects",
-        "icon": "emoji-globe_with_meridians",
-        "url": "/projects/website-projects"
+        "name": "Clients",
+        "icon": "emoji-handshake",
+        "url": "/clients"
     },
     {
         "name": "Employee Handbook",

@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Gassler Design",
+        "avatar": "https://www.gassler.design/Logo.svg",
+        "link": "https://www.gassler.design",
+        "body": "Interior design studio specializing in inspiring visualizations through photorealistic 3D renderings."
+    },
+    {
+        "name": "Maison Gassler",
+        "avatar": "https://www.karinagassler.com/favicon.svg",
+        "link": "https://www.karinagassler.com",
+        "body": "Karina Gassler's original textile and wallpaper designs, interiors, and journal."
+    },
+    {
+        "name": "Wyrdloom Studios",
+        "avatar": "https://www.wyrdloom.com/Logo.svg",
+        "link": "https://www.wyrdloom.com",
+        "body": "Game development studio at work on its first title, Faryn."
+    },
+    {
+        "name": "Faryn",
+        "avatar": "https://www.farynthegame.com/Logo.svg",
+        "link": "https://www.farynthegame.com",
+        "body": "An action adventure game for PC from Wyrdloom Studios."
+    }
+]
