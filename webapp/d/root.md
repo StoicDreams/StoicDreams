@@ -19,8 +19,8 @@ Welcome to Stoic Dreams, where innovation meets the needs of every developer. As
 Beyond our main products, we run websites for learning, job searching, and software standards, and we build websites for our clients.
 
 <webui-flex class="my-3" justify="center" wrap>
-<webui-link href="/projects" icon="emoji-globe_with_meridians">Our Other Projects</webui-link>
-<webui-link href="/clients" icon="emoji-handshake">Our Clients</webui-link>
+<webui-link href="/projects" icon="grid">Our Other Projects</webui-link>
+<webui-link href="/clients" icon="handshake">Our Clients</webui-link>
 </webui-flex>
 
 </webui-page-segment>

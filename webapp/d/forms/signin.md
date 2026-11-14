@@ -4,6 +4,6 @@
 <webui-input-range name="autosignout" data-subscribe="session-autosignout:setValue" data-trigger="session-autosignout" label="Inactivity Signout" title="Minutes of inactivity to auto-sign-out" min="5" step="5" max="2880"></webui-input-range>
 
 <webui-flex justify="end" align="center" class="pa-3">
-    <webui-button name="forgotpassword" theme="secondary" start-icon="reset">Forgot Password</webui-button>
+    <webui-button name="forgotpassword" theme="secondary" start-icon="circle_question">Forgot Password</webui-button>
     <webui-button type="submit" theme="primary" start-icon="arrow-side-into-square|rotate:180">Sign-In</webui-button>
 </webui-flex>

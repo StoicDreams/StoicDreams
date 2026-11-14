@@ -1,22 +1,22 @@
 [
     {
         "name": "Home",
-        "icon": "circle_emoji-house|theme:title|backing|inverted",
+        "icon": "circle_home|theme:title|backing|inverted",
         "url": "/"
     },
     {
         "name": "Projects",
-        "icon": "emoji-globe_with_meridians",
+        "icon": "grid",
         "url": "/projects"
     },
     {
         "name": "Clients",
-        "icon": "emoji-handshake",
+        "icon": "handshake",
         "url": "/clients"
     },
     {
         "name": "Employee Handbook",
-        "icon": "emoji-blue_book",
+        "icon": "book",
         "url": "/employee/handbook"
     }
 ]
