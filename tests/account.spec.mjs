@@ -27,7 +27,8 @@ async function api(page, responses = {}) {
 const signedIn = { 'user/roles': { body: '1' } };
 const callsTo = (calls, path) => calls.filter(call => call.path === path);
 const input = (scope, name) => scope.locator(`webui-input-text[name="${name}"] input`);
-const dialog = page => page.locator('dialog[open]').last();
+// A webui.dialog shows its content in a slot of webui-dialogs, outside the shadow dialog element.
+const dialog = page => page.locator('webui-dialogs:has(dialog[open])');
 const dialogButton = (page, text) => dialog(page).getByText(text, { exact: true }).last();
 
 test.describe('app-account', () => {
