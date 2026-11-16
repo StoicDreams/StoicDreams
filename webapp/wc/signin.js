@@ -26,6 +26,25 @@ ${webui.parseWebuiMarkdown("Not using a password manager? We recommend using [bi
 <webui-alert severity="danger"></webui-alert>
 </form>
 `;
+    // An installed app, such as Task Proxy, asking to be signed in. The app shows the same code, so the visitor can
+    // check this is the sign-in they started. Any company can add an app on www.myfi.ws, so the company that publishes it
+// is named too. The names come from the API and are set as text.
+    let contentSignInApp = `
+<h2>Approve a Sign-In</h2>
+<webui-page-segment elevation="10" class="app-signin-details" hidden>
+<p><strong class="app-signin-app"></strong>, from <strong class="app-signin-company"></strong>, on <strong class="app-signin-name"></strong> is asking to sign in to your account.</p>
+<p>Approve it only if you started this sign-in, and the app shows this code:</p>
+<p class="app-signin-code" style="font-size:2em;font-family:monospace;letter-spacing:0.15em;text-align:center;margin:0.5em 0;"></p>
+</webui-page-segment>
+<webui-flex justify="end" align="center" gap="var(--padding)" class="pa-3 app-signin-actions" hidden>
+    <webui-button theme="secondary" start-icon="xmark" class="app-signin-refuse">Refuse</webui-button>
+    <webui-button theme="primary" start-icon="check" class="app-signin-approve">Approve Sign-In</webui-button>
+</webui-flex>
+<webui-alert severity="danger"></webui-alert>
+`;
+    let contentSignInAppSignedOut = `
+<webui-alert show severity="info">Sign in to approve the app that sent you here.</webui-alert>
+`;
     let contentForgotPassword = `
 <p>Confirm your email for your account. If your email matches an active account sign-in email we will send you an email with a link to reset your password.</p>
 <webui-input-text theme="primary" name="email" label="Email" autofocus></webui-input-text>
@@ -35,6 +54,12 @@ ${webui.parseWebuiMarkdown("Not using a password manager? We recommend using [bi
     // The domain comes from the address, so only a plain host name such as example.com is shown or signed in to.
     function isHostName(domain) {
         return typeof domain === 'string' && /^(?=.{5,253}$)([a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$/i.test(domain);
+    }
+    // An app's sign-in request, from ?app=...&request=..., as made by api.myfi.ws's user/signin/app/start.
+    function getAppRequest() {
+        const request = webui.getQueryData('request');
+        if (!webui.getQueryData('app')) return null;
+        return typeof request === 'string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(request) ? request : null;
     }
 
     webui.define("app-signin", {
@@ -95,10 +120,72 @@ ${webui.parseWebuiMarkdown("Not using a password manager? We recommend using [bi
                 webui.setData('session-autosignout', 30);
             }
         },
+        /** Asks the signed-in visitor to approve or refuse an app's sign-in, after checking its code. */
+        async renderAppSignin(request) {
+            const t = this;
+            // The component renders again when the roles load, so only the latest render carries on after the request.
+            const run = t._renders;
+            t.innerHTML = contentSignInApp;
+            const details = t.querySelector('.app-signin-details');
+            const actions = t.querySelector('.app-signin-actions');
+            const alert = t.querySelector('webui-alert');
+            // The API can answer before webui-alert has loaded from the CDN.
+            const setAlert = async (text, variant) => {
+                await customElements.whenDefined('webui-alert');
+                alert.setValue({ text }, variant);
+            };
+            const showOnly = (text, variant) => {
+                details.remove();
+                actions.remove();
+                return setAlert(text, variant);
+            };
+            const ask = async (method, url, data) => {
+                try {
+                    const resp = await webui.fetchApi(url, data, method);
+                    return { ok: resp.status === 200, text: await resp.text() };
+                } catch (ex) {
+                    return { ok: false, text: `Error: ${ex}` };
+                }
+            };
+            const shown = await ask('get', `user/signin/app?request=${encodeURIComponent(request)}`);
+            if (run !== t._renders || !t.isConnected) return;
+            let info = null;
+            try { info = shown.ok ? JSON.parse(shown.text) : null; } catch { }
+            if (!info?.code) {
+                showOnly(shown.text || 'This sign-in could not be found. Start signing in again from the app.', 'danger');
+                return;
+            }
+            t.querySelector('.app-signin-app').textContent = info.app || 'An app';
+            t.querySelector('.app-signin-company').textContent = info.company || 'an unknown company';
+            t.querySelector('.app-signin-name').textContent = info.name || 'a computer';
+            t.querySelector('.app-signin-code').textContent = info.code;
+            details.hidden = false;
+            actions.hidden = false;
+            let busy = false;
+            const answer = async (approve) => {
+                if (busy) return;
+                busy = true;
+                const result = approve
+                    ? await ask('post', 'user/signin/app/approve', { request })
+                    : await ask('delete', 'user/signin/app', { request });
+                busy = false;
+                if (result.ok) {
+                    showOnly(approve ? (result.text || 'The app is signed in. You can close this page.') : 'The sign-in was refused, and the app was told. You can close this page.', approve ? 'success' : 'info');
+                } else {
+                    setAlert(result.text || 'Something went wrong. Please wait a moment and try again.', 'danger');
+                }
+            };
+            t.querySelector('.app-signin-approve').addEventListener('click', () => answer(true));
+            t.querySelector('.app-signin-refuse').addEventListener('click', () => answer(false));
+        },
         render() {
             const t = this;
+            t._renders = (t._renders || 0) + 1;
             let domain = webui.getQueryData('domain');
-            if (webui.isSignedIn) {
+            const appRequest = getAppRequest();
+            if (webui.isSignedIn && appRequest) {
+                t.renderAppSignin(appRequest);
+            } else if (webui.isSignedIn) {
                 if (isHostName(domain)) {
                     webui.setData('page-domain', domain.replace('.', '&#8203;.'));
                     t.innerHTML = contentSignInDomain;
@@ -149,9 +236,9 @@ ${webui.parseWebuiMarkdown("Not using a password manager? We recommend using [bi
                     t.innerHTML = contentSignedIn;
                 }
             } else {
-                t.innerHTML = contentSignin;
+                t.innerHTML = (appRequest ? contentSignInAppSignedOut : '') + contentSignin;
                 let form = t.querySelector('#signinform');
-                let alert = t.querySelector('webui-alert');
+                let alert = form.querySelector(':scope > webui-alert');
                 form.addEventListener('submit', ev => {
                     const isSignin = webui.getData('session-signin-tab-index') === 0;
                     ev.stopPropagation();
@@ -182,7 +269,8 @@ ${webui.parseWebuiMarkdown("Not using a password manager? We recommend using [bi
                                         if (text) {
                                             webui.alert(text, 'success');
                                         }
-                                        if (!domain || domain.length < 4) {
+                                        // Signing in to approve a site or an app stays here, which then asks to approve it.
+                                        if (!appRequest && (!domain || domain.length < 4)) {
                                             webui.navigateTo('/');
                                         }
                                     } else {

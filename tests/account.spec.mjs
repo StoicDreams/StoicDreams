@@ -1,7 +1,7 @@
 import { test, expect, openPage } from './support/site.mjs';
 
 // Answers the account API, recording each request. `responses` maps a path such as 'user/signin' to
-// { status, body }, or to a function returning one. Roles default to signed out.
+// { status, body }, or to a function of the request's body and method returning one. Roles default to signed out.
 async function api(page, responses = {}) {
     const calls = [];
     await page.route('https://api.myfi.ws/**', async route => {
@@ -19,7 +19,7 @@ async function api(page, responses = {}) {
         try { body = text ? JSON.parse(text) : undefined; } catch { body = text; }
         calls.push({ path, method: request.method(), body });
         let answer = responses[path] ?? (path === 'user/roles' ? { body: '0' } : {});
-        if (typeof answer === 'function') answer = answer(body);
+        if (typeof answer === 'function') answer = answer(body, request.method());
         return route.fulfill({ status: answer.status ?? 200, body: answer.body ?? '', contentType: 'text/plain', headers });
     });
     return calls;
@@ -168,6 +168,102 @@ test.describe('app-signin', () => {
         await expect(form(page)).toContainText('You are already signed in');
         await expect(form(page).locator('img')).toHaveCount(0);
         expect(await page.evaluate(() => window.__xss)).toBeUndefined();
+    });
+
+    // An installed app, such as Task Proxy, sends the visitor here to approve its sign-in.
+    test.describe('approving an app', () => {
+        const request = '3160d8e4-e8dd-43c7-a397-43b17ef46cbc';
+        const appUrl = `/signin?app=taskproxy&request=${request}`;
+        const shown = { body: JSON.stringify({ app: 'Task Proxy', company: 'Stoic Dreams', name: 'Desk', code: 'M7A-JQF' }) };
+        const appRequest = (answers = {}) => (body, method) =>
+            method === 'GET' ? (answers.get ?? shown) : method === 'DELETE' ? (answers.delete ?? {}) : {};
+        const button = (page, label) => form(page).locator('webui-button', { hasText: label });
+
+        test('it names the app, its company, and the computer, and shows the code to check', async ({ page }) => {
+            await api(page, { ...signedIn, 'user/signin/app': appRequest() });
+            await openPage(page, appUrl);
+            await expect(form(page)).toContainText('Task Proxy, from Stoic Dreams, on Desk is asking to sign in to your account');
+            await expect(form(page).locator('.app-signin-code')).toHaveText('M7A-JQF');
+            await expect(button(page, 'Approve Sign-In')).toBeVisible();
+            await expect(button(page, 'Refuse')).toBeVisible();
+        });
+
+        test('approving sends the request and says the app is signed in', async ({ page }) => {
+            const calls = await api(page, {
+                ...signedIn,
+                'user/signin/app': appRequest(),
+                'user/signin/app/approve': { body: 'Task Proxy, from Stoic Dreams, on Desk is signed in to your account. You can close this page.' },
+            });
+            await openPage(page, appUrl);
+            await button(page, 'Approve Sign-In').click();
+            await expect(form(page).locator('webui-alert')).toContainText('Task Proxy, from Stoic Dreams, on Desk is signed in to your account');
+            expect(callsTo(calls, 'user/signin/app/approve').map(call => call.body)).toEqual([{ request }]);
+            await expect(button(page, 'Approve Sign-In')).toHaveCount(0);
+            expect(new URL(page.url()).pathname).toBe('/signin');
+        });
+
+        test('refusing ends the request', async ({ page }) => {
+            const calls = await api(page, { ...signedIn, 'user/signin/app': appRequest() });
+            await openPage(page, appUrl);
+            await button(page, 'Refuse').click();
+            await expect(form(page).locator('webui-alert')).toContainText('The sign-in was refused');
+            const refused = callsTo(calls, 'user/signin/app').filter(call => call.method === 'DELETE');
+            expect(refused.map(call => call.body)).toEqual([{ request }]);
+            expect(callsTo(calls, 'user/signin/app/approve')).toEqual([]);
+        });
+
+        test('an approval the API refuses says why and can be tried again', async ({ page }) => {
+            await api(page, {
+                ...signedIn,
+                'user/signin/app': appRequest(),
+                'user/signin/app/approve': { status: 400, body: 'This sign-in has expired or was already approved.' },
+            });
+            await openPage(page, appUrl);
+            await button(page, 'Approve Sign-In').click();
+            await expect(form(page).locator('webui-alert')).toContainText('This sign-in has expired or was already approved.');
+            await expect(button(page, 'Approve Sign-In')).toBeVisible();
+        });
+
+        test('an expired request says so, with nothing to approve', async ({ page }) => {
+            await api(page, { ...signedIn, 'user/signin/app': appRequest({ get: { status: 400, body: 'This sign-in has expired or was already approved. Start signing in again from the app.' } }) });
+            await openPage(page, appUrl);
+            await expect(form(page).locator('webui-alert')).toContainText('Start signing in again from the app');
+            await expect(button(page, 'Approve Sign-In')).toHaveCount(0);
+            await expect(form(page).locator('.app-signin-code')).toHaveCount(0);
+        });
+
+        test('names from the API are shown as text, so markup in them never reaches the page', async ({ page }) => {
+            const name = '<img src=x onerror="window.__xss=1">';
+            await api(page, { ...signedIn, 'user/signin/app': appRequest({ get: { body: JSON.stringify({ app: 'Task Proxy', company: name, name, code: 'M7A-JQF' }) } }) });
+            await openPage(page, appUrl);
+            await expect(form(page).locator('.app-signin-name')).toHaveText(name);
+            await expect(form(page).locator('img')).toHaveCount(0);
+            expect(await page.evaluate(() => window.__xss)).toBeUndefined();
+        });
+
+        test('a request that is not a request id is ignored', async ({ page }) => {
+            const calls = await api(page, signedIn);
+            await openPage(page, `/signin?app=taskproxy&request=${encodeURIComponent('../user/signout')}`);
+            await expect(form(page)).toContainText('You are already signed in');
+            expect(callsTo(calls, 'user/signin/app')).toEqual([]);
+        });
+
+        test('signed out, it asks to sign in first, then stays to approve', async ({ page }) => {
+            let signedInNow = false;
+            await api(page, {
+                'user/signin': () => { signedInNow = true; return { body: 'Welcome back' }; },
+                'user/roles': () => ({ body: signedInNow ? '1' : '0' }),
+                'user/signin/app': appRequest(),
+            });
+            await openPage(page, appUrl);
+            await expect(form(page)).toContainText('Sign in to approve the app that sent you here.');
+            await tab(page, 'Sign-In').click();
+            await input(form(page), 'email').first().fill('someone@example.com');
+            await input(form(page), 'password').fill('test-password-not-real');
+            await submit(page, 'Sign-In');
+            await expect(form(page).locator('.app-signin-code')).toHaveText('M7A-JQF');
+            expect(new URL(page.url()).pathname).toBe('/signin');
+        });
     });
 });
 
