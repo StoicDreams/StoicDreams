@@ -9,6 +9,11 @@
         "icon": "circle_star|theme:primary|backing|inverted",
         "children": [
             {
+                "name": "All Products",
+                "icon": "star",
+                "url": "/products"
+            },
+            {
                 "name": "Web UI",
                 "icon": "cube",
                 "url": "/products/web-ui"

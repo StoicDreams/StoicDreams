@@ -31,6 +31,10 @@
 	<link href="https://cdn.myfi.ws/css/webui.min.css" rel="preload" as="style" />
 	<link href="https://cdn.myfi.ws/webui/loader.min.js" rel="preload" as="script" />
 
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
+
 	<link href="Logo.svg" rel="icon" type="image/svg+xml" sizes="any" />
 	<link rel="manifest" href="app.webmanifest">
 
@@ -49,7 +53,7 @@
 	<link data-trunk href="src-js/worker.js" rel="copy-file" data-target-path="/" />
 	<!--End Web Worker-->
 
-	<meta name="theme-color" content="#FF2E46" />
+	<meta name="theme-color" content="#141c3d" />
 
 	<meta name="author" content="Erik Gassler">
 	<meta name="description" content="Stoic Dreams creates and shares software development tools, services, and best practices.">
@@ -71,7 +75,7 @@
 	<webui-app data-removeclass=".nav|open;.shared|open">
 		<webui-drawer slot="left" class="nav elevation-20" docked="true" data-state="slot|docked" data-moveable data-dockable>
 			<webui-flex justify="center" slot="header">
-				<webui-stoic-dreams-logo title="Stoic Dreams Website Logo" text="Stoic" text2="Dreams"></webui-stoic-dreams-logo>
+				<webui-stoic-dreams-logo title="Stoic Dreams Website Logo" text="Stoic" text2="Dreams" style="--color-title:#2430d4"></webui-stoic-dreams-logo>
 			</webui-flex>
 			<webui-nav routes="/nav.json" data-subscribe="app-nav-routes:setNavRoutes"></webui-nav>
 		</webui-drawer>

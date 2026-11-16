@@ -1,17 +1,23 @@
+/*
+ * Stoic Dreams theme (chosen 2026-11-15, from claude/stoicdreams/mockups/home.html): a deep navy background with soft
+ * blue and purple glows, the logo's blue (#2e54ff) for actions, its purple as the accent, and Nunito (the logo's
+ * font) for headings. Section headings are blue-to-purple text with a diamond mark instead of solid color bars.
+ * Theme only: build layouts as components, not CSS here.
+ */
 :root {
 	--color-black: #101010;
 	--color-white: #FFFFFF;
-	--color-background: #333333;
-	--color-background-offset: var(--color-white);
-	--color-title: #2430d4;
-	--color-title-offset: var(--color-white);
-	--color-primary: #0a7eb0;
+	--color-background: #0b1024;
+	--color-background-offset: #e9edff;
+	--color-title: #141c3d;
+	--color-title-offset: #FFFFFF;
+	--color-primary: #2e54ff;
 	--color-primary-offset: var(--color-white);
-	--color-secondary: #2e54ff;
+	--color-secondary: #8a2fc0;
 	--color-secondary-offset: var(--color-white);
 	--color-tertiary: #7d0b77;
 	--color-tertiary-offset: var(--color-white);
-	--color-info: #0b78ce;
+	--color-info: #2e54ff;
 	--color-info-offset: var(--color-white);
 	--color-success: #19890d;
 	--color-success-offset: var(--color-white);
@@ -19,10 +25,291 @@
 	--color-warning-offset: var(--color-white);
 	--color-danger: rgb(183, 5, 5);
 	--color-danger-offset: var(--color-white);
-	--color-active: var(--color-info);
-	--color-active-offset: var(--color-info-offset);
-	--color-button: var(--color-info);
-	--color-button-offset: var(--color-info-offset);
+	--color-active: #2e54ff;
+	--color-active-offset: var(--color-white);
+	--color-button: #2e54ff;
+	--color-button-offset: var(--color-white);
+	--color-footer: #0e1430;
+	--color-footer-offset: #c7cfee;
+	--color-focus: #7a90ff;
+	--fill-accent: linear-gradient(90deg, #6f87ff, #c15ae0);
+	--font-family-display: "Nunito", system-ui, sans-serif;
+	--corners: 8px;
+	--link-shadow: 0 0 6px #2e54ff;
+	--color-link: #8fa2ff;
+	--color-muted: #aab4da;
+	--color-surface: #161f44;
+	--color-surface-hover: #1c2754;
+	--color-line: rgb(255 255 255 / 9%);
+}
+
+/* Soft glows behind the page. The app stays fixed while its content scrolls. */
+webui-app {
+	background-color: #0b1024;
+	background-image:
+		radial-gradient(1000px 560px at 85% -8%, rgb(46 84 255 / 22%), transparent 62%),
+		radial-gradient(800px 500px at -10% 105%, rgb(178 79 220 / 14%), transparent 60%);
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: var(--font-family-display);
+	font-weight: 800;
+	letter-spacing: -0.01em;
+}
+
+/* Section headings in page content: the accent gradient and a diamond mark, in place of solid color bars. */
+webui-app :is(h2, h3):not(header *, webui-drawer *, webui-page-footer *, app-hero *, webui-card *, webui-media *) {
+	background-image: var(--fill-accent);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	align-items: center;
+}
+
+webui-app h2:not(header *, webui-drawer *, webui-page-footer *, app-hero *, webui-card *)::before {
+	content: "";
+	flex: 0 0 auto;
+	width: 0.42em;
+	height: 0.42em;
+	margin: 0 0.35em 0 0.15em;
+	border-radius: 0.1em;
+	transform: rotate(45deg);
+	background: var(--fill-accent);
+	box-shadow: 0 0 0.4em rgb(122 144 255 / 60%);
+}
+
+a {
+	color: var(--color-link);
+}
+
+/* The heading and pitch inside app-hero. Page styles outrank the component's own ::slotted rules, so they are set here. */
+app-hero>:is(h1, h2) {
+	display: block;
+	margin: 0;
+	padding: 0;
+	font-size: clamp(2.1rem, 1.2rem + 2.8vw, 3.3rem);
+	font-weight: 900;
+	line-height: 1.1;
+	background-image: var(--fill-accent);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+app-hero>p {
+	margin: 0;
+	font-size: 1.12em;
+	color: var(--color-muted);
+	max-width: 52ch;
+}
+
+/* Polish from the mockup (claude/stoicdreams/mockups/home.html): page width and spacing, a glassy header, the menu,
+ * pill buttons, panels, the team photo and quote, and the footer and newsletter. */
+
+/* Page content keeps to a readable width, centered, with a gutter. Slotted shell parts are left alone. */
+webui-app>:not([slot]) {
+	margin-left: max(16px, calc((100% - 1180px) / 2));
+	margin-right: max(16px, calc((100% - 1180px) / 2));
+}
+
+webui-app>h2:not(:first-child) {
+	margin-top: 2.6rem;
+}
+
+webui-app>h2 {
+	font-size: 1.9rem;
+	font-weight: 900;
+	box-shadow: none;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+/* A line right under a section heading reads as its lead. */
+webui-app>h2+p {
+	color: var(--color-muted);
+	margin-top: -0.2rem;
+	margin-bottom: 1rem;
+}
+
+/* Header: a dark glass bar instead of a solid color. */
+webui-app>header {
+	background-color: rgb(11 16 36 / 78%);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	box-shadow: none;
+	border-bottom: 1px solid var(--color-line);
+}
+
+webui-app>header :is(h1, h2) {
+	font-size: 1.15rem;
+	font-weight: 800;
+}
+
+/* Menu: a darker drawer, bold links without underlines, and the current page marked with a blue edge. */
+webui-drawer.nav {
+	--theme-color: #090d1f;
+	--color-background: #090d1f;
+	border-right: 1px solid var(--color-line);
+}
+
+webui-nav .navlink {
+	padding: 8px 12px;
+	border-radius: 10px;
+	font-family: var(--font-family-display);
+	font-weight: 700;
+	text-decoration: none;
+	color: var(--color-muted);
+	transition: background-color 160ms ease, color 160ms ease;
+}
+
+/* The framework underlines every a[href]; this selector has to outrank its a[href]:not(...) rule. */
+webui-nav a.navlink[href]:not([disabled]):not(:disabled):not(.disabled) {
+	color: var(--color-muted);
+	text-decoration: none;
+}
+
+webui-nav .navlink:hover {
+	background-color: var(--color-surface);
+	color: var(--color-background-offset);
+}
+
+webui-nav-link.theme-active {
+	background-color: transparent;
+}
+
+webui-nav-link.theme-active>a.navlink {
+	background: linear-gradient(90deg, rgb(46 84 255 / 32%), rgb(46 84 255 / 0%));
+	box-shadow: inset 3px 0 0 var(--color-primary);
+	color: var(--color-background-offset);
+}
+
+/* Buttons: pills in the heading font, with a soft glow on the main action. */
+webui-button {
+	border-radius: 999px;
+	padding: 0.6em 1.3em;
+	font-family: var(--font-family-display);
+	font-weight: 800;
+	box-shadow: none;
+	border: 1px solid var(--color-line);
+	transition: filter 160ms ease, transform 160ms ease;
+}
+
+/* Buttons whose text wraps onto several lines would become ovals as pills, so they keep rounded corners. */
+webui-button[wrap] {
+	border-radius: 14px;
+	font-weight: 700;
+}
+
+webui-button:hover {
+	filter: brightness(1.12);
+}
+
+webui-button[theme="primary"] {
+	border-color: transparent;
+	box-shadow: 0 8px 24px rgb(46 84 255 / 35%);
+}
+
+webui-button[theme="title"] {
+	background-color: var(--color-surface);
+}
+
+/* Panels: a raised surface with a thin border and round corners. */
+webui-page-segment {
+	background-color: var(--color-surface);
+	border: 1px solid var(--color-line);
+	border-radius: 14px;
+	padding: 18px 16px;
+	margin: var(--padding) 0;
+}
+
+/* The sign-in page's storage consent puts two 500px cards in a segment; without the panel's padding they stay side by side at 1280px. */
+webui-myfi-storage-consent webui-page-segment {
+	padding-left: 0;
+	padding-right: 0;
+	border: none;
+	background-color: transparent;
+}
+
+/* Team: a round photo with a blue ring, the name in plain white, and a slim quote. */
+webui-media::part(image) {
+	border: 3px solid var(--color-primary);
+	box-sizing: border-box;
+}
+
+webui-media h3 {
+	background-image: none;
+	color: var(--color-background-offset);
+	font-weight: 900;
+	padding: 0;
+}
+
+webui-media h3 a[href]:not([disabled]):not(:disabled):not(.disabled) {
+	color: inherit;
+	text-decoration: none;
+	text-shadow: none;
+	filter: none;
+}
+
+webui-media p {
+	color: var(--color-muted);
+}
+
+webui-quote {
+	box-shadow: none;
+	border-left-width: 3px;
+	padding: 0 0 0 12px;
+	font-style: italic;
+}
+
+/* Footer: a darker band, with the newsletter as rounded fields. */
+webui-app>footer[slot="content-footer"] {
+	margin-top: 3rem;
+	padding: 28px max(16px, calc((100% - 1180px) / 2)) 16px;
+	border-top: 1px solid var(--color-line);
+	background-color: rgb(9 13 31 / 70%);
+}
+
+webui-newsletter {
+	max-width: 760px;
+	margin: 0 auto 1.5rem;
+}
+
+webui-newsletter::part(title) {
+	font-family: var(--font-family-display);
+	font-weight: 900;
+	color: var(--color-background-offset);
+}
+
+webui-newsletter::part(description) {
+	color: var(--color-muted);
+}
+
+webui-newsletter::part(input) {
+	border-radius: 999px;
+	border: 1px solid var(--color-line);
+	background-color: var(--color-background);
+	padding: 0.65em 1em;
+}
+
+webui-newsletter::part(button) {
+	border-radius: 999px;
+	border: none;
+	padding: 0.65em 1.4em;
+	background-color: var(--color-primary);
+	color: var(--color-white);
+	font-family: var(--font-family-display);
+	font-weight: 800;
+	box-shadow: 0 8px 24px rgb(46 84 255 / 35%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	webui-button,
+	webui-nav .navlink {
+		transition: none;
+	}
 }
 
 .card-header>.avatar {

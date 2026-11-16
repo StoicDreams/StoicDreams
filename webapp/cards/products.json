@@ -1,27 +1,30 @@
 [
     {
         "name": "Web UI",
-        "theme": "primary",
         "avatar": "https://webui.stoicdreams.com/Logo.svg",
+        "image": "https://www.erikgassler.com/img/screenshots/pages/case-studies/web-ui.png",
         "link": "/products/web-ui",
-        "body": "A Vanilla JavaScript Web Component library with an optional Rust WebAssembly plugin.\n\nWeb UI powers every Stoic Dreams website and the Task Proxy desktop app."
+        "body": "An open source web component framework in plain JavaScript, with an optional Rust WebAssembly worker."
     },
     {
         "name": "Task Story",
         "avatar": "https://www.taskstory.com/Logo.svg",
+        "image": "https://www.taskstory.com/img/screenshots/dashboard.png",
         "link": "/products/task-story",
-        "body": "Project management for software teams that ship in short, continuous iterations. Define the problem first, try more than one solution, and keep a story of what shipped and what you dropped."
+        "body": "Project management for teams that ship in short iterations. Define the problem first, and keep the story."
     },
     {
         "name": "Task Proxy",
         "avatar": "https://www.taskproxy.com/Logo.svg",
+        "image": "https://www.taskproxy.com/video/loops/script-manager.webp",
         "link": "/products/task-proxy",
-        "body": "A lightweight desktop app built in Rust for documentation, scripts, git, and automations kept alongside your code, with step-by-step tutorials and plugins such as Jira. For Windows, Mac, and Linux."
+        "body": "A desktop app for the scripts, docs, and git work that live alongside your code. Windows, Mac, and Linux."
     },
     {
         "name": "Ap Tul",
         "avatar": "https://www.aptul.com/Logo.svg",
+        "image": "https://www.aptul.com/img/screenshots/pages/openapi.png",
         "link": "/products/ap-tul",
-        "body": "More than 30 free, privacy-focused browser tools for images, PDFs, text, and development, from an OpenAPI viewer to a QR code generator. Your files never leave your device."
+        "body": "More than 30 free browser tools for images, PDFs, text, and development. Your files never leave your device."
     }
 ]

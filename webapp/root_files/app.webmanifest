@@ -3,8 +3,8 @@
   "short_name": "Stoic Dreams",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#FF2E46",
+  "background_color": "#0b1024",
+  "theme_color": "#141c3d",
   "prefer_related_applications": false,
   "icons": [
     {
