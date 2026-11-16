@@ -16,7 +16,7 @@ Welcome to Stoic Dreams, where innovation meets the needs of every developer. As
 
 <webui-page-segment elevation="10">
 
-Beyond our main products, we run websites for learning, job searching, and software standards, and we build websites for our clients.
+Beyond our main products, we run websites for learning piano, speech synthesis, animation, AI assistants, job searching, and software standards, and we build websites for our clients.
 
 <webui-flex class="my-3" justify="center" wrap>
 <webui-link href="/projects" icon="grid">Our Other Projects</webui-link>

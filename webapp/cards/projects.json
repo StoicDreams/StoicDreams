@@ -1,5 +1,17 @@
 [
     {
+        "name": "Agent Squire",
+        "avatar": "https://www.agentsquire.com/Logo.svg",
+        "link": "https://www.agentsquire.com",
+        "body": "Plain-language guides and free tools that help you choose, set up, and get real work out of AI assistants and agents, with Orin the squire as your guide."
+    },
+    {
+        "name": "Blue Cherub",
+        "avatar": "https://www.bluecherub.com/Logo.svg",
+        "link": "https://www.bluecherub.com",
+        "body": "A free animation studio in your browser. Rig any SVG drawing, then pose and animate it on a timeline and export video. No paywall."
+    },
+    {
         "name": "Did You Hear About This Job",
         "avatar": "https://www.didyouhearaboutthisjob.com/Logo.svg",
         "link": "https://www.didyouhearaboutthisjob.com",
@@ -9,13 +21,13 @@
         "name": "Erik Gassler",
         "avatar": "https://www.erikgassler.com/Logo.svg",
         "link": "https://www.erikgassler.com",
-        "body": "The personal site of Erik Gassler, owner and principal software engineer of Stoic Dreams."
+        "body": "The personal site of Erik Gassler, owner and principal software engineer of Stoic Dreams, with his experience, writing, and the Fabric Engine."
     },
     {
         "name": "Guided Piano",
         "avatar": "https://www.guidedpiano.com/Logo.svg",
         "link": "https://www.guidedpiano.com",
-        "body": "Foundational training to play the piano while learning to read sheet music."
+        "body": "Foundational training to play the piano while learning to read sheet music. Piano Check tests a connected piano's key lights and sound."
     },
     {
         "name": "Hatch My Web",
@@ -45,6 +57,6 @@
         "name": "Vocal Bin",
         "avatar": "https://www.vocalbin.com/Logo.svg",
         "link": "https://www.vocalbin.com",
-        "body": "Type English and hear it read aloud by a speech synthesizer built from scratch, with no recordings and no AI. Shape the voice and save WAV files."
+        "body": "Type English and hear it read aloud by a speech synthesizer built from scratch, with no recordings and no AI. Shape the voice in the Vowel and Phoneme Labs and save WAV files."
     }
 ]

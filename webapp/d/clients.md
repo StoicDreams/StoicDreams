@@ -8,3 +8,9 @@ Stoic Dreams builds and runs websites for these companies, using our Web UI fram
 </webui-page-segment>
 
 <webui-cards src="/cards/clients.json" card-width="500"></webui-cards>
+
+## A look at their sites
+
+<webui-page-segment elevation="10">
+<webui-gallery src="/cards/galleries/clients.json" card-width="150"></webui-gallery>
+</webui-page-segment>

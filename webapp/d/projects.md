@@ -9,6 +9,12 @@ Along with our main products, Stoic Dreams runs these websites. Each one is buil
 
 <webui-cards src="/cards/projects.json" card-width="500"></webui-cards>
 
+## A look at our projects
+
+<webui-page-segment elevation="10">
+<webui-gallery src="/cards/galleries/projects.json" card-width="150"></webui-gallery>
+</webui-page-segment>
+
 ## Past Projects
 
 <webui-page-segment elevation="10">

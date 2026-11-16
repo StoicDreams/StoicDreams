@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Agent Squire",
+        "src": "https://www.agentsquire.com/img/screenshots/pages/prompt-cards.png"
+    },
+    {
+        "name": "Blue Cherub",
+        "src": "https://www.bluecherub.com/img/screenshots/studio/animate-timeline.png"
+    },
+    {
+        "name": "Did You Hear About This Job",
+        "src": "https://www.didyouhearaboutthisjob.com/img/screenshots/pages/root.png"
+    },
+    {
+        "name": "Erik Gassler",
+        "src": "https://www.erikgassler.com/img/screenshots/pages/root.png"
+    },
+    {
+        "name": "Guided Piano",
+        "src": "https://www.guidedpiano.com/img/screenshots/pages/piano-check.png"
+    },
+    {
+        "name": "Hatch My Web",
+        "src": "https://www.hatchmyweb.com/img/screenshots/pages/root.png"
+    },
+    {
+        "name": "My Fidelity",
+        "src": "https://www.myfi.ws/img/screenshots/pages/root.png"
+    },
+    {
+        "name": "Software Development Standards",
+        "src": "https://www.softwarestandards.dev/img/screenshots/pages/root.png"
+    },
+    {
+        "name": "Software Engineer Standards",
+        "src": "https://www.softwareengineerstandards.com/img/screenshots/pages/root.png"
+    },
+    {
+        "name": "Vocal Bin",
+        "src": "https://www.vocalbin.com/img/screenshots/pages/text-to-speech.png"
+    }
+]

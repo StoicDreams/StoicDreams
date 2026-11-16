@@ -5,6 +5,32 @@
         "url": "/"
     },
     {
+        "name": "Products",
+        "icon": "circle_star|theme:primary|backing|inverted",
+        "children": [
+            {
+                "name": "Web UI",
+                "icon": "cube",
+                "url": "/products/web-ui"
+            },
+            {
+                "name": "Task Story",
+                "icon": "list-check",
+                "url": "/products/task-story"
+            },
+            {
+                "name": "Task Proxy",
+                "icon": "terminal",
+                "url": "/products/task-proxy"
+            },
+            {
+                "name": "Ap Tul",
+                "icon": "toolbox",
+                "url": "/products/ap-tul"
+            }
+        ]
+    },
+    {
         "name": "Projects",
         "icon": "grid",
         "url": "/projects"
