@@ -171,19 +171,20 @@ test.describe('app-signin', () => {
         await page.waitForURL('https://example.com/remote/?desk=1#myfi-signin=abc123');
     });
 
-    test('a return that is not a path on the same site goes to its home page instead', async ({ page }) => {
-        const answer = { body: JSON.stringify({ message: 'Signed in', code: 'abc123' }) };
-        await api(page, { ...signedIn, 'user/signin/domain': answer });
-        const elsewhere = [];
-        await page.route(url => url.hostname.endsWith('evil.com'), route => { elsewhere.push(route.request().url()); route.fulfill({ contentType: 'text/html', body: '<p>Evil</p>' }); });
-        await page.route('https://example.com/**', route => route.fulfill({ contentType: 'text/html', body: '<p>Example</p>' }));
-        for (const target of ['https://evil.com/x', '//evil.com/x', '/\\evil.com/x', '/\t/evil.com', 'javascript:alert(1)', 'remote/', '/remote/#other']) {
+    // One test per return, so each page load has the whole timeout, and a failure names the return.
+    for (const target of ['https://evil.com/x', '//evil.com/x', '/\\evil.com/x', '/\t/evil.com', 'javascript:alert(1)', 'remote/', '/remote/#other']) {
+        test(`a return that is not a path on the same site goes to its home page instead: ${JSON.stringify(target)}`, async ({ page }) => {
+            const answer = { body: JSON.stringify({ message: 'Signed in', code: 'abc123' }) };
+            await api(page, { ...signedIn, 'user/signin/domain': answer });
+            const elsewhere = [];
+            await page.route(url => url.hostname.endsWith('evil.com'), route => { elsewhere.push(route.request().url()); route.fulfill({ contentType: 'text/html', body: '<p>Evil</p>' }); });
+            await page.route('https://example.com/**', route => route.fulfill({ contentType: 'text/html', body: '<p>Example</p>' }));
             await openPage(page, `/signin?domain=example.com&return=${encodeURIComponent(target)}`);
             await form(page).locator('webui-button[type="submit"]').click();
             await page.waitForURL('https://example.com/#myfi-signin=abc123');
-        }
-        expect(elsewhere).toEqual([]);
-    });
+            expect(elsewhere).toEqual([]);
+        });
+    }
 
     test('a domain that is not a host name is ignored, so markup in it never reaches the page', async ({ page }) => {
         await api(page, signedIn);

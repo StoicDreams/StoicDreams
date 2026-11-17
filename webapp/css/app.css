@@ -9,8 +9,10 @@
 	--color-white: #FFFFFF;
 	--color-background: #0b1024;
 	--color-background-offset: #e9edff;
-	--color-title: #141c3d;
+	--color-title: #2430d4;
 	--color-title-offset: #FFFFFF;
+	/* The header is a deep blend of the logo blue into the page, so it sits close to the page. */
+	--color-header: color-mix(in srgb, var(--color-title) 30%, var(--color-background));
 	--color-primary: #2e54ff;
 	--color-primary-offset: var(--color-white);
 	--color-secondary: #8a2fc0;
@@ -134,11 +136,8 @@ webui-app>h2+p {
 	margin-bottom: 1rem;
 }
 
-/* Header: a dark glass bar instead of a solid color. */
+/* Header: the title color with a hairline under it. */
 webui-app>header {
-	background-color: rgb(11 16 36 / 78%);
-	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
 	box-shadow: none;
 	border-bottom: 1px solid var(--color-line);
 }
