@@ -55,6 +55,18 @@ ${webui.parseWebuiMarkdown("Not using a password manager? We recommend using [bi
     function isHostName(domain) {
         return typeof domain === 'string' && /^(?=.{5,253}$)([a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$/i.test(domain);
     }
+    // The page to go back to on the site being signed in to, from ?return=/path, such as /remote/. Only a path on that
+    // site is accepted, never another site's address, so a link can't use this page to send visitors elsewhere.
+    function getReturnPath(domain) {
+        const path = new URLSearchParams(location.search).get('return');
+        if (!path || path.length > 500 || !/^\/(?![\/\\])[^\s\\#\x00-\x1f\x7f]*$/.test(path)) return '/';
+        try {
+            const url = new URL(path, `https://${domain}`);
+            return url.origin === `https://${domain}` ? url.pathname + url.search : '/';
+        } catch {
+            return '/';
+        }
+    }
     // An app's sign-in request, from ?app=...&request=..., as made by api.myfi.ws's user/signin/app/start.
     function getAppRequest() {
         const request = webui.getQueryData('request');
@@ -215,15 +227,16 @@ ${webui.parseWebuiMarkdown("Not using a password manager? We recommend using [bi
                                         message = json.message || '';
                                         code = json.code || '';
                                     } catch { }
+                                    const returnPath = getReturnPath(domain);
                                     if (window.self !== window.top) {
                                         webui.alert(webui.escapeHtml(message || 'Success'), 'success');
                                     } else if (code) {
                                         // The site needs the code to sign in, so go there even when no referrer says where the visitor came from.
-                                        location.href = `https://${domain}/#myfi-signin=${encodeURIComponent(code)}`;
+                                        location.href = `https://${domain}${returnPath}#myfi-signin=${encodeURIComponent(code)}`;
                                     } else if (!document.referrer) {
                                         webui.alert(webui.escapeHtml(message || 'Success'), 'success');
                                     } else {
-                                        location.href = `https://${domain}`;
+                                        location.href = `https://${domain}${returnPath}`;
                                     }
                                 } else {
                                     alert.setValue(text || `An unknown error occurred signing you in to ${domain}`);
