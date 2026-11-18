@@ -1,4 +1,4 @@
-<webui-data data-page-title="Employee Handbook" data-page-subtitle=""></webui-data>
+<webui-data data-page-title="Employee Handbook" data-page-subtitle="" data-page-description="Stoic Dreams' public employee handbook: mission, hiring, pay, remote work, work-life balance, inclusion, learning, decisions, and exits."></webui-data>
 
 <webui-page-segment>
 

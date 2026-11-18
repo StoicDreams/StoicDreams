@@ -1,4 +1,4 @@
-<webui-data data-page-title="Task Story" data-page-subtitle="Track the problem, not just the ticket"></webui-data>
+<webui-data data-page-title="Task Story" data-page-subtitle="Track the problem, not just the ticket" data-page-description="Task Story is project management where you define the problem, try several solutions, and publish what shipped. Free for one developer."></webui-data>
 <webui-data data-page-next-page='{"name":"Task Proxy","href":"/products/task-proxy"}'></webui-data>
 
 <webui-pinned-side side-first>

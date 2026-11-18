@@ -1,4 +1,4 @@
-<webui-data data-page-title="Web UI" data-page-subtitle="Web components without the boilerplate"></webui-data>
+<webui-data data-page-title="Web UI" data-page-subtitle="Web components without the boilerplate" data-page-description="Web UI is an open source web component framework in plain JavaScript with no UI build step, behind every Stoic Dreams website."></webui-data>
 <webui-data data-page-next-page='{"name":"Task Story","href":"/products/task-story"}'></webui-data>
 
 <webui-pinned-side side-first>

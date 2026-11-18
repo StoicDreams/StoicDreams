@@ -1,4 +1,4 @@
-<webui-data data-page-title="Sponsor Stoic Dreams" data-page-subtitle=""></webui-data>
+<webui-data data-page-title="Sponsor Stoic Dreams" data-page-subtitle="" data-page-description="Support Stoic Dreams through GitHub Sponsors, see which free and open source tools your sponsorship pays for, and learn how to sponsor."></webui-data>
 <webui-data data-page-next-page='{"name":"Home","href":"/"}'></webui-data>
 
 ## Help us keep building free and open tools

@@ -1,4 +1,4 @@
-<webui-data data-page-title="Task Proxy" data-page-subtitle="Scripts, docs, and git, kept with your code"></webui-data>
+<webui-data data-page-title="Task Proxy" data-page-subtitle="Scripts, docs, and git, kept with your code" data-page-description="Task Proxy is a desktop app for Windows, Mac, and Linux that keeps docs, scripts, and git controls in your project's repository."></webui-data>
 <webui-data data-page-next-page='{"name":"Ap Tul","href":"/products/ap-tul"}'></webui-data>
 
 <webui-pinned-side side-first>

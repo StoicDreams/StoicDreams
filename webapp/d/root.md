@@ -1,4 +1,4 @@
-<webui-data data-page-title="Stoic Dreams" data-page-subtitle=""></webui-data>
+<webui-data data-page-title="Stoic Dreams" data-page-subtitle="" data-page-description="Stoic Dreams builds free and open tools for developers: a web component framework, project tracking, a script and git app, and browser tools."></webui-data>
 <webui-data data-page-next-page='{"name":"Products","href":"/products"}'></webui-data>
 
 <app-hero eyebrow="Forging solutions for tomorrow's software development" caption="Task Proxy's Git Controller, built with Web UI">

@@ -1,4 +1,4 @@
-<webui-data data-page-title="About {APP_DOMAIN}" data-page-subtitle=""></webui-data>
+<webui-data data-page-title="About {APP_DOMAIN}" data-page-subtitle="" data-page-description="What {APP_DOMAIN} is for: a company portal where you can follow past and current events at {APP_COMPANY_SINGULAR} and see upcoming projects."></webui-data>
 
 <webui-page-segment elevation="10">
 

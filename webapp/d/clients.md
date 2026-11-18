@@ -1,4 +1,4 @@
-<webui-data data-page-title="Clients" data-page-subtitle=""></webui-data>
+<webui-data data-page-title="Clients" data-page-subtitle="" data-page-description="The companies whose websites Stoic Dreams builds and runs on its Web UI framework, with a look at how each site appears."></webui-data>
 <webui-data data-page-next-page='{"name":"Sponsors","href":"/sponsors"}'></webui-data>
 
 <webui-page-segment elevation="10">

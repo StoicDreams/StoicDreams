@@ -1,4 +1,4 @@
-<webui-data data-page-title="Projects" data-page-subtitle=""></webui-data>
+<webui-data data-page-title="Projects" data-page-subtitle="" data-page-description="The websites Stoic Dreams runs besides its main products, plus past projects built before our move from C# to Rust and JavaScript."></webui-data>
 <webui-data data-page-next-page='{"name":"Clients","href":"/clients"}'></webui-data>
 
 <webui-page-segment elevation="10">
