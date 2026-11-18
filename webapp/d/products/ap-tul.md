@@ -1,7 +1,9 @@
 <webui-data data-page-title="Ap Tul" data-page-subtitle="Free browser tools that keep your files on your device"></webui-data>
 <webui-data data-page-next-page='{"name":"Projects","href":"/projects"}'></webui-data>
 
-<webui-page-segment elevation="10">
+<webui-pinned-side side-first>
+
+<webui-page-segment slot="side" elevation="10">
 <webui-media src="https://www.aptul.com/Logo.svg" alt="Ap Tul logo" size="96">
 
 Ap Tul is a growing library of free, privacy-focused browser tools for images, PDFs, text, and development. Every tool exists because we needed it for a real project.
@@ -15,6 +17,7 @@ Many online tools upload your files to a server. Ap Tul's tools work in your bro
 </webui-flex>
 
 </webui-page-segment>
+
 
 ## A look at the tools
 
@@ -32,3 +35,5 @@ Many online tools upload your files to a server. Ap Tul's tools work in your bro
 <webui-card name="Text Tools" avatar="font" link="https://www.aptul.com/diff-checker">Count words, change case, and compare two texts line by line.</webui-card>
 <webui-card name="Generators" avatar="wand" link="https://www.aptul.com/qr-code-generator">QR codes, UUIDs, passwords, and placeholder text.</webui-card>
 </webui-cards>
+
+</webui-pinned-side>

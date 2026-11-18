@@ -1,7 +1,9 @@
 <webui-data data-page-title="Task Story" data-page-subtitle="Track the problem, not just the ticket"></webui-data>
 <webui-data data-page-next-page='{"name":"Task Proxy","href":"/products/task-proxy"}'></webui-data>
 
-<webui-page-segment elevation="10">
+<webui-pinned-side side-first>
+
+<webui-page-segment slot="side" elevation="10">
 <webui-media src="https://www.taskstory.com/Logo.svg" alt="Task Story logo" size="96">
 
 Task Story is project management for software teams that ship in short, continuous iterations. Define the problem first, try more than one solution, and publish a story of what shipped and what you dropped.
@@ -16,6 +18,7 @@ It is free for one developer. Team plans add a shared space and a seat for each 
 </webui-flex>
 
 </webui-page-segment>
+
 
 <webui-sideimage src="https://www.taskstory.com/img/screenshots/dashboard.png" alt="The Task Story dashboard, with a team's problems, solutions, and tasks side by side">
 
@@ -71,3 +74,5 @@ Task Story follows Continuous Agile Software Engineering (CASE), the way we work
 </webui-flex>
 
 </webui-page-segment>
+
+</webui-pinned-side>

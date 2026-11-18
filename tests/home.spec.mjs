@@ -59,7 +59,9 @@ test.describe('app-site-cards', () => {
         const card = page.locator('app-site-cards a.card');
         await expect(card.locator('h3')).toHaveText('<img src=x onerror="window.__hacked=1">Tool');
         await expect(card.locator('p')).toHaveText('<b>bold</b>');
-        expect(await page.evaluate(() => window.__hacked)).toBeUndefined();
+        // No element was made from the card's text, so nothing can run its onerror.
+        await expect(card.locator('img, b')).toHaveCount(0);
+        await expect.poll(() => page.evaluate(() => window.__hacked)).toBeUndefined();
     });
 
     test('shows nothing when the card file cannot be loaded', async ({ page }) => {

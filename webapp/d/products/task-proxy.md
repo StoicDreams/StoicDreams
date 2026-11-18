@@ -1,7 +1,9 @@
 <webui-data data-page-title="Task Proxy" data-page-subtitle="Scripts, docs, and git, kept with your code"></webui-data>
 <webui-data data-page-next-page='{"name":"Ap Tul","href":"/products/ap-tul"}'></webui-data>
 
-<webui-page-segment elevation="10">
+<webui-pinned-side side-first>
+
+<webui-page-segment slot="side" elevation="10">
 <webui-media src="https://www.taskproxy.com/Logo.svg" alt="Task Proxy logo" size="96">
 
 Task Proxy is a lightweight desktop app for managing documentation, scripts, and automations alongside your code. It is built in Rust and runs on Windows, Mac, and Linux.
@@ -17,6 +19,7 @@ Its pages and settings live in a `.taskproxy` folder in your project, so your te
 </webui-flex>
 
 </webui-page-segment>
+
 
 ## See it in action
 
@@ -119,3 +122,5 @@ Add plugins to bring other tools into Task Proxy. The Jira plugin lists your iss
 <webui-card name="Developers" avatar="code" link="https://www.taskproxy.com/for-developers">Run scripts without remembering their flags, review and commit quickly, and keep tokens out of your scripts.</webui-card>
 <webui-card name="Everyone Who Uses Git" avatar="git" link="https://www.taskproxy.com/for-git-users">Writers, designers, and students: see what changed, save a version, and share it, without the command line.</webui-card>
 </webui-cards>
+
+</webui-pinned-side>

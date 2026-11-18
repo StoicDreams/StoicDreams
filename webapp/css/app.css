@@ -117,11 +117,23 @@ webui-app>:not([slot]) {
 	margin-right: max(16px, calc((100% - 1180px) / 2));
 }
 
-webui-app>h2:not(:first-child) {
+/* Product pages pin their intro beside the rest of the page, so on wide screens they use more width than the column. */
+webui-app>webui-pinned-side {
+	margin-left: max(16px, calc((100% - 1600px) / 2));
+	margin-right: max(16px, calc((100% - 1600px) / 2));
+}
+
+:is(webui-app, webui-pinned-side)>h2:not(:first-child) {
 	margin-top: 2.6rem;
 }
 
-webui-app>h2 {
+/* In the pinned layout the side panel comes first in the markup, so the first heading would get the gap above it. */
+webui-pinned-side>h2:first-of-type {
+	margin-top: 0;
+}
+
+
+:is(webui-app, webui-pinned-side)>h2 {
 	font-size: 1.9rem;
 	font-weight: 900;
 	box-shadow: none;
@@ -130,7 +142,7 @@ webui-app>h2 {
 }
 
 /* A line right under a section heading reads as its lead. */
-webui-app>h2+p {
+:is(webui-app, webui-pinned-side)>h2+p {
 	color: var(--color-muted);
 	margin-top: -0.2rem;
 	margin-bottom: 1rem;
@@ -194,6 +206,27 @@ webui-button {
 	box-shadow: none;
 	border: 1px solid var(--color-line);
 	transition: filter 160ms ease, transform 160ms ease;
+}
+
+/* Tabs: webui-tabs gives the open tab theme="active" and leaves the rest on the title color, which is nearly the
+ * same blue here. Closed tabs are quiet, and the open one is solid blue with a glow and a white edge. */
+webui-tabs>webui-button[slot="tabs"]:not([theme="active"]) {
+	background-color: transparent;
+	border-color: transparent;
+	color: var(--color-muted);
+}
+
+webui-tabs>webui-button[slot="tabs"]:not([theme="active"]):hover {
+	background-color: var(--color-surface-hover);
+	color: var(--color-background-offset);
+	filter: none;
+}
+
+webui-tabs>webui-button[slot="tabs"][theme="active"] {
+	background-color: var(--color-primary);
+	border-color: transparent;
+	color: var(--color-white);
+	box-shadow: 0 6px 18px rgb(46 84 255 / 45%), inset 3px 0 0 var(--color-white);
 }
 
 /* Buttons whose text wraps onto several lines would become ovals as pills, so they keep rounded corners. */

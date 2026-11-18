@@ -1,7 +1,9 @@
 <webui-data data-page-title="Web UI" data-page-subtitle="Web components without the boilerplate"></webui-data>
 <webui-data data-page-next-page='{"name":"Task Story","href":"/products/task-story"}'></webui-data>
 
-<webui-page-segment elevation="10">
+<webui-pinned-side side-first>
+
+<webui-page-segment slot="side" elevation="10">
 <webui-media src="https://webui.stoicdreams.com/Logo.svg" alt="Web UI logo" size="96">
 
 Web UI is an open source web component framework written in plain JavaScript, with an optional Rust WebAssembly worker for heavy work. It powers every Stoic Dreams website and the Task Proxy desktop app.
@@ -17,6 +19,7 @@ There is no build step for your UI. Add a tag such as `<webui-cards>` to a page 
 </webui-flex>
 
 </webui-page-segment>
+
 
 ## What you get
 
@@ -60,3 +63,5 @@ Every Stoic Dreams website, and the sites we run for our clients, is built on We
 - [Case Study: Web UI](https://www.erikgassler.com/case-studies/web-ui), by Erik Gassler.
 
 </webui-page-segment>
+
+</webui-pinned-side>

@@ -191,7 +191,8 @@ test.describe('app-signin', () => {
         await openPage(page, `/signin?domain=${encodeURIComponent('<img src=x onerror="window.__xss=1">.com')}`);
         await expect(form(page)).toContainText('You are already signed in');
         await expect(form(page).locator('img')).toHaveCount(0);
-        expect(await page.evaluate(() => window.__xss)).toBeUndefined();
+        // No image element was made from it, so nothing can run its onerror.
+        await expect.poll(() => page.evaluate(() => window.__xss)).toBeUndefined();
     });
 
     // An installed app, such as Task Proxy, sends the visitor here to approve its sign-in.
@@ -262,7 +263,8 @@ test.describe('app-signin', () => {
             await openPage(page, appUrl);
             await expect(form(page).locator('.app-signin-name')).toHaveText(name);
             await expect(form(page).locator('img')).toHaveCount(0);
-            expect(await page.evaluate(() => window.__xss)).toBeUndefined();
+            // No image element was made from it, so nothing can run its onerror.
+        await expect.poll(() => page.evaluate(() => window.__xss)).toBeUndefined();
         });
 
         test('a request that is not a request id is ignored', async ({ page }) => {
