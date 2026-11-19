@@ -409,6 +409,8 @@ test.describe('app-account-sidebar', () => {
 
 test('app-account-settings saves a new sign-out time with the API', async ({ page }) => {
     const calls = await api(page, signedIn);
+    // The API call waits for the slider to rest, so the test moves the clock instead of waiting.
+    await page.clock.install();
     await openPage(page, '/');
     await page.evaluate(() => {
         const settings = document.createElement('app-account-settings');
@@ -419,7 +421,182 @@ test('app-account-settings saves a new sign-out time with the API', async ({ pag
     // Moving the slider writes session-autosignout through the range's data-trigger.
     await range.locator('input[type="range"]').fill('60');
     await expect.poll(() => page.evaluate(() => `${webui.getData('session-autosignout')}`)).toBe('60');
-    await expect.poll(() => callsTo(calls, 'cookie/age').length, { timeout: 3000 }).toBe(1);
+    await page.clock.runFor(600);
+    await expect.poll(() => callsTo(calls, 'cookie/age').length).toBe(1);
+});
+
+// Opens /account signed in, on the tab that shows the component.
+const tabFor = { 'app-account-subscriptions': 'Subscriptions', 'app-account-privacy': 'Security / Privacy' };
+const addToPage = async (page, name) => {
+    await openPage(page, '/account');
+    await page.locator('webui-tabs webui-button[slot="tabs"]', { hasText: tabFor[name] }).click();
+    await expect(page.locator(name)).toBeVisible();
+};
+const json = value => ({ body: JSON.stringify(value) });
+
+test.describe('/account', () => {
+    test('signed in, it has the Session, Subscriptions, and Security / Privacy tabs', async ({ page }) => {
+        await api(page, { ...signedIn, 'user/subscriptions': json([]), 'user/authorizations': json([]) });
+        await openPage(page, '/account');
+        const tabs = page.locator('webui-tabs webui-button[slot="tabs"]');
+        await expect(tabs).toHaveText(['Session', 'Subscriptions', 'Security / Privacy']);
+        await expect(page.locator('app-account-settings')).toBeVisible();
+        await tabs.nth(1).click();
+        await expect(page.locator('app-account-subscriptions')).toBeVisible();
+        await tabs.nth(2).click();
+        await expect(page.locator('app-account-privacy')).toBeVisible();
+    });
+});
+
+test.describe('app-account-subscriptions', () => {
+    const subscriptions = [
+        { id: 'a1', type: 'newsletter', name: 'Stoic Dreams News', company: 'Stoic Dreams', domain: 'www.stoicdreams.com', status: 'active', subscribedAt: '2026-10-01T12:00:00Z' },
+        { id: 'b2', type: 'newsletter', name: 'Piano Tips', company: 'Other Co', domain: 'piano.example.com', status: 'inactive', subscribedAt: '2026-01-01T12:00:00Z', endedAt: '2026-06-01T12:00:00Z' },
+    ];
+    const rows = page => page.locator('app-account-subscriptions li');
+    const toggle = (page, index) => rows(page).nth(index).locator('webui-toggle-icon');
+
+    test('lists every subscription with its company, site, and whether it is active', async ({ page }) => {
+        await api(page, { ...signedIn, 'user/subscriptions': json(subscriptions) });
+        await addToPage(page, 'app-account-subscriptions');
+        await expect(rows(page)).toHaveCount(2);
+        await expect(rows(page).nth(0).locator('strong')).toHaveText('Stoic Dreams News');
+        await expect(rows(page).nth(0).locator('.source')).toHaveText('Newsletter · Stoic Dreams · www.stoicdreams.com');
+        await expect(rows(page).nth(0).locator('.status')).toContainText('Active since');
+        await expect(toggle(page, 0)).toHaveAttribute('enabled', 'true');
+        await expect(toggle(page, 0)).toHaveAttribute('title', 'Deactivate Stoic Dreams News');
+        await expect(rows(page).nth(1).locator('.status')).toContainText('Inactive since');
+        await expect(toggle(page, 1)).not.toHaveAttribute('enabled');
+        await expect(toggle(page, 1)).toHaveAttribute('title', 'Reactivate Piano Tips');
+    });
+
+    test('turning one off deactivates it, and turning it on again reactivates it', async ({ page }) => {
+        const calls = await api(page, { ...signedIn, 'user/subscriptions': json(subscriptions) });
+        await addToPage(page, 'app-account-subscriptions');
+        await toggle(page, 0).click();
+        await expect(rows(page).nth(0).locator('.status')).toContainText('Inactive');
+        await expect.poll(() => callsTo(calls, 'user/subscription')).toEqual([{ path: 'user/subscription', method: 'PATCH', body: { id: 'a1', active: false } }]);
+        await expect(toggle(page, 0)).not.toHaveAttribute('enabled');
+        await toggle(page, 0).click();
+        await expect(rows(page).nth(0).locator('.status')).toContainText('Active');
+        await expect.poll(() => callsTo(calls, 'user/subscription').map(c => c.body)).toEqual([{ id: 'a1', active: false }, { id: 'a1', active: true }]);
+    });
+
+    test('when the API refuses a change, the toggle goes back and the reason is shown', async ({ page }) => {
+        await api(page, {
+            ...signedIn,
+            'user/subscriptions': json(subscriptions),
+            'user/subscription': { status: 409, body: 'This newsletter no longer accepts your address.' },
+        });
+        await addToPage(page, 'app-account-subscriptions');
+        await toggle(page, 1).click();
+        await expect(page.locator('.webui-alerts-popup')).toContainText('This newsletter no longer accepts your address.');
+        await expect(toggle(page, 1)).not.toHaveAttribute('enabled');
+        await expect(rows(page).nth(1).locator('.status')).toContainText('Inactive');
+    });
+
+    test('writes names as text, never as HTML', async ({ page }) => {
+        await api(page, { ...signedIn, 'user/subscriptions': json([{ id: 'x', type: 'newsletter', name: '<img src=x onerror="window.__hacked=1">News', company: '<b>Co</b>', status: 'active' }]) });
+        await addToPage(page, 'app-account-subscriptions');
+        await expect(rows(page).locator('strong')).toHaveText('<img src=x onerror="window.__hacked=1">News');
+        await expect(rows(page).locator('.source')).toHaveText('Newsletter · <b>Co</b>');
+        await expect(rows(page).locator('img, b')).toHaveCount(0);
+        await expect.poll(() => page.evaluate(() => window.__hacked)).toBeUndefined();
+    });
+
+    test('says so when there are none, or when they cannot be loaded', async ({ page }) => {
+        let answer = json([]);
+        await api(page, { ...signedIn, 'user/subscriptions': () => answer });
+        await addToPage(page, 'app-account-subscriptions');
+        const message = page.locator('app-account-subscriptions .message');
+        await expect(message).toContainText('You have no subscriptions yet.');
+        answer = { status: 500, body: 'Something broke.' };
+        await page.locator('app-account-subscriptions').evaluate(c => c.load());
+        await expect(message).toHaveText('Something broke.');
+        await expect(message).toHaveAttribute('error', '');
+    });
+});
+
+test.describe('app-account-privacy', () => {
+    const authorizations = [
+        { id: 's1', kind: 'site', companyId: 'c1', company: 'Stoic Dreams', name: 'www.taskstory.com', authorizedAt: '2026-09-01T12:00:00Z', lastUsedAt: '2026-11-10T12:00:00Z', shares: ['Account ID'] },
+        { id: 'p1', kind: 'app', companyId: 'c1', company: 'Stoic Dreams', name: 'Task Proxy', device: 'Work Laptop', authorizedAt: '2026-09-02T12:00:00Z' },
+        { id: 's2', kind: 'site', companyId: 'c2', company: 'Other Co', name: 'www.example.com', authorizedAt: '2026-08-01T12:00:00Z' },
+    ];
+    const companies = page => page.locator('app-account-privacy section');
+    const row = (page, name) => page.locator('app-account-privacy li', { has: page.locator('strong', { hasText: name }) });
+
+    test('lists each company with the sites and apps it signs in, and what each can see', async ({ page }) => {
+        await api(page, { ...signedIn, 'user/authorizations': json(authorizations) });
+        await addToPage(page, 'app-account-privacy');
+        await expect(companies(page).locator('h3')).toHaveText(['Stoic Dreams', 'Other Co']);
+        await expect(companies(page).nth(0).locator('li strong')).toHaveText(['www.taskstory.com', 'Task Proxy']);
+        await expect(row(page, 'www.taskstory.com').locator('.detail')).toContainText(['Website', 'Allowed', 'Can see: Account ID']);
+        await expect(row(page, 'www.taskstory.com').locator('.detail').nth(1)).toContainText('Last signed in');
+        await expect(row(page, 'Task Proxy').locator('.detail').first()).toHaveText('App on Work Laptop');
+        await expect(row(page, 'Task Proxy').locator('webui-button')).toHaveAttribute('aria-label', 'Revoke sign-in for Task Proxy');
+    });
+
+    test('revoking asks first, then removes the site', async ({ page }) => {
+        const calls = await api(page, { ...signedIn, 'user/authorizations': json(authorizations) });
+        await addToPage(page, 'app-account-privacy');
+        await row(page, 'www.example.com').locator('webui-button').click();
+        await expect(dialog(page)).toContainText('Revoke sign-in for www.example.com?');
+        await dialogButton(page, 'Confirm').click();
+        await expect(row(page, 'www.example.com')).toHaveCount(0);
+        await expect(companies(page).locator('h3')).toHaveText(['Stoic Dreams']);
+        expect(callsTo(calls, 'user/authorization')).toEqual([{ path: 'user/authorization', method: 'DELETE', body: { id: 's2' } }]);
+        await expect(page.locator('.webui-alerts-popup')).toContainText('Sign-in for www.example.com was revoked.');
+    });
+
+    test('cancelling leaves the site allowed', async ({ page }) => {
+        const calls = await api(page, { ...signedIn, 'user/authorizations': json(authorizations) });
+        await addToPage(page, 'app-account-privacy');
+        await row(page, 'Task Proxy').locator('webui-button').click();
+        await expect(dialog(page)).toContainText('Revoke sign-in for Task Proxy?');
+        await dialogButton(page, 'Cancel').click();
+        await expect(dialog(page)).toHaveCount(0);
+        // Revoking another one goes through the same path, so once it is sent, the cancelled one would have been too.
+        await row(page, 'www.example.com').locator('webui-button').click();
+        await dialogButton(page, 'Confirm').click();
+        await expect(row(page, 'www.example.com')).toHaveCount(0);
+        expect(callsTo(calls, 'user/authorization').map(c => c.body)).toEqual([{ id: 's2' }]);
+        await expect(row(page, 'Task Proxy')).toHaveCount(1);
+    });
+
+    test('when revoking fails, the site stays and the reason is shown', async ({ page }) => {
+        await api(page, { ...signedIn, 'user/authorizations': json(authorizations), 'user/authorization': { status: 404, body: 'That sign-in was not found.' } });
+        await addToPage(page, 'app-account-privacy');
+        await row(page, 'www.example.com').locator('webui-button').click();
+        await dialogButton(page, 'Confirm').click();
+        await expect(page.locator('.webui-alerts-popup')).toContainText('That sign-in was not found.');
+        await expect(row(page, 'www.example.com')).toHaveCount(1);
+        await expect(row(page, 'www.example.com').locator('webui-button')).not.toHaveAttribute('disabled');
+    });
+
+    test('writes names as text, never as HTML, in the list and in the question', async ({ page }) => {
+        const name = '<img src=x onerror="window.__hacked=1">evil.example';
+        await api(page, { ...signedIn, 'user/authorizations': json([{ id: 'e', kind: 'site', company: '<b>Evil</b>', name }]) });
+        await addToPage(page, 'app-account-privacy');
+        await expect(page.locator('app-account-privacy h3')).toHaveText('<b>Evil</b>');
+        await expect(page.locator('app-account-privacy li strong')).toHaveText(name);
+        await page.locator('app-account-privacy li webui-button').click();
+        await expect(dialog(page)).toContainText(`Revoke sign-in for ${name}?`);
+        await expect(page.locator('app-account-privacy').locator('img, b')).toHaveCount(0);
+        await expect(dialog(page).locator('img')).toHaveCount(0);
+        await expect.poll(() => page.evaluate(() => window.__hacked)).toBeUndefined();
+    });
+
+    test('says so when nothing is allowed, or when the list cannot be loaded', async ({ page }) => {
+        let answer = json([]);
+        await api(page, { ...signedIn, 'user/authorizations': () => answer });
+        await addToPage(page, 'app-account-privacy');
+        const message = page.locator('app-account-privacy .message');
+        await expect(message).toContainText('You have not signed in to any other sites or apps');
+        answer = { status: 401, body: 'Please sign in.' };
+        await page.locator('app-account-privacy').evaluate(c => c.load());
+        await expect(message).toHaveText('Please sign in.');
+    });
 });
 
 test('app-myfi-pricing-table lists the starter features and the add-ons', async ({ page }) => {
