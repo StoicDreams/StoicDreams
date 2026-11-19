@@ -1,6 +1,6 @@
 # Stoic Dreams
 
-[Version: 0.1.41](https://github.com/StoicDreams/StoicDreams)
+[Version: 0.1.42](https://github.com/StoicDreams/StoicDreams)
 
 [WebUI](https://github.com/StoicDreams/WebUI)
 
