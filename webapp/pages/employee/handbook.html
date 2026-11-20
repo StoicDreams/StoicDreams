@@ -31,9 +31,6 @@
 	<link rel="preconnect" href="https://cdn.myfi.ws">
 	<link rel="preconnect" href="https://api.myfi.ws">
 
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
 
 	<link href="Logo.svg?v=f97ffdf0c6" rel="icon" type="image/svg+xml" sizes="any" />
 	<link rel="manifest" href="app.webmanifest?v=07b020f095">
@@ -44,6 +41,7 @@
 		// so framework changes show before they are published, and from cdn.myfi.ws everywhere else.
 		window.webuiCdn = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) ? 'http://localhost:3180/' : webuiLocal ? '/webui-cdn/' : 'https://cdn.myfi.ws/';
 		document.write('<link href="' + webuiCdn + 'css/webui.min.css" rel="stylesheet" />');
+		document.write('<link href="' + webuiCdn + 'fonts/nunito.min.css" rel="stylesheet" />');
 	</script>
 	<link href="css/app.min.css?v=04af64b6b5" rel="stylesheet" />
 	<script>document.write('<script src="' + webuiCdn + 'webui/loader.min.js"></' + 'script>');</script>
@@ -99,7 +97,7 @@
 	<link rel="preload" as="script" href="https://cdn.myfi.ws/webui/stoic-dreams-logo.min.js" crossorigin="anonymous" />
 	<link rel="preload" as="script" href="https://cdn.myfi.ws/webui/stoic-social-links.min.js" crossorigin="anonymous" />
 	<link rel="preload" as="script" href="https://cdn.myfi.ws/webui/tabs.min.js" crossorigin="anonymous" />
-	<meta name="webui-prerender" content="e3b4538fa3">
+	<meta name="webui-prerender" content="85a204f828">
 </head>
 
 <body>
